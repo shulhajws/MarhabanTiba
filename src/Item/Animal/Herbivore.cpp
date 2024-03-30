@@ -4,13 +4,13 @@
 using namespace std;
 
 
-Herbivore::Herbivore(string kode, string nama,int berat_panen, int price) : Animal(kode,nama,"HERBIVORE",berat_panen,price){
+Herbivore::Herbivore(string code, string name, int harvestWeight, int price) : Animal(code,name,"HERBIVORE",harvestWeight,price){
 }
 
 // ini harusnya produk
 void Herbivore::makan(string m){
     if (m=="PRODUCT_FRUIT_PLANT"){
-        this->berat_hewan += 10; // ini nanti diambil dari product
+        this->animalWeight += 10; // ini nanti diambil dari product
     }
     else{
         cout<<"Hewan hanya bisa makan buah."<<endl;

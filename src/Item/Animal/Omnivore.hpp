@@ -1,5 +1,5 @@
-#ifndef __HERBIVORA_HPP__
-#define __HERBIVORA_HPP__
+#ifndef __OMNIVORA_HPP__
+#define __OMNIVORA_HPP__
 
 #include "Animal.hpp"
 
