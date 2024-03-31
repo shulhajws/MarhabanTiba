@@ -14,3 +14,12 @@ Item::~Item(){};
 bool operator==(const Item& Item1, const Item& Item2){
     // TO BE IMPLEMENTED
 }
+
+// Implementation of getName() method
+string Item::getName() const {
+    return name;
+}
+// Implementation of getType() method
+string Item::getType() const {
+    return type;
+}

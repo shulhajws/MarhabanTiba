@@ -4,7 +4,11 @@
 #include "../Command/AllCommand/Makan.hpp"
 #include "../Command/AllCommand/Beli.hpp"
 #include "../Command/AllCommand/Jual.hpp"
-
+#include "../Shop/Shop.hpp"
+#include "../Item/Item.hpp"
+#include "../Building/Building.hpp"
+#include <iostream>
+using namespace std;
 
 Player::Player(){
     this->commandList.push_back(new Next());
@@ -33,4 +37,11 @@ bool Player::operator==(string command) const{
 
 string Player::getName() const{
     return this->username;
+}
+
+void Player :: buyItem(Shop& shop, const string& itemName, int quantity){
+}
+
+void Player :: sellItem(Shop& shop, const string& itemName, int quantity){
+
 }
