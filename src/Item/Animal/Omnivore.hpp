@@ -1,5 +1,5 @@
-#ifndef __OMNIVORA_HPP__
-#define __OMNIVORA_HPP__
+#ifndef __OMNIVORE_HPP__
+#define __OMNIVORE_HPP__
 
 #include "Animal.hpp"
 
@@ -14,7 +14,6 @@ class Omnivore : Animal{
 
 class Chicken : Omnivore{
     public:
-
         Chicken(int berat_panen, int price);
 };
 
