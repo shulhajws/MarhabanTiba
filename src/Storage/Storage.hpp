@@ -8,21 +8,21 @@
 
 using namespace std;
 
-// template<class T>
-// class GridStorage {
-//     private :
-//         //player storageOwner;
-//         int row;
-//         int col;
-//         vector<int> storageContent;
-//     public :
-//         GridStorage();
-//         ~GridStorage();
-//         void setItem(int row, int col, T content);
-//         int getItemInfo(int row, int col);
-//         int getItem(int row, int col);
-//         void printStorage();
-// };
+template<class T>
+class GridStorage {
+    private :
+        //player storageOwner;
+        int row;
+        int col;
+        vector<int> storageContent;
+    public :
+        GridStorage();
+        ~GridStorage();
+        void setItem(int row, int col, T content);
+        int getItemInfo(int row, int col);
+        int getItem(int row, int col);
+        void printStorage();
+};
 
 #endif
 
