@@ -10,9 +10,13 @@ AnimalFarmer::AnimalFarmer() : Player(){
     this->commandList.push_back(new Ternak());
 }
 
-AnimalFarmer::AnimalFarmer(string username, int wealth, int weight) : Player(username, wealth, weight) {
+AnimalFarmer::AnimalFarmer(string username, int wealth, int weight) : Player(username, wealth, weight, "Peternak") {
     this->commandList.push_back(new KasihMakan());
     this->commandList.push_back(new Ternak());
+}
+
+int AnimalFarmer::getKTKP(){
+    return 11;
 }
 
 void AnimalFarmer::displayInfo() const {

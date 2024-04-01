@@ -1,7 +1,7 @@
 #ifndef BUILDING_HPP
 #define BUILDING_HPP
 
-#include "../Item/Item.hpp"
+#include "../Item.hpp"
 #include <map>
 #include <string>
 #include <iostream>

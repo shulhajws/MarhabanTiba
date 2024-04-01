@@ -5,9 +5,9 @@
 #include <vector>
 #include "../Command/Command.hpp"
 #include "../Shop/Shop.hpp"
+#include "../Item/Item.hpp"
+#include "../Item/Building/Building.hpp"
 using namespace std;
-
-class Shop; // Forward declaration of Shop class
 
 class Player{
     protected:
@@ -22,16 +22,17 @@ class Player{
 
     public:
         Player();
-        Player(string username, int wealth, int weight);
+        Player(string username, int wealth, int weight, string type);
         Player(const Player& other);
         virtual ~Player();
-
-        string getName() const;
-        int getWealth() const;
-        friend class Shop;
-
+        int getPlayerWealth();
         virtual void displayInfo() const;
-        int calculateTax() const;
+        string getName() const;
+        string getType() const;
+        void addPlayerWealth(int money);
+        void minPlayerWealth(int money);
+        virtual int getKTKP();
+        // Method untuk membeli barang dari toko
         void buyItem(Shop& shop, const string& itemName, int quantity);
         void sellItem(Shop& shop, const string& itemName, int quantity); 
         void eat();

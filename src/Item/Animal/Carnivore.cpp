@@ -6,15 +6,15 @@ using namespace std;
 Carnivore::Carnivore(string code, string name,int harvestWeight,int price): Animal(code,name,"CARNIVORE", harvestWeight, price){
 }
 
-// ini harusnya produk
-void Carnivore::makan(string m){
-    if (m=="PRODUCT_ANIMAL"){
-        this->harvestWeight += 10; // ini nanti diambil dari product
+void Carnivore::makan(Products* m){
+    if (m->getType()=="PRODUCT_ANIMAL"){
+        this->harvestWeight += m->getAddedWeight(); 
     }
     else{
-        cout<<"Hewan hanya bisa makan daging."<<endl;
+        cout<<"\033[1;31mHewan hanya bisa makan daging.\033[0m"<<endl;
     }
 }
 
 
-Snake::Snake(int berat,int price): Carnivore("SNK","Snake",berat,price){}
+
+Snake::Snake(int harvestWeight,int price): Carnivore("SNK","SNAKE",harvestWeight,price){}

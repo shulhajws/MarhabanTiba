@@ -4,9 +4,6 @@
 #include "../Command/AllCommand/Makan.hpp"
 #include "../Command/AllCommand/Beli.hpp"
 #include "../Command/AllCommand/Jual.hpp"
-#include "../Shop/Shop.hpp"
-#include "../Item/Item.hpp"
-#include "../Building/Building.hpp"
 #include <iostream>
 using namespace std;
 
@@ -18,10 +15,11 @@ Player::Player(){
     this->commandList.push_back(new Beli());
 }
 
-Player::Player(string username, int wealth, int weight) : Player(){
+Player::Player(string username, int wealth, int weight, string type) : Player(){
     this->username = username;
     this->wealth = wealth;
     this->weight = weight;
+    this->type = type;
 }
 
 bool Player::operator==(string command) const{
@@ -52,18 +50,24 @@ string Player::getName() const{
     return this->username;
 }
 
-int Player::getWealth() const{
+string Player::getType() const{
+    return this->type;
+}
+
+int Player::getKTKP(){
+    return 0;
+}
+
+void Player::addPlayerWealth(int money){
+    this->wealth += money;
+}
+
+void Player::minPlayerWealth(int money){
+    this->wealth -= money;
+}
+
+int Player::getPlayerWealth(){
     return this->wealth;
-}
-
-void Player::displayInfo() const {
-    cout << "Username: " << this->username << endl;
-    cout << "Wealth  : " << this->wealth << endl;
-    cout << "Weight  : " << this->weight << endl;
-}
-
-int Player::calculateTax() const {
-    return wealth * 0.1; // Dummy 
 }
 
 void Player :: buyItem(Shop& shop, const string& itemName, int quantity){
@@ -81,6 +85,8 @@ void Player::eat() {
     cout << "Player ate something" << endl;
 }
 
-void Player::increaseWealth(int amount) {
-    wealth += amount;
+void Player::displayInfo() const {
+    cout << "Username: " << this->username << endl;
+    cout << "Wealth  : " << this->wealth << endl;
+    cout << "Weight  : " << this->weight << endl;
 }

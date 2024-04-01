@@ -8,8 +8,12 @@ PlantFarmer::PlantFarmer() : Player(){
     this->commandList.push_back(new Tanam());
 }
 
-PlantFarmer::PlantFarmer(string username, int wealth, int weight) : Player(username, wealth, weight) {
+PlantFarmer::PlantFarmer(string username, int wealth, int weight) : Player(username, wealth, weight, "Petani") {
     this->commandList.push_back(new Tanam());
+}
+
+int PlantFarmer::getKTKP(){
+    return 13;
 }
 
 void PlantFarmer::displayInfo() const {

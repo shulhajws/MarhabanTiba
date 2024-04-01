@@ -1,14 +1,14 @@
 #include "Shop.hpp"
 #include <algorithm>
-#include "../Building/Building.hpp"
+#include "../Item/Building/Building.hpp"
 #include "../Item/Item.hpp"
 #include <iostream>
 #include "../Player/Player.hpp"
 using namespace std;
 
-Shop& Shop::operator+(Item& item) {
-    // Implementation
-}
+// Shop& Shop::operator+(Item& item) {
+//     // Implementation
+// }
 
 void Shop :: printShop(){
     cout << "Selamat datang di toko!" << endl;

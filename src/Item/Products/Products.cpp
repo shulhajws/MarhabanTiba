@@ -5,6 +5,10 @@ Products::Products(int id, string code, string name, string type, string origin,
 
 Products::~Products() {}
 
+double Products::getAddedWeight(){
+    return added_weight;
+}
+
 bool Products::operator==(const Products& other) const {
     // Check if all attributes are equal
     return (id == other.id && code == other.code && name == other.name && type == other.type &&

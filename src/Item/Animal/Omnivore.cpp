@@ -7,9 +7,9 @@ Omnivore::Omnivore(string kode, string nama,int berat_panen,int price): Animal(k
 }
 
 // ini harusnya produk
-void Omnivore::makan(string m){
-    if (m=="PRODUCT_ANIMAL" || m=="PRODUCT_FRUIT_PLANT"){
-        this->berat_hewan += 10; // ini nanti diambil dari product
+void Omnivore::makan(Products* m){
+    if (m->getType()=="PRODUCT_ANIMAL" || m->getType()=="PRODUCT_FRUIT_PLANT"){
+        this->berat_hewan += m->getAddedWeight(); 
     }
     else{
         cout<<"Hewan hanya bisa makan daging dan buah."<<endl;

@@ -2,6 +2,7 @@
 #define _COMMAND_HPP_
 
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Command{

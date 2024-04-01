@@ -12,7 +12,7 @@
 using namespace std;
 
 class Game{
-    private:
+    protected:
         int currPlayer;
         vector<Player*> players;
     public:

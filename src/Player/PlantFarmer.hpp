@@ -10,6 +10,7 @@ class PlantFarmer : public Player{
     public:
         PlantFarmer();
         PlantFarmer(string username, int wealth, int weight);
+        int getKTKP();
 
         void displayInfo() const override;
         void plantCrop();

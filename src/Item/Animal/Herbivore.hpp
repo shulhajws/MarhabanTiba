@@ -2,12 +2,13 @@
 #define __HERBIVORE_HPP__
 
 #include "Animal.hpp"
+#include "../Products/Products.hpp"
 
 class Herbivore : Animal{
     public:
         Herbivore(string kode, string nama,int berat_hewan,int price);
         /// harusnya ada kelas produk 
-        void makan(string makanan);
+        void makan(Products* p);
 };
 
 class Cow : Herbivore{

@@ -16,6 +16,7 @@ class AnimalFarmer : public Player{
         void feedAnimal();
         void harvestAnimal();
         void printBarn();
+        int getKTKP();
 };
 
 #endif

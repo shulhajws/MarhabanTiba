@@ -12,16 +12,20 @@ Animal::Animal(string code, string name, string type, int weight, int price) : I
     Animal::animalID += 1;
 }
 
-// ini pake exception apa gak
+
 bool Animal::isHarvestable(){
     if(animalWeight>=harvestWeight){
         cout<<"Hewan siap dipanen"<<endl;
         return true;
     }
     else{
-        cout<<"Hewan belum siap dipanen"<<endl;
+        cout<<"\033[1;31mHewan belum siap dipanen\033[0m"<<endl;
         return false;
     }
+}
+
+void Animal::setAnimalWeight(int berat){
+    animalWeight = berat;
 }
 
 

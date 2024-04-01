@@ -5,10 +5,10 @@ using namespace std;
 
 #include "../Item/Animal/Animal.hpp"
 #include "../Item/Plant/Plant.hpp"
-#include "../Building/Building.hpp"
+#include "../Item/Building/Building.hpp"
 #include "../Item/Plant/Plant.hpp"
-#include "../Products/PlantsProducts.hpp"
-#include "../Products/ProductsAnimal.hpp"
+#include "../Item/Products/PlantsProducts.hpp"
+#include "../Item/Products/ProductsAnimal.hpp"
 #include <vector>
 #include <tuple>
 
