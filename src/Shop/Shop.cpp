@@ -9,9 +9,7 @@ using namespace std;
 Shop& Shop::operator+(Item& item) {
     // Implementation
 }
-int Shop :: getPlayerWealth(const Player& player) const {
-    return player.wealth; 
-}
+
 void Shop :: printShop(){
     cout << "Selamat datang di toko!" << endl;
     cout << "Berikut merupakan hal yang dapat Anda Beli" << endl;

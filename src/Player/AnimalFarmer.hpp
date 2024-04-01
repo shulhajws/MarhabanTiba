@@ -10,6 +10,12 @@ class AnimalFarmer : public Player{
     public:
         AnimalFarmer();
         AnimalFarmer(string username, int wealth, int weight);
+
+        void displayInfo() const override;
+        void placeAnimal();
+        void feedAnimal();
+        void harvestAnimal();
+        void printBarn();
 };
 
 #endif

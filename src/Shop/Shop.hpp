@@ -24,7 +24,6 @@ private:
 public:
     Shop& operator+(Item& item);
     void printShop();
-    int getPlayerWealth(const Player& player) const;
 };
 
 #endif // SHOP_HPP

@@ -35,13 +35,52 @@ bool Player::operator==(string command) const{
     return ada;
 }
 
+
+Player::Player(const Player& other) : Player(){
+    this->username = other.username;
+    this->wealth = other.wealth;
+    this->weight = other.weight;
+}
+
+Player::~Player() {
+    for (auto& c : commandList) {
+        delete c;
+    }
+}
+
 string Player::getName() const{
     return this->username;
 }
 
+int Player::getWealth() const{
+    return this->wealth;
+}
+
+void Player::displayInfo() const {
+    cout << "Username: " << this->username << endl;
+    cout << "Wealth  : " << this->wealth << endl;
+    cout << "Weight  : " << this->weight << endl;
+}
+
+int Player::calculateTax() const {
+    return wealth * 0.1; // Dummy 
+}
+
 void Player :: buyItem(Shop& shop, const string& itemName, int quantity){
+    cout << "Player bought item: " << itemName << endl;
+    //item di storage orang ini bertambah
 }
 
 void Player :: sellItem(Shop& shop, const string& itemName, int quantity){
+    cout << "Player sell item: " << itemName << endl;
+    //item di storage orang ini berkurang
+}
 
+void Player::eat() {
+    weight += 1;
+    cout << "Player ate something" << endl;
+}
+
+void Player::increaseWealth(int amount) {
+    wealth += amount;
 }
