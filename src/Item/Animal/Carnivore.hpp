@@ -4,7 +4,7 @@
 #include "Animal.hpp"
 #include "../Products/ProductsAnimal.hpp"
 
-class Carnivore : Animal{
+class Carnivore : public Animal{
     public:
         Carnivore(int harvestWeight,string kode, string nama);
         Carnivore(string kode, string nama,int harvestweight,int price);
@@ -12,7 +12,7 @@ class Carnivore : Animal{
         void makan(Products* m);
 };
 
-class Snake : Carnivore{
+class Snake : public Carnivore{
     private:
         static int harvestWeight;
         static int price;

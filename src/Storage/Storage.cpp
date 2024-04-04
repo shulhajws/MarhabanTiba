@@ -2,6 +2,8 @@
 #include "../Exception/Exception.hpp"
 using namespace std;
 
+template class Storage<Item*>;
+
 template<class T>
 Storage<T>::Storage(){
     row = 5;
@@ -24,25 +26,26 @@ void Storage<T>::setItem(int row, int col, T content){
 }
 
 template<class T>
-int Storage<T>::getItemInfo(int row, int col){
+T Storage<T>::getItemInfo(int row, int col){
+    return storageContent[row][col];
+}
+
+template<class T>
+bool Storage<T>::isItemValid(int row, int col){
     if (row >= this->row || col >= this->col || row < 0 || col < 0) {
         cout << "Posisi tidak valid!" << endl;
-        return -1;
-    } else {
-        return storageContent[row][col];
+        return false;
+    } 
+    else{
+        return true;
     }
 }
 
 template<class T>
-int Storage<T>::getItem(int row, int col){
-    if (row >= this->row || col >= this->col || row < 0 || col < 0) {
-        cout << "Posisi tidak valid!" << endl;
-        return -1;
-    } else {
-        int deletedValue = storageContent[row][col];
-        storageContent[row].erase(storageContent[row].begin() + col);
-        return deletedValue;
-    }
+T Storage<T>::getItem(int row, int col){
+    T deletedValue = storageContent[row][col];
+    storageContent[row].erase(storageContent[row].begin() + col);
+    return deletedValue;
 }
 
 template<class T>

@@ -29,7 +29,7 @@ class Player{
         virtual ~Player();
 
         string getName() const;
-        int getPlayerWealth();
+        int getPlayerWealth() const;
         string getType() const;
         virtual int getKTKP();
 
@@ -39,7 +39,7 @@ class Player{
         
         bool operator==(string command) const;
 
-        void displayInfo() const;
+        virtual void displayInfo() const;
         
 };
 

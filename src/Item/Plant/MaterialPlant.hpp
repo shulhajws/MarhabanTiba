@@ -21,22 +21,38 @@ class MaterialPlant : public Plant {
 };
 
 class Teak : public MaterialPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
+        Teak();
         Teak(int harvestDuration, int price);
 };
 
 class Sandalwood : public MaterialPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
+        Sandalwood();
         Sandalwood(int harvestDuration, int price);
 };
 
 class Aloe : public MaterialPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
+        Aloe();
         Aloe(int harvestDuration, int price);
 };
 
 class Ironwood : public MaterialPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
+        Ironwood();
         Ironwood(int harvestDuration, int price);
 };
 

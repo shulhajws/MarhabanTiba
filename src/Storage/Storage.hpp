@@ -1,5 +1,5 @@
-#ifndef _GRIDSTORAGE_HPP_
-#define _GRIDSTORAGE_HPP_
+#ifndef _STORAGE_HPP_
+#define _STORAGE_HPP_
 
 #include <iostream>
 #include <vector> //dynamic array
@@ -25,6 +25,7 @@ class Storage {
         void setItem(int row, int col, T content);
         T getItemInfo(int row, int col);
         T getItem(int row, int col);
+        bool isItemValid(int row, int col);
         void printStorage();
         bool operator==(const T& other) const;
         int positionCodetoRow(string position);

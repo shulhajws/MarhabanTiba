@@ -72,29 +72,29 @@ int Player::getPlayerWealth() const{
 
 
 void Player::eat() {
-    string slot;
-    Storage<Item*> inventory;
-    while(true) {
-        cout << "Slot: ";
-        cin >> slot;
-        int row = inventory.positionCodetoRow(slot);
-        int col = inventory.positionCodetoCol(slot);
-        try {
-            Item* storedItem = inventory.getItemInfo(row, col);
-            if (storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL") {
-                Products* productPtr = dynamic_cast<Products*>(storedItem);
-                int addedWeight = productPtr->getAddedWeight();
-                weight += addedWeight;
+    // string slot;
+    // Storage<Item*> inventory;
+    // while(true) {
+    //     cout << "Slot: ";
+    //     cin >> slot;
+    //     int row = inventory.positionCodetoRow(slot);
+    //     int col = inventory.positionCodetoCol(slot);
+    //     try {
+    //         Item* storedItem = inventory.getItemInfo(row, col);
+    //         if (storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL") {
+    //             Products* productPtr = dynamic_cast<Products*>(storedItem);
+    //             int addedWeight = productPtr->getAddedWeight();
+    //             weight += addedWeight;
                 
-                cout << "Player " << username << " has eaten " << storedItem->getName() << ". Weight increased by " << addedWeight << " kg.\n";
-                break;
-            } else {
-                throw ItemNotFoundException();
-            }
-        } catch (ItemNotFoundException e) {
-            cout << e.what()<<endl;
-        }
-    }
+    //             cout << "Player " << username << " has eaten " << storedItem->getName() << ". Weight increased by " << addedWeight << " kg.\n";
+    //             break;
+    //         } else {
+    //             throw ItemNotFoundException();
+    //         }
+    //     } catch (ItemNotFoundException e) {
+    //         cout << e.what()<<endl;
+    //     }
+    // }
 }
 
 void Player::displayInfo() const {

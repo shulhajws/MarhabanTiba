@@ -4,7 +4,7 @@
 #include "Animal.hpp"
 #include "../Products/Products.hpp"
 
-class Omnivore : Animal{
+class Omnivore : public Animal{
     private:
         int berat_hewan;
         string nama;
@@ -15,7 +15,7 @@ class Omnivore : Animal{
         void makan(Products* m);
 };
 
-class Chicken : Omnivore{
+class Chicken : public Omnivore{
     private:
         static int harvestWeight;
         static int price;
@@ -25,7 +25,7 @@ class Chicken : Omnivore{
         Chicken(int animalweight);
 };
 
-class Duck : Omnivore{
+class Duck : public Omnivore{
     private:
         static int harvestWeight;
         static int price;
