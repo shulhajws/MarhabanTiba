@@ -12,7 +12,7 @@ class Exception {
 class InputException : public Exception {
     public:
         string what() override {
-            return "\033[1;31mOption input is not valid.\nPlease input only 1 or 2.\n \033[0m";
+            return "\033[1;31mInput is not valid.\nPlease try another input.\n \033[0m";
         }
 };
 

@@ -14,7 +14,7 @@ using namespace std;
 class Game{
     protected:
         int currPlayer;
-        vector<Player*> players;
+        static vector<Player*> players;
     public:
         void startGame();
         void askInput();
@@ -24,7 +24,10 @@ class Game{
         void sortPlayer();
         void playerTurn();
         void splashScreen();
+        Player& getCurrentPlayer();
+        string lowerCase(const string& str);
         bool nameNotValid(string name);
+        ~Game();
 };
 
 #endif

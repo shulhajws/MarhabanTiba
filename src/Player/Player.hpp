@@ -25,7 +25,7 @@ class Player{
         Player(string username, int wealth, int weight, string type);
         Player(const Player& other);
         virtual ~Player();
-        int getPlayerWealth();
+        int getPlayerWealth() const;
         virtual void displayInfo() const;
         string getName() const;
         string getType() const;

@@ -66,7 +66,7 @@ void Player::minPlayerWealth(int money){
     this->wealth -= money;
 }
 
-int Player::getPlayerWealth(){
+int Player::getPlayerWealth() const{
     return this->wealth;
 }
 
