@@ -24,6 +24,13 @@ void TambahPemain::useCommand(){
                     this->players.push_back(new PlantFarmer(name, 50, 40));
                 }
                 players[currPlayer]->minPlayerWealth(50);
+
+                if(players[currPlayer]->getName()<name){
+                    currPlayer+=1;
+                }
+
+                cout << "New Player Added!"<<endl; 
+                cout<<"Welcome \""<<pemain<<"\" in MarhabanTiba Kingdom\n";
                 break;
             }
             } catch (InputException e) {

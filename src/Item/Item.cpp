@@ -9,6 +9,13 @@ Item::Item(int id, string code, string name, string type){
     this->type = type;
 }
 
+Item::Item( string code, string name, string type){
+    this->id = 0;
+    this->code = code;
+    this->name = name;
+    this->type = type;
+}
+
 Item::~Item(){};
 
 // bool operator==(const Item& Item1, const Item& Item2){
