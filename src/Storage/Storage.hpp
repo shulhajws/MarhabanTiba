@@ -8,26 +8,24 @@
 
 using namespace std;
 
-template<class T>
-class GridStorage {
+// template<class T>
+class Storage {
     private :
         //player storageOwner;
         int row;
         int col;
-        vector<int> storageContent;
+        vector<vector<int> > storageContent;
+        map<string, int> store;
     public :
-        GridStorage();
-        ~GridStorage();
-        void setItem(int row, int col, T content);
+        Storage();
+        ~Storage();
+        void setItem(int row, int col, int content);
         int getItemInfo(int row, int col);
         int getItem(int row, int col);
         void printStorage();
 };
 
-#endif
-
-// #define TWO_DIM_VEC vector< vector<string> >
-// #define UINT unsigned int
+// #define TWO_DIM_VEC vector< vector<string>>
 
 // // this structure allow us to hold dimension for our matrix
 // struct st_matrix_dim {
@@ -106,3 +104,22 @@ class GridStorage {
 //         }
 //     }
 // }
+
+// template<class T>
+// class Storage {
+//     private :
+//         //player storageOwner;
+//         int row;
+//         int col;
+//         vector<vector<T>> storageContent;
+//     public :
+//         GridStorage();
+//         ~GridStorage();
+//         void setItem(int row, int col, T content);
+//         int getItemInfo(int row, int col);
+//         int getItem(int row, int col);
+//         virtual void printJudul();
+//         void printStorage();
+// };
+
+#endif
