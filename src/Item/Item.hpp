@@ -11,6 +11,7 @@ class Item{
         string name;
         string type;
     public:
+        Item(string code, string name, string type);
         Item(int id, string code, string name, string type);
         virtual ~Item();
         friend bool operator==(const Item& Item1, const Item& Item2);

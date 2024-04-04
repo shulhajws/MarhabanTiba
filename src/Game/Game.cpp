@@ -14,8 +14,8 @@ void Game::startGame(){
     playerTurn();
     while(!endGame){
         cout << "\nIt's "<<players[currPlayer]->getName()<<"'s turn to play"<<endl;
-        inputCommand();
         sortPlayer();
+        inputCommand();
     }
 }
 

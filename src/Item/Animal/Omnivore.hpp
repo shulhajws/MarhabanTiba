@@ -9,18 +9,31 @@ class Omnivore : Animal{
         int berat_hewan;
         string nama;
     public:
+        Omnivore(int harvestWeight, string kode, string nama);
         Omnivore(string kode, string nama,int berat_panen,int price);
+        Omnivore(int harvestWeight,string kode, string nama,int animalweight);
         void makan(Products* m);
 };
 
 class Chicken : Omnivore{
+    private:
+        static int harvestWeight;
+        static int price;
     public:
+        Chicken();
         Chicken(int berat_panen, int price);
+        Chicken(int animalweight);
 };
 
 class Duck : Omnivore{
+    private:
+        static int harvestWeight;
+        static int price;
     public:
+        Duck();
         Duck(int berat_panen, int price);
+        Duck(int animalweight);
+        
 };
 
 #endif
