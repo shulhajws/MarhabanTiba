@@ -10,10 +10,7 @@ Storage::Storage(){
     this->storageContent = storageContent;
 }
 
-Storage::~Storage(){
-    // No need to manually delete or clear the vector
-    // The vector's destructor will be called automatically
-}
+Storage::~Storage(){}
 
 void Storage::setItem(int row, int col, int content){
     if (row >= this->row || col >= this->col || row < 0 || col < 0) {
@@ -58,7 +55,25 @@ void Storage::printStorage(){
             cout << "+-----";
         }
         cout << "+" << endl;
+
+        int indexing = static_cast<int>(49 + j) - '0';
+        if (indexing < 10) {
+            cout << "  0" << indexing << " ";
+        }
+
+        if (storageContent[row][col] == NULL) {
+            for(int i = 0; i < col; i++){
+                cout << "|     ";
+            }
+        } else {
+            // print kode
+        }
+        cout << "|" << endl;
     }
 
-    // to be continued
+    cout << "     "; // 5 space in the beginning
+    for(int i = 0; i < col; i++){
+        cout << "+-----";
+    }
+    cout << "+" << endl;
 }
