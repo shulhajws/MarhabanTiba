@@ -30,6 +30,15 @@ class CommandException : public Exception {
     }
 };
 
+class ItemNotFoundException : public Exception {
+    public:
+        string what() override {
+        return "\033[1;31mItem not found.\nTry input another slot Item. \033[0m";
+    }
+};
+
+
+
 // nanti tambah exception disini
 
 #endif

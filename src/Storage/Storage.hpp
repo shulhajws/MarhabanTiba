@@ -23,8 +23,8 @@ class Storage {
         Storage();
         ~Storage();
         void setItem(int row, int col, T content);
-        int getItemInfo(int row, int col);
-        int getItem(int row, int col);
+        T getItemInfo(int row, int col);
+        T getItem(int row, int col);
         void printStorage();
         bool operator==(const T& other) const;
         int positionCodetoRow(string position);
