@@ -4,23 +4,40 @@
 #include <exception>
 using namespace std;
 
-struct InputException : public exception {
-    const char *what() const throw(){
-        return "\033[1;31mOption input is not valid.\nPlease input only 1 or 2.\n \033[0m";
-    }
+class Exception {
+    public:
+        virtual string what() = 0;
 };
 
-struct UsernameException : public exception {
-    const char *what() const throw(){
+class InputException : public Exception {
+    public:
+        string what() override {
+            return "\033[1;31mInput is not valid.\nPlease try another input.\n \033[0m";
+        }
+};
+
+class UsernameException : public Exception {
+    public:
+        string what() override {
         return "\033[1;31mUsername is already used.\nTry input another username.\n \033[0m";
     }
 };
 
-struct CommandException : public exception {
-    const char *what() const throw(){
+class CommandException : public Exception {
+    public:
+        string what() override {
         return "\033[1;31mCommand is not valid.\nTry input another command. \033[0m";
     }
 };
+
+class ItemNotFoundException : public Exception {
+    public:
+        string what() override {
+        return "\033[1;31mItem not found.\nTry input another slot Item. \033[0m";
+    }
+};
+
+
 
 // nanti tambah exception disini
 

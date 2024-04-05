@@ -3,15 +3,22 @@
 
 using namespace std;
 
-int Animal::animalID = 1;
 
-Animal::Animal(string code, string name, string type, int weight, int price) : Item(Animal::animalID, code, name, type){
-    this-> harvestWeight = weight;
-    this -> price = price;
-    this -> animalWeight = 0;
-    Animal::animalID += 1;
+Animal::Animal(string code,string name, string type, int harvestWeight): Item(animalID, code, name, type){
+    this->animalWeight = 0;
+    this->harvestWeight = harvestWeight;
 }
 
+Animal::Animal(string code, string name, string type, int harvestWeight, int price): Item(animalID, code, name, type){
+    this -> animalWeight = 0;
+    this-> animalID = id;
+    this->harvestWeight = harvestWeight;
+}
+
+Animal::Animal(string code, string name, string type, int animalWeight, int harvestWeight,int id): Item(code, name, type){
+    this -> animalWeight = animalWeight;
+     this->harvestWeight = harvestWeight;
+}
 
 bool Animal::isHarvestable(){
     if(animalWeight>=harvestWeight){

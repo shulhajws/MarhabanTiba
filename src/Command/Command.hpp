@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include "../Exception/Exception.hpp"
+
 using namespace std;
 
 class Command{

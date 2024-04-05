@@ -3,7 +3,13 @@
 
 using namespace std;
 
-Omnivore::Omnivore(string kode, string nama,int berat_panen,int price): Animal(kode,nama,"Omnivore",berat_panen,price){
+Omnivore::Omnivore(int harvestWeight,string kode, string nama): Animal(kode,nama,"Omnivore",harvestWeight){
+}
+
+Omnivore::Omnivore(string kode, string nama,int harvestWeight,int price): Animal(kode,nama,"Omnivore",harvestWeight,price){
+}
+
+Omnivore::Omnivore(int harvestWeight,string kode, string nama,int animalweight): Animal(kode,nama,"Omnivore",animalweight,harvestWeight,0){
 }
 
 // ini harusnya produk
@@ -16,8 +22,34 @@ void Omnivore::makan(Products* m){
     }
 }
 
-Chicken::Chicken(int berat,int price) : Omnivore("CHK","Chicken",berat,price){
+int Chicken::harvestWeight = 0;
+int Duck::harvestWeight = 0;
+
+int Chicken::price = 0;
+int Duck::price = 0;
+
+
+// CHICKEN CLASS
+Chicken::Chicken() : Omnivore(harvestWeight,"CHK","CHK"){
 }
 
-Duck::Duck(int berat, int price) : Omnivore("DCK","Chicken",berat,price){
+Chicken::Chicken(int harvestWeight,int price) : Omnivore("CHK","Chicken",harvestWeight,price){
+    Chicken::harvestWeight = harvestWeight;
+    Chicken::price = price;
+}
+
+Chicken::Chicken(int animalweight) : Omnivore(harvestWeight,"CHK","Chicken",animalweight){
+}
+
+
+// DUCK CLASS
+Duck::Duck() : Omnivore(harvestWeight,"DCK","DCK"){
+}
+
+Duck::Duck(int harvestWeight, int price) : Omnivore("DCK","Chicken",harvestWeight,price){
+    Duck::harvestWeight = harvestWeight;
+    Duck::price = price;
+}
+
+Duck::Duck(int animalweight) : Omnivore(harvestWeight,"DCK","Chicken",animalweight){
 }

@@ -5,19 +5,17 @@
 
 using namespace std;
 
+vector<Player*> Game::players;
+
 void Game::startGame(){
     splashScreen();
     askInput();
     bool endGame = false;
+    playerTurn();
     while(!endGame){
-        playerTurn(); 
-        int size = players.size(); // asumsi tambahan mainnya di next round
-        for (int i = 0;i<size;i++){
-            cout << "\nIt's "<<players[i]->getName()<<"'s turn to play"<<endl;
-            inputCommand();
-        }
-        currPlayer = 0;
-        break; // sementara karena blm bikin endgame
+        cout << "\nIt's "<<players[currPlayer]->getName()<<"'s turn to play"<<endl;
+        sortPlayer();
+        inputCommand();
     }
 }
 
@@ -107,7 +105,12 @@ void Game::inputCommand(){
                 throw CommandException();
             }
             if(command=="NEXT"){
-                currPlayer+=1;
+               if (currPlayer==players.size()-1){
+                    currPlayer = 0;
+                }
+                else{
+                    currPlayer +=1;
+                }
                 break;
             }
         }
@@ -120,7 +123,7 @@ void Game::inputCommand(){
 void Game::playerTurn(){
     sortPlayer();
     currPlayer = 0;
-    cout << "\nHere are the players turns in this round! "<<endl; // gatau ini tiap round beda-beda apa gimana dah
+    cout << "\nHere are the players turns in this round! "<<endl; 
     for(int i = 0;i<players.size();i++){
         cout << i+1 << ". " <<players[i]->getName()<<endl;;
     }
@@ -138,6 +141,21 @@ bool Game::nameNotValid(string name){
     return ada;
 }
 
+Player& Game::getCurrentPlayer(){
+    return *players[currPlayer];
+}
+
+string Game::lowerCase(const string& str) {
+    string result = str;
+    transform(result.begin(), result.end(), result.begin(), ::tolower);
+    return result;
+}
+
+Game::~Game(){
+    for (auto player : players) {
+        delete player;
+    }
+}
 
 void Game::splashScreen(){
 cout << "\033[1;95m";

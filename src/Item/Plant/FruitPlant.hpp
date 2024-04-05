@@ -21,21 +21,33 @@ class FruitPlant : public Plant {
 };
 
 class Apple : public FruitPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
         Apple(int harvestDuration, int price);
 };
 
 class Orange : public FruitPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
         Orange(int harvestDuration, int price);
 };
 
 class Banana : public FruitPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
         Banana(int harvestDuration, int price);
 };
 
 class Guava : public FruitPlant {
+    private:
+        static int harvestDuration;
+        static int price;
     public: 
         Guava(int harvestDuration, int price);
 };

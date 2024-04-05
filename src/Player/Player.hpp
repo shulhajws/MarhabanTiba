@@ -6,7 +6,9 @@
 #include "../Command/Command.hpp"
 #include "../Shop/Shop.hpp"
 #include "../Item/Item.hpp"
-#include "../Item/Building/Building.hpp"
+#include "../Item/Building/Building.hpp" 
+#include "../Storage/Storage.hpp"
+#include "../Item/Products/Products.hpp" 
 using namespace std;
 
 class Player{
@@ -25,20 +27,19 @@ class Player{
         Player(string username, int wealth, int weight, string type);
         Player(const Player& other);
         virtual ~Player();
-        int getPlayerWealth();
-        virtual void displayInfo() const;
+
         string getName() const;
+        int getPlayerWealth() const;
         string getType() const;
+        virtual int getKTKP();
+
         void addPlayerWealth(int money);
         void minPlayerWealth(int money);
-        virtual int getKTKP();
-        // Method untuk membeli barang dari toko
-        void buyItem(Shop& shop, const string& itemName, int quantity);
-        void sellItem(Shop& shop, const string& itemName, int quantity); 
         void eat();
-        void increaseWealth(int amount);
         
         bool operator==(string command) const;
+
+        virtual void displayInfo() const;
         
 };
 

@@ -66,23 +66,35 @@ void Player::minPlayerWealth(int money){
     this->wealth -= money;
 }
 
-int Player::getPlayerWealth(){
+int Player::getPlayerWealth() const{
     return this->wealth;
 }
 
-void Player :: buyItem(Shop& shop, const string& itemName, int quantity){
-    cout << "Player bought item: " << itemName << endl;
-    //item di storage orang ini bertambah
-}
-
-void Player :: sellItem(Shop& shop, const string& itemName, int quantity){
-    cout << "Player sell item: " << itemName << endl;
-    //item di storage orang ini berkurang
-}
 
 void Player::eat() {
-    weight += 1;
-    cout << "Player ate something" << endl;
+    // string slot;
+    // Storage<Item*> inventory;
+    // while(true) {
+    //     cout << "Slot: ";
+    //     cin >> slot;
+    //     int row = inventory.positionCodetoRow(slot);
+    //     int col = inventory.positionCodetoCol(slot);
+    //     try {
+    //         Item* storedItem = inventory.getItemInfo(row, col);
+    //         if (storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL") {
+    //             Products* productPtr = dynamic_cast<Products*>(storedItem);
+    //             int addedWeight = productPtr->getAddedWeight();
+    //             weight += addedWeight;
+                
+    //             cout << "Player " << username << " has eaten " << storedItem->getName() << ". Weight increased by " << addedWeight << " kg.\n";
+    //             break;
+    //         } else {
+    //             throw ItemNotFoundException();
+    //         }
+    //     } catch (ItemNotFoundException e) {
+    //         cout << e.what()<<endl;
+    //     }
+    // }
 }
 
 void Player::displayInfo() const {
