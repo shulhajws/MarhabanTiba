@@ -9,15 +9,10 @@ Animal::Animal(string code,string name, string type, int harvestWeight): Item(an
     this->harvestWeight = harvestWeight;
 }
 
-Animal::Animal(string code, string name, string type, int harvestWeight, int price): Item(animalID, code, name, type){
-    this -> animalWeight = 0;
-    this-> animalID = id;
-    this->harvestWeight = harvestWeight;
-}
 
-Animal::Animal(string code, string name, string type, int animalWeight, int harvestWeight,int id): Item(code, name, type){
+Animal::Animal(string code, string name, string type, int animalWeight, int harvestWeight): Item(code, name, type){
     this -> animalWeight = animalWeight;
-     this->harvestWeight = harvestWeight;
+    this->harvestWeight = harvestWeight;
 }
 
 bool Animal::isHarvestable(){
@@ -29,10 +24,6 @@ bool Animal::isHarvestable(){
         cout<<"\033[1;31mHewan belum siap dipanen\033[0m"<<endl;
         return false;
     }
-}
-
-void Animal::setAnimalWeight(int berat){
-    animalWeight = berat;
 }
 
 

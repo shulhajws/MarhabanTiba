@@ -3,13 +3,10 @@
 
 using namespace std;
 
-Carnivore::Carnivore(int harvestWeight,string code, string name): Animal(code,name,"CARNIVORE",harvestWeight){
+Carnivore::Carnivore(string code, string name,int harvestWeight): Animal(code,name,"CARNIVORE", harvestWeight){
 }
 
-Carnivore::Carnivore(string code, string name,int harvestWeight,int price): Animal(code,name,"CARNIVORE", harvestWeight, price){
-}
-
-Carnivore::Carnivore(int harvestWeight,string code, string name,int animalWeight): Animal(code,name,"CARNIVORE", animalWeight,harvestWeight,0){
+Carnivore::Carnivore(int harvestWeight,string code, string name,int animalWeight): Animal(code,name,"CARNIVORE", animalWeight,harvestWeight){
 }
 
 void Carnivore::makan(Products* m){
@@ -24,13 +21,13 @@ void Carnivore::makan(Products* m){
 int Snake::harvestWeight = 0;
 int Snake::price = 0;
 
-Snake::Snake():Carnivore(harvestWeight,"SNK","SNK"){
+Snake::Snake():Carnivore("SNK","SNK",harvestWeight){
 }
 
 Snake::Snake(int animalweight): Carnivore(harvestWeight,"SNK","SNAKE",animalweight){
 }
 
-Snake::Snake(int harvestWeight,int price): Carnivore("SNK","SNAKE",harvestWeight,price){
+Snake::Snake(int harvestWeight,int price): Carnivore("SNK","SNAKE",harvestWeight){
     Snake::harvestWeight = harvestWeight;
     Snake::price = price;
 }

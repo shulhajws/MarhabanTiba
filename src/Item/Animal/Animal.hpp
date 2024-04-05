@@ -13,9 +13,7 @@ class Animal : public Item{
         int harvestWeight;
     public:
         Animal(string code,string name,string type,int harvestWeight);
-        Animal(string code, string name, string type, int harvestWeight, int price);
-        Animal(string code, string name, string type, int animalWeight,int harvestWeight,int id);
-        void setAnimalWeight(int animalWeight); // buat muat berat hewan
+        Animal(string code, string name, string type, int animalWeight,int harvestWeight);
         virtual void makan(Products* p)=0;
         bool isHarvestable();
 };

@@ -3,13 +3,10 @@
 
 using namespace std;
 
-Herbivore::Herbivore(int harvestWeight,string code, string name) : Animal(code,name,"HERBIVORE",harvestWeight){
+Herbivore::Herbivore(string code, string name, int harvestWeight) : Animal(code,name,"HERBIVORE",harvestWeight){
 }
 
-Herbivore::Herbivore(string code, string name, int harvestWeight, int price) : Animal(code,name,"HERBIVORE",harvestWeight,price){
-}
-
-Herbivore::Herbivore(int harvestWeight,string code, string name, int animalWeight) : Animal(code,name,"HERBIVORE",animalWeight,harvestWeight,0){
+Herbivore::Herbivore(int harvestWeight,string code, string name, int animalWeight) : Animal(code,name,"HERBIVORE",animalWeight,harvestWeight){
 }
 
 // ini harusnya produk
@@ -34,10 +31,10 @@ int Rabbit::price = 0;
 
 
 // COW CLASS
-Cow::Cow(): Herbivore(harvestWeight,"COW","COW"){
+Cow::Cow(): Herbivore("COW","COW",harvestWeight){
 }
 
-Cow::Cow(int berat, int price) : Herbivore("COW","COW",berat,price){
+Cow::Cow(int berat, int price) : Herbivore("COW","COW",berat){
     Cow::harvestWeight = berat;
     Cow::price = price;
 }
@@ -47,11 +44,11 @@ Cow::Cow(int AnimalWeight) : Herbivore(harvestWeight,"COW","COW",AnimalWeight){
 
 
 // SHEEP CLASS
-Sheep::Sheep() : Herbivore(harvestWeight,"SHP","SHEEP"){
+Sheep::Sheep() : Herbivore("SHP","SHEEP",harvestWeight){
 
 }
 
-Sheep::Sheep(int berat, int price) : Herbivore("SHP","SHEEP",berat,price){
+Sheep::Sheep(int berat, int price) : Herbivore("SHP","SHEEP",berat){
     Sheep::harvestWeight = berat;
     Sheep::price = price;
 }
@@ -61,13 +58,13 @@ Sheep::Sheep(int AnimalWeight) : Herbivore(harvestWeight,"SHP","SHP",AnimalWeigh
 
 
 // HORSE CLASS
-Horse::Horse() : Herbivore(harvestWeight,"HRS","HORSE"){
+Horse::Horse() : Herbivore("HRS","HORSE",harvestWeight){
 }
 
 Horse::Horse(int AnimalWeight) : Herbivore(harvestWeight,"HRS","HRS",AnimalWeight){
 }
 
-Horse::Horse(int berat, int price) : Herbivore("HRS","HORSE",berat,price){
+Horse::Horse(int berat, int price) : Herbivore("HRS","HORSE",berat){
     Horse::harvestWeight = berat;
     Horse::price = price;
 }
@@ -75,10 +72,10 @@ Horse::Horse(int berat, int price) : Herbivore("HRS","HORSE",berat,price){
 
 // RABBIT CLASS
 
-Rabbit::Rabbit() : Herbivore(harvestWeight,"RBT","RBT"){
+Rabbit::Rabbit() : Herbivore("RBT","RBT",harvestWeight){
 }
 
-Rabbit::Rabbit(int harvestWeight, int price) : Herbivore("RBT","RABBIT",harvestWeight,price){
+Rabbit::Rabbit(int harvestWeight, int price) : Herbivore("RBT","RABBIT",harvestWeight){
     Rabbit::harvestWeight = harvestWeight;
     Rabbit::price = price;
 }

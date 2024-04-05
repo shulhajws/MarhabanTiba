@@ -6,8 +6,7 @@
 
 class Carnivore : public Animal{
     public:
-        Carnivore(int harvestWeight,string kode, string nama);
-        Carnivore(string kode, string nama,int harvestweight,int price);
+        Carnivore(string kode, string nama,int harvestweight);
         Carnivore(int harvestWeight,string kode, string nama,int animalweight);
         void makan(Products* m);
 };
@@ -18,7 +17,7 @@ class Snake : public Carnivore{
         static int price;
     public:
         Snake();
-        Snake(int berat_panen, int price);
+        Snake(int harvestWeight, int price);
         Snake(int animalweight);
 };
 
