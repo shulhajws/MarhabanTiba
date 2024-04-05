@@ -9,8 +9,7 @@ class Omnivore : public Animal{
         int berat_hewan;
         string nama;
     public:
-        Omnivore(int harvestWeight, string kode, string nama);
-        Omnivore(string kode, string nama,int berat_panen,int price);
+        Omnivore(string kode, string nama,int harvestWeight);
         Omnivore(int harvestWeight,string kode, string nama,int animalweight);
         void makan(Products* m);
 };
@@ -21,7 +20,7 @@ class Chicken : public Omnivore{
         static int price;
     public:
         Chicken();
-        Chicken(int berat_panen, int price);
+        Chicken(int harvestWeight, int price);
         Chicken(int animalweight);
 };
 
@@ -31,7 +30,7 @@ class Duck : public Omnivore{
         static int price;
     public:
         Duck();
-        Duck(int berat_panen, int price);
+        Duck(int harvestWeight, int price);
         Duck(int animalweight);
         
 };
