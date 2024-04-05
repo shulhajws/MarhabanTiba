@@ -2,19 +2,19 @@
 #include <iostream>
 using namespace std;
 
-int Plant::plantID = 1;
-
-Plant::Plant(string code, string name, string type, int harvestDuration, int price) : Item(Plant::plantID, code, name, type){
+Plant::Plant(int plantID, string plantCode, string name, string type, int harvestDuration) : Item(plantID, plantCode, name, type){
     this->harvestDuration = harvestDuration;
-    this->price = price;
     this->plantAge = 0;
-    Plant::plantID += 1;
-};
+}
 
 Plant::~Plant(){}
 
 void Plant::addAge(){
     this->plantAge++;
+}
+
+void Plant::setPlantAge(int plantAge){
+    this->plantAge = plantAge;    
 }
 
 bool Plant::isReadyToHarvest(){

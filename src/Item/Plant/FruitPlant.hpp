@@ -7,17 +7,7 @@ using namespace std;
 
 class FruitPlant : public Plant {
     public:
-        /**
-         * @brief Construct a new Material Plant object
-         * 
-         * @param code
-         * @param name
-         * @param harvestDuration
-         * @param price
-         */
-        FruitPlant(string code, string name, int harvestDuration, int price);
-
-        bool isEatable();
+        FruitPlant(int plantID, string code, string name, int harvestDuration);
 };
 
 class Apple : public FruitPlant {
@@ -25,7 +15,9 @@ class Apple : public FruitPlant {
         static int harvestDuration;
         static int price;
     public: 
+        Apple();
         Apple(int harvestDuration, int price);
+        Apple(int plantAge);
 };
 
 class Orange : public FruitPlant {
@@ -33,7 +25,9 @@ class Orange : public FruitPlant {
         static int harvestDuration;
         static int price;
     public: 
+        Orange();
         Orange(int harvestDuration, int price);
+        Orange(int plantAge);
 };
 
 class Banana : public FruitPlant {
@@ -41,7 +35,9 @@ class Banana : public FruitPlant {
         static int harvestDuration;
         static int price;
     public: 
+        Banana();
         Banana(int harvestDuration, int price);
+        Banana(int plantAge);
 };
 
 class Guava : public FruitPlant {
@@ -49,7 +45,9 @@ class Guava : public FruitPlant {
         static int harvestDuration;
         static int price;
     public: 
+        Guava();
         Guava(int harvestDuration, int price);
+        Guava(int plantAge);
 };
 
 #endif
