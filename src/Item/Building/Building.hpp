@@ -12,7 +12,7 @@ private:
     int recipeId;
     string recipeCode;
     string recipeName;
-    map<string, pair<int,int>> materials;
+    map<string, pair<int,int> > materials;
 
 public:
     Building(int id, string code, string name, string type, int recipeId, string recipeCode, string recipeName);

@@ -7,16 +7,19 @@
 using namespace std;
 
 class AnimalFarmer : public Player{
+    private:
+        Storage<Animal*> Barn;
     public:
         AnimalFarmer();
         AnimalFarmer(string username, int wealth, int weight);
+        
+        int getKTKP() override;
 
         void displayInfo() const override;
         void placeAnimal();
         void feedAnimal();
         void harvestAnimal();
         void printBarn();
-        int getKTKP();
 };
 
 #endif

@@ -22,6 +22,10 @@ Item::~Item(){};
 //     // TO BE IMPLEMENTED
 // }
 
+string Item::getCode() const {
+    return code;
+}
+
 // Implementation of getName() method
 string Item::getName() const {
     return name;

@@ -25,6 +25,8 @@ class Storage {
         ~Storage();
         void setItem(int row, int col, T content);
         void setRowCols(int row, int cols);
+        int getRow() const;
+        int getCol() const;
         T getItemInfo(int row, int col);
         T getItem(int row, int col);
         bool isItemValid(int row, int col);
@@ -32,6 +34,10 @@ class Storage {
         bool operator==(const T& other) const;
         int positionCodetoRow(string position);
         int positionCodetoCol(string position);
+
+        bool isEmpty() const;
+        bool isFull() const;
+        bool hasItem(const T& type) const;
 };
 
 #endif

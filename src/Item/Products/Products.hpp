@@ -17,7 +17,6 @@ public:
     Products(int id, string code, string name, string type, string origin, double added_weight, double price);
     virtual ~Products();
     double getAddedWeight();
-    // Operator overloading for ==
     bool operator==(const Products& other) const;
 };
 

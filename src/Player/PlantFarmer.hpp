@@ -7,6 +7,8 @@
 using namespace std;
 
 class PlantFarmer : public Player{
+    private:
+        Storage<Plant*> Garden;
     public:
         PlantFarmer();
         PlantFarmer(string username, int wealth, int weight);

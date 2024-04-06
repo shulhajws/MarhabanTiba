@@ -36,6 +36,16 @@ void Storage<T>::setRowCols(int row, int col){
 }
 
 template<class T>
+int Storage<T>::getRow() const {
+    return row;
+}
+
+template<class T>
+int Storage<T>::getCol() const {
+    return col;
+}
+
+template<class T>
 T Storage<T>::getItemInfo(int row, int col){
     return storageContent[row][col];
 }
@@ -61,6 +71,42 @@ T Storage<T>::getItem(int row, int col){
     else{
         throw ItemNotFoundException();
     }
+}
+
+template<class T>
+bool Storage<T>::isEmpty() const {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (storageContent[i][j] != nullptr) {
+                return false; 
+            }
+        }
+    }
+    return true;
+}
+
+template<class T>
+bool Storage<T>::isFull() const {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (storageContent[i][j] == nullptr) {
+                return false; 
+            }
+        }
+    }
+    return true; 
+}
+
+template<class T>
+bool hasItem(const T& type) {
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (storageContent[i][j] != nullptr && *storageContent[i][j] == type) {
+                return true; // Item ditemukan
+            }
+        }
+    }
+    return false; 
 }
 
 template<class T>
