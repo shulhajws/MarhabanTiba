@@ -16,6 +16,7 @@ int PlantFarmer::getKTKP(){
     return 13;
 }
 
+
 void PlantFarmer::displayInfo() const {
     cout << "Plant Farmer - ";
     Player::displayInfo();

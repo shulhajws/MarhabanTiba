@@ -1,7 +1,8 @@
 #include "Makan.hpp"
 
-void Makan::useCommand(){
-
+void Makan::useCommand(){;
+    players[currPlayer]->displayStorage();
+    players[currPlayer]->eat();
 }
 
 string Makan::getName()

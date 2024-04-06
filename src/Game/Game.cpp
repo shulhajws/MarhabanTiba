@@ -5,23 +5,25 @@
 
 using namespace std;
 
+int Game::tambahPemain = 0;
 vector<Player*> Game::players;
 
 void Game::startGame(){
     splashScreen();
+    initiation();
     askInput();
     bool endGame = false;
     playerTurn();
     while(!endGame){
         cout << "\nIt's "<<players[currPlayer]->getName()<<"'s turn to play"<<endl;
+        endGame = inputCommand();
         sortPlayer();
-        inputCommand();
     }
 }
 
 void Game::askInput(){
     bool input = false;
-    int option;
+    string option;
 
     while (!input) {
         try {
@@ -33,7 +35,7 @@ void Game::askInput(){
             cin >> option;
             cout << "\033[0m";
 
-            if (cin.fail() || (option != 1 && option != 2)) {
+            if (option != "1" && option != "2") {
                 throw InputException();
             } else {
                 input = true;
@@ -44,7 +46,7 @@ void Game::askInput(){
         }
     }
 
-    if (option == 1){ // file input
+    if (option == "1"){ // file input
 
     }
     else{ // default input
@@ -52,8 +54,17 @@ void Game::askInput(){
     }
 }
 
+void Game::initiation(){
+    Loader load;
+    load.configOfAnimal();
+    load.configOfPlant();
+    load.configOfMisc();
+    load.configOfProducts();
+    load.configOfBuildingRecipes();
+}
+
 void Game::sortPlayer() {
-    std::sort(players.begin(), players.end(), [this](Player* a, Player* b) {
+    sort(players.begin(), players.end(), [this](Player* a, Player* b) {
         return a->getName() < b->getName();
     });
 }
@@ -63,7 +74,7 @@ void Game::inputPlayer(){
      cout << "\nPlease Input All The Players!!" << endl;
     cout << "Input the Mayor" << endl;
     Walkot = inputName();
-    this->players.push_back(new Mayor(Walkot,50,40));
+    this->players.push_back(new Mayor(Walkot,950,80));
 
     cout << "\nInput Animal Farmer"<<endl;
     Peternak = inputName();
@@ -93,7 +104,7 @@ string Game::inputName(){
     }
 }
 
-void Game::inputCommand(){
+bool Game::inputCommand(){
     string command;
     while (true){
         cout << "\nEnter command > ";
@@ -104,12 +115,20 @@ void Game::inputCommand(){
             if (!(*players[currPlayer] == command)) {
                 throw CommandException();
             }
+            if(checkEndGame()){
+                return true;
+            }
             if(command=="NEXT"){
                if (currPlayer==players.size()-1){
                     currPlayer = 0;
                 }
                 else{
+                    if(tambahPemain>0){
+                        cout<<tambahPemain<<endl;
+                        currPlayer += Game::tambahPemain;
+                    }
                     currPlayer +=1;
+                    Game::tambahPemain = 0;
                 }
                 break;
             }
@@ -118,6 +137,7 @@ void Game::inputCommand(){
             cout<<e.what()<<endl;
         }
     }
+    return false;
 }
 
 void Game::playerTurn(){
@@ -133,7 +153,7 @@ void Game::playerTurn(){
 bool Game::nameNotValid(string name){
     bool ada = false; // cari nama udah dipakau atau bukan
     for (auto &p : players){
-        if (p->getName() == name){
+        if (lowerCase(p->getName()) == lowerCase(name)){
             ada = true; 
             throw UsernameException();
         }
@@ -141,8 +161,35 @@ bool Game::nameNotValid(string name){
     return ada;
 }
 
-Player& Game::getCurrentPlayer(){
-    return *players[currPlayer];
+bool Game::checkEndGame(){
+    Misc m;
+    if(players[currPlayer]->getPlayerWealth()>=m.getminMoney() && players[currPlayer]->getPlayerWeight()>=m.getminWeight()){
+        cout<<"\033[1;33m\n                                    __              \033[0m"<<endl; 
+        cout<<"\033[1;33m.----.-----.-----.-----.----.---.-.|  |_.-----.-----.\033[0m"<<endl;
+        cout<<"\033[1;33m|  __|  _  |     |  _  |   _|  _  ||   _|-- __|-- __|\033[0m"<<endl;
+        cout<<"\033[1;33m|____|_____|__|__|___  |__| |___._||____|_____|_____|\033[0m"<<endl;
+        cout<<"\033[1;33m                 |_____|                             \033[0m"<<endl;  
+
+        cout<<"\033[1;33m\n░░░░░░░░░░░░░░░░░░░░░░█████████\033[0m"<<endl;
+        cout<<"\033[1;33m░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███\033[0m"<<endl;
+        cout<<"\033[1;33m░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███\033[0m"<<endl;
+        cout<<"\033[1;33m░░░█▒▒▒▒▒▒█░░░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m░░░░█▒▒▒▒▒█░░░██▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒███\033[0m"<<endl;
+        cout<<"\033[1;33m░░░░░█▒▒▒█░░░█▒▒▒▒▒▒████▒▒▒▒████▒▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m░░░█████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m░░░█▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m░██▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m██▒▒▒███████████▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒████████▒▒▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m░█▒▒▒███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██\033[0m"<<endl;
+        cout<<"\033[1;33m░██▒▒▒▒▒▒▒▒▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█\033[0m"<<endl;
+        cout<<"\033[1;33m░░████████████░░░█████████████████\033[0m"<<endl;
+        cout<<"\nCongratulations "<<players[currPlayer]->getName()<<", you win the game!"<<endl;
+        cout<<"KEREN ABIEZZ!!"<<endl;
+        return true;
+    }
+    return false;
 }
 
 string Game::lowerCase(const string& str) {

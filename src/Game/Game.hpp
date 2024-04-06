@@ -8,23 +8,27 @@
 #include "../Player/Mayor.hpp"
 #include "../Player/AnimalFarmer.hpp"
 #include "../Player/PlantFarmer.hpp"
+#include "../FileIO/Loader.hpp"
+#include "../Misc/Misc.hpp"
 
 using namespace std;
 
 class Game{
     protected:
         int currPlayer;
+        static int tambahPemain;
         static vector<Player*> players;
     public:
         void startGame();
         void askInput();
+        void initiation();
         void inputPlayer();
-        void inputCommand();
+        bool inputCommand();
         string inputName();
         void sortPlayer();
+        bool checkEndGame();
         void playerTurn();
         void splashScreen();
-        Player& getCurrentPlayer();
         string lowerCase(const string& str);
         bool nameNotValid(string name);
         ~Game();

@@ -13,6 +13,8 @@ Player::Player(){
     this->commandList.push_back(new Makan());
     this->commandList.push_back(new Jual());
     this->commandList.push_back(new Beli());
+    Misc m;
+    this->inventory.setRowCols(m.getStorageRow(),m.getStorageCols());
 }
 
 Player::Player(string username, int wealth, int weight, string type) : Player(){
@@ -70,31 +72,39 @@ int Player::getPlayerWealth() const{
     return this->wealth;
 }
 
+int Player::getPlayerWeight() const{
+    return this->weight;
+}
+
+void Player::displayStorage(){
+    inventory.printStorage();
+}
 
 void Player::eat() {
-    // string slot;
-    // Storage<Item*> inventory;
-    // while(true) {
-    //     cout << "Slot: ";
-    //     cin >> slot;
-    //     int row = inventory.positionCodetoRow(slot);
-    //     int col = inventory.positionCodetoCol(slot);
-    //     try {
-    //         Item* storedItem = inventory.getItemInfo(row, col);
-    //         if (storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL") {
-    //             Products* productPtr = dynamic_cast<Products*>(storedItem);
-    //             int addedWeight = productPtr->getAddedWeight();
-    //             weight += addedWeight;
+    string slot;
+    while(true) {
+        try {
+            cout << "Slot: ";
+            cin >> slot;
+            int row = inventory.positionCodetoRow(slot);
+            int col = inventory.positionCodetoCol(slot);
+
+            Item* storedItem = inventory.getItemInfo(row, col);
+            if ((storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL")) {
+                Products* productPtr = dynamic_cast<Products*>(storedItem);
+                int addedWeight = productPtr->getAddedWeight();
+                weight += addedWeight;
                 
-    //             cout << "Player " << username << " has eaten " << storedItem->getName() << ". Weight increased by " << addedWeight << " kg.\n";
-    //             break;
-    //         } else {
-    //             throw ItemNotFoundException();
-    //         }
-    //     } catch (ItemNotFoundException e) {
-    //         cout << e.what()<<endl;
-    //     }
-    // }
+                cout << "Player " << username << " has eaten " << storedItem->getName() << ". Weight increased by " << addedWeight << " kg.\n";
+                break;
+            } else {
+                throw ItemNotFoundException();
+            }
+        } catch (ItemNotFoundException e) {
+            cout << e.what()<<endl;
+            break;
+        }
+    }
 }
 
 void Player::displayInfo() const {

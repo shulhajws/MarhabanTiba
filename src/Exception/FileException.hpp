@@ -13,7 +13,6 @@ protected:
 public:
     FileException(string);
     FileException(const FileException &); // cctor
-    ~FileException();
 
     string getFileException();
     string what();

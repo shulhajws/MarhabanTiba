@@ -17,7 +17,7 @@ void TambahPemain::useCommand(){
             }
             else {
                 string name = inputName();
-                if (lowerCase(pemain) != "peternak") {
+                if (lowerCase(pemain) == "peternak") {
                     this->players.push_back(new AnimalFarmer(name, 50, 40));
                 }
                 else {
@@ -25,12 +25,12 @@ void TambahPemain::useCommand(){
                 }
                 players[currPlayer]->minPlayerWealth(50);
 
-                if(players[currPlayer]->getName()<name){
-                    currPlayer+=1;
+                if((players[currPlayer]->getName())>name){
+                    Game::tambahPemain += 1;
                 }
 
                 cout << "New Player Added!"<<endl; 
-                cout<<"Welcome \""<<pemain<<"\" in MarhabanTiba Kingdom\n";
+                cout<<"Welcome \""<<name<<"\" in MarhabanTiba Kingdom\n";
                 break;
             }
             } catch (InputException e) {

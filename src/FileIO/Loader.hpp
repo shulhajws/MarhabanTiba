@@ -19,7 +19,6 @@
 #include "../Exception/FileException.hpp"
 
 #include "string.h"
-#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>

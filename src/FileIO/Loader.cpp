@@ -1,5 +1,4 @@
 #include "Loader.hpp"
-#include <filesystem>
 using namespace std;
 
 string Loader::configPath = "./config";
@@ -128,15 +127,25 @@ vector<Plant> Loader::configOfPlant(){
 }
 
 vector<Products> Loader::configOfProducts(){
+  vector<Products> products;
+  return products;
   //TO DO
 }
 
 vector<Building> Loader::configOfBuildingRecipes(){
+  vector<Building> building;
+  return building;
   //TO DO
 }
 
 Misc Loader::configOfMisc(){
   vector<vector<string>> vectorOfWords;
+  try {
+    vectorOfWords = Loader::getWordsFromFile(this->configPath + "/misc.txt");
+  } catch (FileException &FE){
+    cout << FE.what();
+  }
+
   int minMoney = stoi(vectorOfWords[0][0]);
   int minWeight = stoi(vectorOfWords[1][0]);
   int storageRow = stoi(vectorOfWords[2][0]);
@@ -148,9 +157,9 @@ Misc Loader::configOfMisc(){
   return Misc(minMoney, minWeight, storageRow, storageCols, fieldRow, fieldCols, barnRow, barnCols);
 }
 
-vector<Player> stateOfPlayer(){
-  //TO DO
-}
+// vector<Player> stateOfPlayer(){
+//   //TO DO
+// }
 
 /* tester function */
 // void Loader::displayAnimalConfig()

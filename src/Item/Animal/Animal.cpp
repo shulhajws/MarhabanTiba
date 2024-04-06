@@ -15,6 +15,10 @@ Animal::Animal(string code, string name, string type, int animalWeight, int harv
     this->harvestWeight = harvestWeight;
 }
 
+Animal::~Animal(){}
+
+void Animal::makan(Products* p){}
+
 bool Animal::isHarvestable(){
     if(animalWeight>=harvestWeight){
         cout<<"Hewan siap dipanen"<<endl;

@@ -8,6 +8,7 @@
 #include "../Item/Animal/Animal.hpp"
 #include "../Item/Plant/Plant.hpp"
 #include "../Item/Item.hpp"
+#include "../Exception/Exception.hpp"
 
 using namespace std;
 
@@ -17,12 +18,13 @@ class Storage {
         //player storageOwner;
         int row;
         int col;
-        vector<vector<T> > storageContent;
+        vector<vector<T>> storageContent;
         map<string, T> store;
     public :
         Storage();
         ~Storage();
         void setItem(int row, int col, T content);
+        void setRowCols(int row, int cols);
         T getItemInfo(int row, int col);
         T getItem(int row, int col);
         bool isItemValid(int row, int col);

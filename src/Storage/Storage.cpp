@@ -26,6 +26,16 @@ void Storage<T>::setItem(int row, int col, T content){
 }
 
 template<class T>
+void Storage<T>::setRowCols(int row, int col){
+    this->row = row;
+    this->col = col;
+    this->storageContent.clear();
+    vector<T> v(col);
+    vector<vector<T> > storageContent(row, v);
+    this->storageContent = storageContent;
+}
+
+template<class T>
 T Storage<T>::getItemInfo(int row, int col){
     return storageContent[row][col];
 }
@@ -43,9 +53,14 @@ bool Storage<T>::isItemValid(int row, int col){
 
 template<class T>
 T Storage<T>::getItem(int row, int col){
-    T deletedValue = storageContent[row][col];
-    storageContent[row].erase(storageContent[row].begin() + col);
-    return deletedValue;
+    if(isItemValid(row,col)&&storageContent[row][col]!=NULL){
+        T deletedValue = storageContent[row][col];
+        storageContent[row].erase(storageContent[row].begin() + col);
+        return deletedValue;
+    }
+    else{
+        throw ItemNotFoundException();
+    }
 }
 
 template<class T>
@@ -91,6 +106,23 @@ void Storage<T>::printStorage(){
 template<class T>
 bool Storage<T>::operator==(const T& other) const{
     return true;
+}
+
+template<class T>
+int Storage<T>::positionCodetoRow(string position){
+    if(position.length()!=3){
+        throw ItemNotFoundException();
+    }
+    char row = position[0];
+    return row - 'A';
+}
+
+template<class T>
+int Storage<T>::positionCodetoCol(string position){
+    if(position.length()!=3){
+        throw ItemNotFoundException();
+    }
+    return ((position[1]*10+position[2])-1);
 }
 
 // bool operator==(const MyClass& other) const {

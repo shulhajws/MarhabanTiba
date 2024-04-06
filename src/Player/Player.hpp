@@ -9,6 +9,8 @@
 #include "../Item/Building/Building.hpp" 
 #include "../Storage/Storage.hpp"
 #include "../Item/Products/Products.hpp" 
+#include "../Misc/Misc.hpp"
+
 using namespace std;
 
 class Player{
@@ -16,7 +18,7 @@ class Player{
         string username;
         int wealth;
         int weight;
-        // storage
+        Storage<Item*> inventory;
         vector<Command*> commandList;
         string code;
         string name;
@@ -30,9 +32,10 @@ class Player{
 
         string getName() const;
         int getPlayerWealth() const;
+        int getPlayerWeight() const;
         string getType() const;
         virtual int getKTKP();
-
+        void displayStorage();
         void addPlayerWealth(int money);
         void minPlayerWealth(int money);
         void eat();
