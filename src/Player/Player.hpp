@@ -33,6 +33,7 @@ class Player{
         string getName() const;
         int getPlayerWealth() const;
         int getPlayerWeight() const;
+        bool inventoryEmpty();
         string getType() const;
         virtual int getKTKP();
         void displayStorage();

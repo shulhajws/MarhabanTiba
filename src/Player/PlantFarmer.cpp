@@ -33,8 +33,7 @@ void PlantFarmer::plantCrop() {
         }
 
         cout << "Pilih tanaman dari penyimpanan\n";
-        cout << "     ================[ Penyimpanan ]==================\n" << endl;
-        inventory.printStorage();
+        inventory.printStorage("Penyimpanan");
 
         cout << "Slot: ";
         string slot;
@@ -51,7 +50,6 @@ void PlantFarmer::plantCrop() {
         }
 
         cout << "\nPilih petak tanah yang akan ditanami\n\n";
-        cout << "     ================[ Ladang ]=================\n";
         printGarden();
 
         // Memproses lokasi petak tanah yang dipilih
@@ -62,7 +60,6 @@ void PlantFarmer::plantCrop() {
         int rowField = landSlot[1] - '0' - 1;
         int colField = landSlot[0] - 'A';
 
-        Plant* selectedPlantType = dynamic_cast<Plant*>(selectedPlant);
         if (selectedPlantType == nullptr) {
             throw InvalidPlantException();
         }
@@ -101,9 +98,8 @@ void PlantFarmer::harvestCrop() {
 }
 
 void PlantFarmer::printGarden() {
-    cout << "    ================[ Ladang ]=================\n";
     
-    Garden.printStorage(); 
+    Garden.printStorage("Ladang"); 
     
     // Mencetak indeks garden (hanya yang terdapat di ladang)
     string plantCodes[] = {"ALT", "APL", "BNT", "GAV", "IRN", "ORG", "SDT", "TEK"};

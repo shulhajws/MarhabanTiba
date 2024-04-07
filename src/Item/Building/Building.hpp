@@ -11,6 +11,7 @@ class Building : public Item {
     public:
         Building(int id, string code, string name, string type);
         ~Building();
+        int calculatePrice();
 
 };
 
