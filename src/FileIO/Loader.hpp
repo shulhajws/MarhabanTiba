@@ -55,19 +55,7 @@ public:
   vector<Player> stateOfPlayer();  
   // get shop
   Shop stateOfShop();
-  // -------------------------------------------------------
-  // display plant
-  void displayPlantConfig();
-  // display animal
-  void displayAnimalConfig();
-  // display recipe
-//   void displayBuildingRecipeConfig();
-  // display products
-  void displayProductConfig();
-  // display misc
-  void displayMiscConfig();
-  // display state
-  void displayState();
+
 
 };
 
