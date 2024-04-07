@@ -4,48 +4,48 @@ using namespace std;
 
 MaterialPlant::MaterialPlant(int plantID, string code, string name, int harvestDuration) : Plant(plantID, code, name, "MATERIAL_PLANT", harvestDuration){}
 
-int Teak::harvestDuration = 0;
-int Teak::price = 0;
-Teak::Teak() : MaterialPlant(1, "TEK", "TEAK_TREE", Teak::harvestDuration){}
-Teak::Teak(int harvestDuration, int price) : MaterialPlant(1, "TEK", "TEAK_TREE", harvestDuration){
-    Teak::harvestDuration = harvestDuration;
-    Teak::price = price;
+int TeakTree::harvestDuration = 0;
+int TeakTree::price = 0;
+TeakTree::TeakTree() : MaterialPlant(1, "TEK", "TEAK_TREE", TeakTree::harvestDuration){}
+TeakTree::TeakTree(int harvestDuration, int price) : MaterialPlant(1, "TEK", "TEAK_TREE", harvestDuration){
+    TeakTree::harvestDuration = harvestDuration;
+    TeakTree::price = price;
 }
-Teak::Teak(int plantAge) : MaterialPlant(1, "TEK", "TEAK_TREE", Teak::harvestDuration){
+TeakTree::TeakTree(int plantAge) : MaterialPlant(1, "TEK", "TEAK_TREE", TeakTree::harvestDuration){
     this->setPlantAge(plantAge);
 }
 
-int Sandalwood::harvestDuration = 0;
-int Sandalwood::price = 0;
-Sandalwood::Sandalwood() : MaterialPlant(2, "SDT", "SANDALWOOD_TREE", Sandalwood::harvestDuration){}
-Sandalwood::Sandalwood(int harvestDuration, int price) : MaterialPlant(2, "SDT", "SANDALWOOD_TREE", harvestDuration){
-    Sandalwood::harvestDuration = harvestDuration;
-    Sandalwood::price = price;
+int SandalwoodTree::harvestDuration = 0;
+int SandalwoodTree::price = 0;
+SandalwoodTree::SandalwoodTree() : MaterialPlant(2, "SDT", "SANDALWOOD_TREE", SandalwoodTree::harvestDuration){}
+SandalwoodTree::SandalwoodTree(int harvestDuration, int price) : MaterialPlant(2, "SDT", "SANDALWOOD_TREE", harvestDuration){
+    SandalwoodTree::harvestDuration = harvestDuration;
+    SandalwoodTree::price = price;
 }
-Sandalwood::Sandalwood(int plantAge) : MaterialPlant(2, "SDT", "SANDALWOOD_TREE", Sandalwood::harvestDuration){
-    this->setPlantAge(plantAge);
-}
-
-
-int Aloe::harvestDuration = 0;
-int Aloe::price = 0;
-Aloe::Aloe() : MaterialPlant(3, "ALT", "ALOE_TREE", Aloe::harvestDuration){}
-Aloe::Aloe(int harvestDuration, int price) : MaterialPlant(3, "ALT", "ALOE_TREE", harvestDuration){
-    Aloe::harvestDuration = harvestDuration;
-    Aloe::price = price;
-}
-Aloe::Aloe(int plantAge) : MaterialPlant(3, "ALT", "ALOE_TREE", Aloe::harvestDuration){
+SandalwoodTree::SandalwoodTree(int plantAge) : MaterialPlant(2, "SDT", "SANDALWOOD_TREE", SandalwoodTree::harvestDuration){
     this->setPlantAge(plantAge);
 }
 
 
-int Ironwood::harvestDuration = 0;
-int Ironwood::price = 0;
-Ironwood::Ironwood() : MaterialPlant(4, "IRN", "IRONWOOD_TREE", Ironwood::harvestDuration){}
-Ironwood::Ironwood(int harvestDuration, int price) : MaterialPlant(4, "IRN", "IRONWOOD_TREE", harvestDuration){
-    Ironwood::harvestDuration = harvestDuration;
-    Ironwood::price = price;
+int AloeTree::harvestDuration = 0;
+int AloeTree::price = 0;
+AloeTree::AloeTree() : MaterialPlant(3, "ALT", "ALOE_TREE", AloeTree::harvestDuration){}
+AloeTree::AloeTree(int harvestDuration, int price) : MaterialPlant(3, "ALT", "ALOE_TREE", harvestDuration){
+    AloeTree::harvestDuration = harvestDuration;
+    AloeTree::price = price;
 }
-Ironwood::Ironwood(int plantAge) : MaterialPlant(4, "IRN", "IRONWOOD_TREE", Ironwood::harvestDuration){
+AloeTree::AloeTree(int plantAge) : MaterialPlant(3, "ALT", "ALOE_TREE", AloeTree::harvestDuration){
+    this->setPlantAge(plantAge);
+}
+
+
+int IronwoodTree::harvestDuration = 0;
+int IronwoodTree::price = 0;
+IronwoodTree::IronwoodTree() : MaterialPlant(4, "IRN", "IRONWOOD_TREE", IronwoodTree::harvestDuration){}
+IronwoodTree::IronwoodTree(int harvestDuration, int price) : MaterialPlant(4, "IRN", "IRONWOOD_TREE", harvestDuration){
+    IronwoodTree::harvestDuration = harvestDuration;
+    IronwoodTree::price = price;
+}
+IronwoodTree::IronwoodTree(int plantAge) : MaterialPlant(4, "IRN", "IRONWOOD_TREE", IronwoodTree::harvestDuration){
     this->setPlantAge(plantAge);
 }

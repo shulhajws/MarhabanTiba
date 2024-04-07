@@ -10,44 +10,44 @@ class FruitPlant : public Plant {
         FruitPlant(int plantID, string code, string name, int harvestDuration);
 };
 
-class Apple : public FruitPlant {
+class AppleTree : public FruitPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Apple();
-        Apple(int harvestDuration, int price);
-        Apple(int plantAge);
+        AppleTree();
+        AppleTree(int harvestDuration, int price);
+        AppleTree(int plantAge);
 };
 
-class Orange : public FruitPlant {
+class OrangeTree : public FruitPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Orange();
-        Orange(int harvestDuration, int price);
-        Orange(int plantAge);
+        OrangeTree();
+        OrangeTree(int harvestDuration, int price);
+        OrangeTree(int plantAge);
 };
 
-class Banana : public FruitPlant {
+class BananaTree : public FruitPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Banana();
-        Banana(int harvestDuration, int price);
-        Banana(int plantAge);
+        BananaTree();
+        BananaTree(int harvestDuration, int price);
+        BananaTree(int plantAge);
 };
 
-class Guava : public FruitPlant {
+class GuavaTree : public FruitPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Guava();
-        Guava(int harvestDuration, int price);
-        Guava(int plantAge);
+        GuavaTree();
+        GuavaTree(int harvestDuration, int price);
+        GuavaTree(int plantAge);
 };
 
 #endif

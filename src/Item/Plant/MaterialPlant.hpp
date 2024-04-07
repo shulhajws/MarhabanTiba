@@ -10,44 +10,44 @@ class MaterialPlant : public Plant {
         MaterialPlant(int plantID, string code, string name, int harvestDuration);
 };
 
-class Teak : public MaterialPlant {
+class TeakTree : public MaterialPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Teak();
-        Teak(int harvestDuration, int price);
-        Teak(int plantAge);
+        TeakTree();
+        TeakTree(int harvestDuration, int price);
+        TeakTree(int plantAge);
 };
 
-class Sandalwood : public MaterialPlant {
+class SandalwoodTree : public MaterialPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Sandalwood();
-        Sandalwood(int harvestDuration, int price);
-        Sandalwood(int plantAge);
+        SandalwoodTree();
+        SandalwoodTree(int harvestDuration, int price);
+        SandalwoodTree(int plantAge);
 };
 
-class Aloe : public MaterialPlant {
+class AloeTree : public MaterialPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Aloe();
-        Aloe(int harvestDuration, int price);
-        Aloe(int plantAge);
+        AloeTree();
+        AloeTree(int harvestDuration, int price);
+        AloeTree(int plantAge);
 };
 
-class Ironwood : public MaterialPlant {
+class IronwoodTree : public MaterialPlant {
     private:
         static int harvestDuration;
         static int price;
     public: 
-        Ironwood();
-        Ironwood(int harvestDuration, int price);
-        Ironwood(int plantAge);
+        IronwoodTree();
+        IronwoodTree(int harvestDuration, int price);
+        IronwoodTree(int plantAge);
 };
 
 #endif
