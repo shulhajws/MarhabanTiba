@@ -1,31 +1,40 @@
 #include "Building.hpp"
+using namespace std;
 
-Building::Building(int id, std::string code, std::string name, std::string type, int recipeId, std::string recipeCode, std::string recipeName)
-    : Item(id, code, name, type), recipeId(recipeId), recipeCode(recipeCode), recipeName(recipeName) {}
+Building::Building(int id, string code, string name, string type) : Item(id, code, name, type){}
 
 Building::~Building() {}
 
-void Building::recipe() {
-    // Implementation of recipe
+SmallHouse::SmallHouse() : Building(1, "SMH", "SMALL_HOUSE", "BUILDING"){}
+SmallHouse::SmallHouse(int price) : Building(1, "SMH", "SMALL_HOUSE", "BUILDING"){
+    SmallHouse::price = price;
+}
+void SmallHouse::addRecipeMaterial(string materialName, int materialQty) {
+    SmallHouse::materials.insert({materialName, materialQty});
 }
 
-void Building::recipe(int recipe_id, string recipe_code, string recipe_name) {
-    recipeId = recipe_id;
-    recipeCode = recipe_code;
-    recipeName = recipe_name;
+MediumHouse::MediumHouse() : Building(2, "MDH", "MEDIUM_HOUSE", "BUILDING"){}
+MediumHouse::MediumHouse(int price) : Building(2, "MDH", "MEDIUM_HOUSE", "BUILDING"){
+    MediumHouse::price = price;
+}
+void MediumHouse::addRecipeMaterial(string materialName, int materialQty) {
+    MediumHouse::materials.insert({materialName, materialQty});
 }
 
-void Building::addRecipeMaterial(string recipeMaterial, int material, int price) {
-    materials[recipeMaterial] = make_pair(material, price);
+LargeHouse::LargeHouse() : Building(3, "LRH", "LARGE_HOUSE", "BUILDING"){}
+LargeHouse::LargeHouse(int price) : Building(3, "LRH", "LARGE_HOUSE", "BUILDING"){
+    LargeHouse::price = price;
+}
+void LargeHouse::addRecipeMaterial(string materialName, int materialQty) {
+    LargeHouse::materials.insert({materialName, materialQty});
 }
 
-int Building::calculatePrice() {
-    // Implementation of price calculation
-    int totalPrice = 0;
-    for (const auto& pair : materials) {
-        // Calculate price based on material, its quantity and price 
-        totalPrice += pair.second.first * pair.second.second;
-    }
-    return totalPrice;
+Hotel::Hotel() : Building(4, "HTL", "HOTEL", "BUILDING"){}
+Hotel::Hotel(int price) : Building(4, "HTL", "HOTEL", "BUILDING"){
+    Hotel::price = price;
 }
+void Hotel::addRecipeMaterial(string materialName, int materialQty) {
+    Hotel::materials.insert({materialName, materialQty});
+}
+
 

@@ -8,19 +8,56 @@
 using namespace std;
 
 class Building : public Item {
-private:
-    int recipeId;
-    string recipeCode;
-    string recipeName;
-    map<string, pair<int,int> > materials;
+    public:
+        Building(int id, string code, string name, string type);
+        ~Building();
 
-public:
-    Building(int id, string code, string name, string type, int recipeId, string recipeCode, string recipeName);
-    ~Building();
-    void recipe();
-    void recipe(int recipe_id, string recipe_code, string recipe_name);
-    void addRecipeMaterial(string recipeMaterial, int material, int price);
-    int calculatePrice();
+        virtual void addRecipeMaterial(string materialName, int materialQty) = 0;
+
 };
 
-#endif // BUILDING_HPP
+class SmallHouse : public Building {
+    private:
+        static int price;
+        static map<string, int> materials;
+
+    public:
+        SmallHouse();
+        SmallHouse(int price);
+        void addRecipeMaterial(string materialName, int materialQty);
+};
+
+class MediumHouse : public Building {
+    private:
+        static int price;
+        static map<string, int> materials;
+
+    public:
+        MediumHouse();
+        MediumHouse(int price);
+        void addRecipeMaterial(string materialName, int materialQty);
+};
+
+class LargeHouse : public Building {
+    private:
+        static int price;
+        static map<string, int> materials;
+
+    public:
+        LargeHouse();
+        LargeHouse(int price);
+        void addRecipeMaterial(string materialName, int materialQty);
+};
+
+class Hotel : public Building {
+    private:
+        static int price;
+        static map<string, int> materials;
+
+    public:
+        Hotel();
+        Hotel(int price);
+        void addRecipeMaterial(string materialName, int materialQty);
+};
+
+#endif 

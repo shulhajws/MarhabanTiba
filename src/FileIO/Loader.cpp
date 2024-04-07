@@ -133,8 +133,57 @@ vector<Products> Loader::configOfProducts(){
 }
 
 vector<Building> Loader::configOfBuildingRecipes(){
-  vector<Building> building;
-  return building;
+  vector<vector<string>> vectorOfWords;
+
+  try {
+    vectorOfWords = Loader::getWordsFromFile(this->configPath + "/recipe.txt");
+  } catch (FileException &FE){
+    cout << FE.what();
+  }
+  
+  vector<Building> buildings;
+  for (int i = 0; i < vectorOfWords.size(); i++){
+    int ID = stoi(vectorOfWords[i][0]);
+    int price = stoi(vectorOfWords[i][3]);
+    
+    if (ID == 1) {
+      SmallHouse smallHouse(price);
+      for (int j = 4; j < vectorOfWords[i].size(); j += 2) {
+        string materialName = vectorOfWords[i][j];
+        int materialQty = stoi(vectorOfWords[i][j + 1]);
+        smallHouse.addRecipeMaterial(materialName, materialQty);
+      }
+      buildings.push_back(smallHouse);
+    } else if (ID == 2) {
+      MediumHouse mediumHouse(price);
+      for (int j = 4; j < vectorOfWords[i].size(); j += 2) {
+        string materialName = vectorOfWords[i][j];
+        int materialQty = stoi(vectorOfWords[i][j + 1]);
+        mediumHouse.addRecipeMaterial(materialName, materialQty);
+      }
+      buildings.push_back(mediumHouse);
+    } else if (ID == 3) {
+      LargeHouse largeHouse(price);
+      for (int j = 4; j < vectorOfWords[i].size(); j += 2) {
+        string materialName = vectorOfWords[i][j];
+        int materialQty = stoi(vectorOfWords[i][j + 1]);
+        largeHouse.addRecipeMaterial(materialName, materialQty);
+      }
+      buildings.push_back(largeHouse);
+    } else if (ID == 4) {
+      Hotel hotel(price);
+      for (int j = 4; j < vectorOfWords[i].size(); j += 2) {
+        string materialName = vectorOfWords[i][j];
+        int materialQty = stoi(vectorOfWords[i][j + 1]);
+        hotel.addRecipeMaterial(materialName, materialQty);
+      }
+      buildings.push_back(hotel);
+    } else {
+        // throw exception ? / print out mssge?
+    }     
+  }
+
+  return buildings;
   //TO DO
 }
 
@@ -157,21 +206,3 @@ Misc Loader::configOfMisc(){
   return Misc(minMoney, minWeight, storageRow, storageCols, fieldRow, fieldCols, barnRow, barnCols);
 }
 
-// vector<Player> stateOfPlayer(){
-//   //TO DO
-// }
-
-/* tester function */
-// void Loader::displayAnimalConfig()
-// {
-//   vector<Animal> animals = this->configOfAnimal();
-
-//   cout << "List of Tool: " << endl;
-//   for (int i = 0; i < animals.size(); i++)
-//   {
-//     cout << i + 1 << "." << endl;
-//     animals[i].display();
-//     cout << endl;
-//   }
-//   cout << endl;
-// }

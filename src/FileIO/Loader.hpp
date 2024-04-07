@@ -13,7 +13,7 @@
 #include "../Item/Products/PlantsProducts.hpp"
 #include "../Item/Products/ProductsAnimal.hpp"
 #include  "../Item/Building/Building.hpp"
-#include "../misc/Misc.hpp"
+#include "../Misc/Misc.hpp"
 #include "../Player/Player.hpp"
 #include "../Shop/Shop.hpp"
 #include "../Exception/FileException.hpp"
