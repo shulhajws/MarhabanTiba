@@ -12,8 +12,6 @@ class Building : public Item {
         Building(int id, string code, string name, string type);
         ~Building();
 
-        virtual void addRecipeMaterial(string materialName, int materialQty) = 0;
-
 };
 
 class SmallHouse : public Building {
