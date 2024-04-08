@@ -362,7 +362,7 @@ vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
         string plantLoc = vectorOfWords[*ctr][0]; 
         string plantName = vectorOfWords[*ctr][1];
         int plantAge = stoi(vectorOfWords[*ctr][2]);
-        garden.setItem(0, 0, &plantConstructor(plantName, plantAge));
+        garden.setItem(garden.positionCodetoRow(plantLoc), garden.positionCodetoCol(plantLoc), &plantConstructor(plantName, plantAge));
         *ctr++;
       }
       petani.setGarden(garden);
@@ -378,7 +378,7 @@ vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
         string animalLoc = vectorOfWords[*ctr][0]; 
         string animalName = vectorOfWords[*ctr][1];
         int animalWeight = stoi(vectorOfWords[*ctr][2]);
-        barn.setItem(0, 0, &animalConstructor(animalName, animalWeight));
+        barn.setItem(barn.positionCodetoRow(animalLoc), barn.positionCodetoCol(animalLoc), &animalConstructor(animalName, animalWeight));
         *ctr++;
       }
       peternak.setBarn(barn);

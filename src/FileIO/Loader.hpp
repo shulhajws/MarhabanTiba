@@ -20,6 +20,7 @@
 #include "../Player/Mayor.hpp"
 #include "../Shop/Shop.hpp"
 #include "../Exception/FileException.hpp"
+#include "../Storage/Storage.hpp"
 
 #include "string.h"
 #include <fstream>
