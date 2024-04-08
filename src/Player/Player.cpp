@@ -43,8 +43,8 @@ Player::Player(const Player& other) : Player(){
 }
 
 Player::~Player() {
-    for (auto& c : commandList) {
-        delete c;
+    for (Command* cmd : commandList) {
+        delete cmd;
     }
 }
 
@@ -126,7 +126,7 @@ void Player::buyItem(){
     Shop s;
     s.printShop();
     cout<<"\nYour money: "<<wealth<<endl;
-    cout<<"Available storage slots: "<<inventory.getAvailbleSlots()<<endl;
+    cout<<"Available storage slots: "<<inventory.getAvailableSlots()<<endl;
     
     int buy,capacity;
     cout<<"\nItem to be purchased: ";

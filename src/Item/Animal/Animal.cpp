@@ -4,7 +4,7 @@
 using namespace std;
 
 
-Animal::Animal(int price, string code,string name, string type, int harvestWeight): Item(animalID, code, name, type){
+Animal::Animal(int price, string code, string name, string type, int harvestWeight): Item(code, name,type){
     this->animalWeight = 0;
     this->harvestWeight = harvestWeight;
     this->price = price;

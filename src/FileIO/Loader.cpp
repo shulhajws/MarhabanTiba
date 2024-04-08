@@ -280,7 +280,7 @@ Item Loader::itemConstructor(string itemName){
   } else if (itemName == "DUCK_EGG"){
     return Duck();
   } else {
-    // throw something
+    throw invalid_argument("Unknown item name: " + itemName);
   }
 }
 
@@ -304,7 +304,7 @@ Plant Loader::plantConstructor(string itemName,  int plantAge = 0){
   }
 }
 
-Animal Loader::animalConstructor(string itemName, int animalWeight = 0){
+Animal Loader::animalConstructor(string itemName, int animalWeight) {
   if (itemName == "COW"){
     return Cow(animalWeight);
   } else if (itemName == "SHEEP"){

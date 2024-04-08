@@ -45,7 +45,7 @@ public:
   // split words from sentences to a vector of string
   vector<string> getWordsFromSentence(string);
   // read each words from file
-  vector<vector<string>> getWordsFromFile(string);
+  vector<vector<string> > getWordsFromFile(string);
   // vector of animal
   vector<Animal> configOfAnimal();
   // vector of plant

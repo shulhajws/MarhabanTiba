@@ -1,8 +1,6 @@
 #ifndef __TAX_HPP__
 #define __TAX_HPP__
 
-using namespace std;
-
 #include "../Player/Player.hpp"
 
 class Tax{

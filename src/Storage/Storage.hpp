@@ -18,7 +18,7 @@ class Storage {
         //player storageOwner;
         int row;
         int col;
-        vector<vector<T>> storageContent;
+        vector<vector<T> > storageContent;
         map<string, T> store;
     public :
         Storage();

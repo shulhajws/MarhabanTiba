@@ -12,8 +12,9 @@ class Animal : public Item{
         int animalWeight;
         int harvestWeight;
         int price;
+
     public:
-        Animal(int price,string code,string name,string type,int harvestWeight);
+        Animal(int price, string code, string name,string type,int harvestWeight);
         Animal(string code, string name, string type, int animalWeight,int harvestWeight);
         ~Animal();
         virtual void makan(Products* p);
