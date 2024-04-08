@@ -60,6 +60,10 @@ int Player::getKTKP(){
     return 0;
 }
 
+void Player::setInventory(Storage<Item*> inventory){
+    this->inventory = inventory;
+}
+
 void Player::addPlayerWealth(int money){
     this->wealth += money;
 }

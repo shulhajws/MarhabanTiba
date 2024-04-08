@@ -15,6 +15,9 @@
 #include  "../Item/Building/Building.hpp"
 #include "../Misc/Misc.hpp"
 #include "../Player/Player.hpp"
+#include "../Player/AnimalFarmer.hpp"
+#include "../Player/PlantFarmer.hpp"
+#include "../Player/Mayor.hpp"
 #include "../Shop/Shop.hpp"
 #include "../Exception/FileException.hpp"
 
@@ -23,6 +26,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <tuple>
 
 class Loader
 {
@@ -51,10 +55,16 @@ public:
   vector<Building> configOfBuildingRecipes();
   // get misc
   Misc configOfMisc();
+  // item constructor
+  Item itemConstructor(string);
+  //plant constructor
+  Plant plantConstructor(string, int);
+  //animal constructor
+  Animal animalConstructor(string itemName, int animalWeight = 0);
   // vector of Player
-  vector<Player> stateOfPlayer();  
+  vector<Player> stateOfPlayer(string filepath, int* lineCounter);  
   // get shop
-  Shop stateOfShop();
+  Shop stateOfShop(string filepath, int lineCounter);
 
 
 };

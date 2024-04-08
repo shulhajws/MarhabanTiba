@@ -16,6 +16,9 @@ int PlantFarmer::getKTKP(){
     return 13;
 }
 
+void PlantFarmer::setGarden(Storage<Plant*> garden){
+    this->Garden = garden;
+}
 
 void PlantFarmer::displayInfo() const {
     cout << "Plant Farmer - ";

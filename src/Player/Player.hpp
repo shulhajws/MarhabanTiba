@@ -35,6 +35,7 @@ class Player{
         int getPlayerWeight() const;
         string getType() const;
         virtual int getKTKP();
+        void setInventory(Storage<Item*>);
         void displayStorage();
         void addPlayerWealth(int money);
         void minPlayerWealth(int money);

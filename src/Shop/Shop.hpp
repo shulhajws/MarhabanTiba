@@ -14,14 +14,16 @@ using namespace std;
 
 class Shop {
 private:
-    vector <Item> items;
-    vector<tuple<Building, int>> itemsBuilding;
+    vector<tuple<Item, int>> shopItems;
+    // vector <Item> items;
+    // vector<tuple<Building, int>> itemsBuilding;
     vector<Plant> itemsPlants;
     vector<Animal> itemsAnimals;
-    vector<tuple<PlantsProducts, int>> itemsPlantsProducts;
-    vector<tuple<ProductsAnimal, int>> itemsAnimalsProducts;
+    // vector<tuple<PlantsProducts, int>> itemsPlantsProducts;
+    // vector<tuple<ProductsAnimal, int>> itemsAnimalsProducts;
 
 public:
+    Shop(vector<tuple<Item, int>>, vector<Plant>, vector<Animal>);
     Shop& operator+(Item& item);
     void printShop();
 };

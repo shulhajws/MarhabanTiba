@@ -19,6 +19,10 @@ int AnimalFarmer::getKTKP(){
     return 11;
 }
 
+void AnimalFarmer::setBarn(Storage<Animal*> barn){
+    this->Barn = barn;
+}
+
 void AnimalFarmer::displayInfo() const {
     cout << "Animal Farmer - ";
     Player::displayInfo();
