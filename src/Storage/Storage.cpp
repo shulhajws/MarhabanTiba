@@ -1,10 +1,15 @@
 #include "Storage.hpp"
 #include "../Exception/Exception.hpp"
+#include "../Item/Animal/Animal.hpp"
+#include "../Item/Plant/Plant.hpp"
+#include "../Item/Products/Products.hpp"
+#include "../Item/Building/Building.hpp"
+#include "../Item/Item.hpp"
 using namespace std;
 
-template class Storage<Item*>;
-template class Storage<Plant*>;
-template class Storage<Animal*>;
+// template class Storage<Item*>;
+// template class Storage<Plant*>;
+// template class Storage<Animal*>;
 
 template<class T>
 Storage<T>::Storage(){
@@ -25,6 +30,13 @@ void Storage<T>::setItem(int row, int col, T content){
     } else {
         storageContent[row][col] = content;
     }
+}
+
+template<class T>
+void Storage<T>::setItemRandom(T content){
+    int rowPosition = 0 + (rand() % row);
+    int colPosition = 0 + (rand() % col);
+    storageContent[rowPosition][colPosition] = content;
 }
 
 template<class T>
@@ -146,7 +158,7 @@ void Storage<T>::printStorage(string name){
 
         for (int m = 0; m < col; m++) {
             if (storageContent[j][m] == nullptr) {
-                cout << "|     ";
+            cout << "|     ";
             } else {
                 cout << "|"<< storageContent[j][m]->getCode();
             }
@@ -168,7 +180,7 @@ bool Storage<T>::operator==(const T& other) const{
 }
 
 template<class T>
-int Storage<T>::getAvailbleSlots(){
+int Storage<T>::getAvailableSlots(){
     int num = 0;
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
@@ -197,6 +209,7 @@ int Storage<T>::positionCodetoCol(string position){
     return ((position[1]*10+position[2])-1);
 }
 
-// bool operator==(const MyClass& other) const {
-//         return value == other.value;
-//     }
+int main() {
+    Storage<Animal*> s;
+    s.printStorage("Peternakan");
+}

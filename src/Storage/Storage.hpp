@@ -24,6 +24,7 @@ class Storage {
         Storage();
         ~Storage();
         void setItem(int row, int col, T content);
+        void setItemRandom(T content);
         void setRowCols(int row, int cols);
         int getRow() const;
         int getCol() const;
@@ -34,7 +35,7 @@ class Storage {
         bool operator==(const T& other) const;
         int positionCodetoRow(string position);
         int positionCodetoCol(string position);
-        int getAvailbleSlots();
+        int getAvailableSlots();
         bool isEmpty() const;
         bool isFull() const;
         bool hasItem(const T& type) const;
