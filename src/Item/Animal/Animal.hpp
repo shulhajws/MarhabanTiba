@@ -11,11 +11,13 @@ class Animal : public Item{
         int animalID;
         int animalWeight;
         int harvestWeight;
+        int price;
     public:
-        Animal(string code,string name,string type,int harvestWeight);
+        Animal(int price,string code,string name,string type,int harvestWeight);
         Animal(string code, string name, string type, int animalWeight,int harvestWeight);
         ~Animal();
         virtual void makan(Products* p);
+        int getPrice();
         bool isHarvestable();
 };
 

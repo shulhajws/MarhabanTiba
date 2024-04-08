@@ -41,7 +41,9 @@ class Player{
         void addPlayerWealth(int money);
         void minPlayerWealth(int money);
         void eat();
-        
+        void buyItem();
+        void sellItem();
+        vector<string> splitbyComa(const string& input);
         bool operator==(string command) const;
 
         virtual void displayInfo() const;

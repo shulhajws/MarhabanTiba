@@ -14,6 +14,7 @@ protected:
     double price;
 
 public:
+    Products();
     Products(int id, string code, string name, string type, string origin, double added_weight, double price);
     virtual ~Products();
     double getAddedWeight();

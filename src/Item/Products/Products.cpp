@@ -1,5 +1,7 @@
 #include "Products.hpp"
 
+Products::Products():Item(id, code, name, type){};
+
 Products::Products(int id, string code, string name, string type, string origin, double added_weight, double price)
     : Item(id, code, name, type), origin(origin), added_weight(added_weight), price(price) {}
 

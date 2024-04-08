@@ -9,7 +9,7 @@ class Omnivore : public Animal{
         int berat_hewan;
         string nama;
     public:
-        Omnivore(string kode, string nama,int harvestWeight);
+        Omnivore(string kode, string nama,int harvestWeight,int price);
         Omnivore(int harvestWeight,string kode, string nama,int animalweight);
         void makan(Products* m);
 };

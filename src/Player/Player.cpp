@@ -81,7 +81,7 @@ int Player::getPlayerWeight() const{
 }
 
 void Player::displayStorage(){
-    inventory.printStorage("Penyimpanan");
+    inventory.printStorage("Storage");
 }
 
 bool Player::inventoryEmpty(){
@@ -92,6 +92,10 @@ void Player::eat() {
     string slot;
     while(true) {
         try {
+            if (inventory.isEmpty()) {
+                throw NoItemInStorageException();
+            }
+
             cout << "Slot: ";
             cin >> slot;
             int row = inventory.positionCodetoRow(slot);
@@ -111,8 +115,66 @@ void Player::eat() {
         } catch (ItemNotFoundException e) {
             cout << e.what()<<endl;
             break;
+        } catch (NoItemInStorageException e) {
+            cout << e.what()<<endl;
+            break;
         }
     }
+}
+
+void Player::buyItem(){
+    Shop s;
+    s.printShop();
+    cout<<"\nYour money: "<<wealth<<endl;
+    cout<<"Available storage slots: "<<inventory.getAvailbleSlots()<<endl;
+    
+    int buy,capacity;
+    cout<<"\nItem to be purchased: ";
+    cin>>buy;
+    cout<<"Capacity: ";
+    cin>>capacity;
+    // exception menyusul
+    cout<<"\nChoose a slot to store the purchased item!"<<endl;
+
+    inventory.printStorage("Storage");
+
+    string slot;
+    cout<<"\nSlot: ";
+    cin>>slot; //exception menyusul
+    vector<string> slots = splitbyComa(slot);
+    int row,col;
+    for (int i=0;i<slots.size();i++){
+        row = inventory.positionCodetoRow(slots[i]);
+        col = inventory.positionCodetoCol(slots[i]);
+
+        inventory.setItem(row,col,&s.getItem(buy));
+    }
+     inventory.printStorage("Storage");
+    cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" cows. You have 88 guilders remaining."<<endl;
+
+}
+
+vector<string> Player::splitbyComa(const string& input) { // bentar masih ngebug ntar dilanjut
+    vector<string> items;
+    int start = 0;
+    int end = input.find(",");
+
+    while (end != string::npos) {
+        string item = input.substr(start, end - start);
+
+        item.erase(0, item.find_first_not_of(" \t"));
+        items.push_back(item);
+
+        start = end + 1;
+        end = input.find(",", start);
+        cout<<item<<endl;
+    }
+
+    string lastItem = input.substr(start);
+    lastItem.erase(0, lastItem.find_first_not_of(" \t"));
+    items.push_back(lastItem);
+
+    return items;
 }
 
 void Player::displayInfo() const {

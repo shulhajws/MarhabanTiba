@@ -41,7 +41,7 @@ class ItemNotFoundException : public Exception {
 class NoItemInStorageException : public Exception {
 public:
     string what() override {
-        return "\033[1;31mCannot plant crop. No item available in storage.\033[0m";
+        return "\033[1;31mCannot do this command. No item available in storage.\033[0m";
     }
 };
 

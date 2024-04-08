@@ -1,22 +1,17 @@
-#ifndef PRODUCTS_ANIMAL_HPP
-#define PRODUCTS_ANIMAL_HPP
 
-#include "Products.hpp"
+#include "ProductsAnimal.hpp"
 
-class ProductsAnimal : public Products {
-private:
-    string animalType;
 
-public:
-    ProductsAnimal(int id, string code, string name, string type, string origin, double added_weight, double price, string animalType);
-    ~ProductsAnimal();
+ProductsAnimal::ProductsAnimal(int id, string code, string name, string type, string origin, double added_weight, double price)
+    : Products(id, code, name, type, origin, added_weight, price) {}
 
-    // Getters and Setters for animalType
-    string getAnimalType() const;
-    void setAnimalType(const string& animalType);
+ProductsAnimal::~ProductsAnimal(){
 
-    // Operator overloading for ==
-    bool operator==(const ProductsAnimal& other) const;
-};
+}
 
-#endif // PRODUCTS_ANIMAL_HPP
+// Operator overloading for ==
+// bool ProductsAnimal::operator==(const ProductsAnimal& other) const{
+
+// }
+
+

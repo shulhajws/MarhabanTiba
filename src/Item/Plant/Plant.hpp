@@ -10,11 +10,12 @@ class Plant : public Item{
         int plantID;
         int harvestDuration;
         int plantAge;
+        int price;
 
     public:
-        Plant(int plantID, string plantCode, string name, string type, int harvestDuration);
+        Plant(int plantID, string plantCode, string name, string type, int harvestDuration, int price);
         ~Plant();
-
+        int getPrice();
         void addAge();
         void setPlantAge(int plantAge);
         bool isReadyToHarvest();

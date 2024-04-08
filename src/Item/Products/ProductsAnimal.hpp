@@ -8,7 +8,7 @@ private:
     string animalType;
 
 public:
-    ProductsAnimal(int id, string code, string name, string type, string origin, double added_weight, double price, string animalType);
+    ProductsAnimal(int id, string code, string name, string type, string origin, double added_weight, double price);
     ~ProductsAnimal();
 
     // Operator overloading for ==

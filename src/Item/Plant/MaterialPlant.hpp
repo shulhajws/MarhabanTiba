@@ -7,7 +7,7 @@ using namespace std;
 
 class MaterialPlant : public Plant {
     public:
-        MaterialPlant(int plantID, string code, string name, int harvestDuration);
+        MaterialPlant(int plantID, string code, string name, int harvestDuration, int price);
 };
 
 class TeakTree : public MaterialPlant {

@@ -145,10 +145,10 @@ void Storage<T>::printStorage(string name){
         }
 
         for (int m = 0; m < col; m++) {
-            if (storageContent[j][m] == NULL) {
+            if (storageContent[j][m] == nullptr) {
                 cout << "|     ";
             } else {
-                cout << "|     ";
+                cout << "|"<< storageContent[j][m]->getCode();
             }
         }
 
@@ -165,6 +165,19 @@ void Storage<T>::printStorage(string name){
 template<class T>
 bool Storage<T>::operator==(const T& other) const{
     return true;
+}
+
+template<class T>
+int Storage<T>::getAvailbleSlots(){
+    int num = 0;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (storageContent[i][j] == nullptr) {
+                num+=1; 
+            }
+        }
+    }
+    return num;
 }
 
 template<class T>

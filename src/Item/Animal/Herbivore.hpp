@@ -6,7 +6,7 @@
 
 class Herbivore : public Animal{
     public:
-        Herbivore(string kode, string nama,int harvestweight);
+        Herbivore(string kode, string nama,int harvestweight, int price);
         Herbivore(int harvestWeight,string code, string name, int animalWeight); 
         void makan(Products* p);
 };

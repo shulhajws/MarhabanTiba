@@ -4,9 +4,10 @@
 using namespace std;
 
 
-Animal::Animal(string code,string name, string type, int harvestWeight): Item(animalID, code, name, type){
+Animal::Animal(int price, string code,string name, string type, int harvestWeight): Item(animalID, code, name, type){
     this->animalWeight = 0;
     this->harvestWeight = harvestWeight;
+    this->price = price;
 }
 
 
@@ -18,6 +19,10 @@ Animal::Animal(string code, string name, string type, int animalWeight, int harv
 Animal::~Animal(){}
 
 void Animal::makan(Products* p){}
+
+int Animal::getPrice(){
+    return price;
+}
 
 bool Animal::isHarvestable(){
     if(animalWeight>=harvestWeight){
