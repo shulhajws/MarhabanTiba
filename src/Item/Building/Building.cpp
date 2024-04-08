@@ -5,6 +5,10 @@ Building::Building(int id, string code, string name, string type) : Item(id, cod
 
 Building::~Building() {}
 
+int Building::calculatePrice(){
+    return 0;
+}
+
 int SmallHouse::price = 0;
 map<string, int> SmallHouse::materials;
 SmallHouse::SmallHouse() : Building(1, "SMH", "SMALL_HOUSE", "BUILDING"){}

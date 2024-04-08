@@ -3,6 +3,8 @@
 using namespace std;
 
 template class Storage<Item*>;
+template class Storage<Plant*>;
+template class Storage<Animal*>;
 
 template<class T>
 Storage<T>::Storage(){
@@ -98,10 +100,10 @@ bool Storage<T>::isFull() const {
 }
 
 template<class T>
-bool hasItem(const T& type) {
+bool Storage<T>::hasItem(const T& type) const{
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
-            if (storageContent[i][j] != nullptr && *storageContent[i][j] == type) {
+            if (storageContent[i][j] != nullptr && storageContent[i][j] == type) {
                 return true; // Item ditemukan
             }
         }
@@ -110,8 +112,19 @@ bool hasItem(const T& type) {
 }
 
 template<class T>
-void Storage<T>::printStorage(){
-    cout << "     "; // 5 space in the beginning
+void Storage<T>::printStorage(string name){
+    cout << "      "; // 5 space in the beginning
+    int len = 6*col - name.length() -4;
+    for(int i = 0; i < len/2; i++){
+        cout << "=";
+    }
+    cout << "[ "<<name<<" ]";
+
+    for(int i = 0; i < len/2; i++){
+        cout << "=";
+    }
+
+    cout << "\n     "; // 5 space in the beginning
     for(int i = 0; i < col; i++){
         cout << "   " << static_cast<char>(65 + i) << "  ";
     }

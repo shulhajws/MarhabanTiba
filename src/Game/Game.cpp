@@ -74,7 +74,7 @@ void Game::inputPlayer(){
      cout << "\nPlease Input All The Players!!" << endl;
     cout << "Input the Mayor" << endl;
     Walkot = inputName();
-    this->players.push_back(new Mayor(Walkot,950,80));
+    this->players.push_back(new Mayor(Walkot,50,40));
 
     cout << "\nInput Animal Farmer"<<endl;
     Peternak = inputName();

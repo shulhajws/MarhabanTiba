@@ -81,7 +81,11 @@ int Player::getPlayerWeight() const{
 }
 
 void Player::displayStorage(){
-    inventory.printStorage();
+    inventory.printStorage("Penyimpanan");
+}
+
+bool Player::inventoryEmpty(){
+    return inventory.isEmpty();
 }
 
 void Player::eat() {

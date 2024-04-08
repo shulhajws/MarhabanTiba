@@ -18,9 +18,12 @@ Item::Item( string code, string name, string type){
 
 Item::~Item(){};
 
-// bool operator==(const Item& Item1, const Item& Item2){
-//     // TO BE IMPLEMENTED
-// }
+bool Item::operator==(Item& Item2) const{
+    if(this->code == Item2.getCode() && this->name == Item2.getName() && this->type==Item2.getType()){
+        return true;
+    }
+    return false;
+}
 
 string Item::getCode() const {
     return code;

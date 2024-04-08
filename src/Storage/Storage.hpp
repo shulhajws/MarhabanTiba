@@ -30,7 +30,7 @@ class Storage {
         T getItemInfo(int row, int col);
         T getItem(int row, int col);
         bool isItemValid(int row, int col);
-        void printStorage();
+        void printStorage(string name);
         bool operator==(const T& other) const;
         int positionCodetoRow(string position);
         int positionCodetoCol(string position);
