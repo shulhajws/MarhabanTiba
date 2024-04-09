@@ -9,7 +9,6 @@ using namespace std;
 
 class Command{
 public:
-    virtual ~Command();
     virtual void useCommand() = 0;
     virtual string getName() = 0;
 };

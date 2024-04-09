@@ -7,9 +7,9 @@
 #include "../Item/Item.hpp"
 using namespace std;
 
-// template class Storage<Item*>;
-// template class Storage<Plant*>;
-// template class Storage<Animal*>;
+template class Storage<Item*>;
+template class Storage<Plant*>;
+template class Storage<Animal*>;
 
 template<class T>
 Storage<T>::Storage(){
@@ -207,9 +207,4 @@ int Storage<T>::positionCodetoCol(string position){
         throw ItemNotFoundException();
     }
     return ((position[1]*10+position[2])-1);
-}
-
-int main() {
-    Storage<Animal*> s;
-    s.printStorage("Peternakan");
 }
