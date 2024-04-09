@@ -81,7 +81,8 @@ int Player::getPlayerWeight() const{
 }
 
 void Player::displayStorage(){
-    inventory.printStorage("Storage");
+    inventory.printStorage("Storage",0);
+    cout<<"Total Empty Slot: "<<inventory.getAvailableSlots()<<endl;
 }
 
 bool Player::inventoryEmpty(){
@@ -149,7 +150,7 @@ void Player::buyItem(){
                 throw InputException();
             }
 
-            inventory.printStorage("Storage");
+            inventory.printStorage("Storage",0);
 
             string slot; 
             int success = 0;
@@ -190,7 +191,7 @@ void Player::buyItem(){
                 }
             }
             if(success == capacity){
-                inventory.printStorage("Storage");
+                inventory.printStorage("Storage",0);
                 cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<s.getItem(buy)->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
             }
             break;

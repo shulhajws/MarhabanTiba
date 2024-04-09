@@ -16,7 +16,7 @@ class Item{
         Item(int id, string code, string name, string type, int price);
         virtual ~Item();
         bool operator==(Item& Item2) const;
-
+        bool isReadyToHarvest();
         int getPrice() const;
         string getCode() const;
         string getName() const;

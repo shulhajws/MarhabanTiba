@@ -48,7 +48,7 @@ void AnimalFarmer::placeAnimal() {
         }
         cout<<"test"<<endl;
         cout << "Select a animal from the storage\n";
-        inventory.printStorage("Storage");
+        inventory.printStorage("Storage",0);
 
         int row,col;
         Item* it ;
@@ -79,7 +79,7 @@ void AnimalFarmer::placeAnimal() {
         Animal* selectedAnimalType = dynamic_cast<Animal*>(it);
     
         cout << "\nSelect a plot of land to live\n\n";
-        printBarn();
+        Barn.printStorage("Barn",1); 
 
         while (true){
             try{
@@ -126,5 +126,6 @@ void AnimalFarmer::harvestAnimal() {
 }
 
 void AnimalFarmer::printBarn() {
-    Barn.printStorage("Barn"); 
+    Barn.printStorage("Barn",1); 
+    Barn.printLegends();
 }

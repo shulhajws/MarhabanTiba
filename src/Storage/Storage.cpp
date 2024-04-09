@@ -139,7 +139,7 @@ bool Storage<T>::hasItem(const T& type) const{
 }
 
 template<class T>
-void Storage<T>::printStorage(string name){
+void Storage<T>::printStorage(string name, int color){ // 1: print w/color 2: print w/o color
     cout << "      "; // 5 space in the beginning
     int len = 6*col - name.length() -4;
     for(int i = 0; i < len/2; i++){
@@ -175,7 +175,16 @@ void Storage<T>::printStorage(string name){
             if (storageContent[j][m] == nullptr) {
             cout << "|     ";
             } else {
-                cout << "| "<< storageContent[j][m]->getCode()<<" ";
+                if(color==1){
+                    if(storageContent[j][m]->isReadyToHarvest()){
+                        cout << "| \033[1;92m"<< storageContent[j][m]->getCode()<<"\033[0m ";
+                    }
+                    else{
+                        cout << "| \033[1;31m"<< storageContent[j][m]->getCode()<<"\033[0m ";
+                    }
+                }else{
+                    cout << "| "<< storageContent[j][m]->getCode()<<" ";
+                }
             }
         }
 
@@ -187,6 +196,17 @@ void Storage<T>::printStorage(string name){
         cout << "+-----";
     }
     cout << "+" << endl;
+}
+
+template<class T>
+void Storage<T>::printLegends(){
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (storageContent[i][j] != nullptr) {
+                cout<<"     - "<<coltoPositionCode(j)<<rowtoPositionCode(i)<<": "<<storageContent[i][j]->getName()<<endl;
+            }
+        }
+    }
 }
 
 template<class T>
@@ -224,4 +244,20 @@ int Storage<T>::positionCodetoCol(string position){
     }
     char row = position[0];
     return row - 'A';
+}
+
+template<class T>
+string Storage<T>::rowtoPositionCode(int row){
+    string position;
+    if (row < 9) {
+        position = "0" + to_string(row + 1);
+    } else {
+        position = to_string(row + 1);
+    }
+    return position;
+}
+
+template<class T>
+string Storage<T>::coltoPositionCode(int col){
+    return string(1, static_cast<char>('A' + col));
 }

@@ -33,10 +33,13 @@ class Storage {
         T getItem(int row, int col);
         bool isItemValid(int row, int col);
         bool isSlotEmpty(int row, int col);
-        void printStorage(string name);
+        void printStorage(string name, int color);
+        void printLegends();
         bool operator==(const T& other) const;
         int positionCodetoRow(string position);
         int positionCodetoCol(string position);
+        string rowtoPositionCode(int row);
+        string coltoPositionCode(int col);
         int getAvailableSlots();
         bool isEmpty() const;
         bool isFull() const;

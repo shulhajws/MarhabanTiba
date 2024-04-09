@@ -19,7 +19,7 @@ class Animal : public Item{
         ~Animal();
         virtual void makan(Products* p);
         int getPrice();
-        bool isHarvestable();
+        bool isReadyToHarvest();
 };
 
 #endif

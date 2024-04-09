@@ -42,3 +42,7 @@ string Item::getType() const {
 int Item::getPrice() const {
     return price;
 }
+
+bool Item::isReadyToHarvest() {
+    return false;
+}

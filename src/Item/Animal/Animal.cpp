@@ -24,13 +24,11 @@ int Animal::getPrice(){
     return price;
 }
 
-bool Animal::isHarvestable(){
+bool Animal::isReadyToHarvest(){
     if(animalWeight>=harvestWeight){
-        cout<<"Hewan siap dipanen"<<endl;
         return true;
     }
     else{
-        cout<<"\033[1;31mHewan belum siap dipanen\033[0m"<<endl;
         return false;
     }
 }

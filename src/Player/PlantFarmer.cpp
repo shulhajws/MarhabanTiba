@@ -43,7 +43,7 @@ void PlantFarmer::plantCrop() {
         }
 
         cout << "Select a plant from the storage\n";
-        inventory.printStorage("Storage");
+        inventory.printStorage("Storage",0);
 
         int row,col;
         Item* it ;
@@ -74,7 +74,7 @@ void PlantFarmer::plantCrop() {
         Plant* selectedPlantType = dynamic_cast<Plant*>(it);
     
         cout << "\nSelect a plot of land to plant\n\n";
-        printGarden();
+        Garden.printStorage("Field",1); 
 
         while (true){
             try{
@@ -131,5 +131,6 @@ void PlantFarmer::harvestCrop() {
 }
 
 void PlantFarmer::printGarden() {
-    Garden.printStorage("Field"); 
+    Garden.printStorage("Field",1); 
+    Garden.printLegends();
 }
