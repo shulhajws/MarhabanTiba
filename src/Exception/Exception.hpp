@@ -34,7 +34,7 @@ class CommandException : public Exception {
 class ItemNotFoundException : public Exception {
     public:
         string what() override {
-        return "\033[1;31mItem not found.\nTry input another slot Item. \033[0m";
+        return "\033[1;31mItem not found.\nPlease try another input. \033[0m";
     }
 };
 
@@ -77,6 +77,20 @@ class NotEnoughSpaceException : public Exception {
 public:
     string what() override {
         return "\033[1;31mCannot plant crop. Not enough space in the field.\033[0m";
+    }
+};
+
+class NotEnoughInventorySpaceException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mCannot save item. Not enough space in the Storage.\033[0m";
+    }
+};
+
+class NotEnoughMoneyException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mCannot buy item. Not enough money.\033[0m";
     }
 };
 

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Plant::Plant(int plantID, string plantCode, string name, string type, int harvestDuration, int price) : Item(plantID, plantCode, name, type){
+Plant::Plant(int plantID, string plantCode, string name, string type, int harvestDuration, int price) : Item(plantID, plantCode, name, type,price){
     this->harvestDuration = harvestDuration;
     this->plantAge = 0;
     this->price = price;

@@ -2,11 +2,12 @@
 #include <iostream>
 using namespace std;
 
-Item::Item(int id, string code, string name, string type){
+Item::Item(int id, string code, string name, string type, int price){
     this->id = id;
     this->code = code;
     this->name = name;
     this->type = type;
+    this->price = price;
 }
 
 Item::Item( string code, string name, string type){
@@ -36,4 +37,8 @@ string Item::getName() const {
 // Implementation of getType() method
 string Item::getType() const {
     return type;
+}
+
+int Item::getPrice() const {
+    return price;
 }

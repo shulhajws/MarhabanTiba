@@ -129,29 +129,85 @@ void Player::buyItem(){
     cout<<"Available storage slots: "<<inventory.getAvailableSlots()<<endl;
     
     int buy,capacity;
-    cout<<"\nItem to be purchased: ";
-    cin>>buy;
-    cout<<"Capacity: ";
-    cin>>capacity;
-    // exception menyusul
-    cout<<"\nChoose a slot to store the purchased item!"<<endl;
 
-    inventory.printStorage("Storage");
+    while (true){
+        try{
+            cout<<"\nItem to be purchased: ";
+            cin>>buy;
+            cout<<"Capacity: ";
+            cin>>capacity;
+            if((int)buy>(int)s.totalItem()||(int)buy<1){
+                throw ItemNotFoundException();
+            }
+            if (capacity>inventory.getAvailableSlots()){
+                throw NotEnoughInventorySpaceException();
+            }
+            if(s.getItem(buy)->getPrice()*capacity>wealth){
+                throw NotEnoughMoneyException();
+            }
+            if(capacity<1){
+                throw InputException();
+            }
 
-    string slot;
-    cout<<"\nSlot: ";
-    cin>>slot; //exception menyusul
-    vector<string> slots = splitbyComa(slot);
-    int row,col;
-    for (int i=0;i<slots.size();i++){
-        row = inventory.positionCodetoRow(slots[i]);
-        col = inventory.positionCodetoCol(slots[i]);
+            inventory.printStorage("Storage");
 
-        inventory.setItem(row,col,&s.getItem(buy));
-    }
-     inventory.printStorage("Storage");
-    cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" cows. You have 88 guilders remaining."<<endl;
-
+            string slot; 
+            int success = 0;
+            int row,col;
+            while(true){
+                try{
+                    cout<<"\nFormat 'loc1,loc2,loc3,..'";
+                    cout<<"\nSlot: ";
+                    cin>>slot;
+                    vector<string> slots;
+                    if(capacity>1){
+                        slots = splitbyComa(slot);
+                    }
+                    else{
+                        slots.push_back(slot);
+                    }
+                    if (capacity!= slots.size()){
+                        throw InputException();
+                    }
+                     for (int i=0;i<slots.size();i++){
+                        row = inventory.positionCodetoRow(slots[i]);
+                        col = inventory.positionCodetoCol(slots[i]);
+                        inventory.isItemValid(row,col);
+                        inventory.isSlotEmpty(row,col);
+                     }
+                    for (int i=0;i<slots.size();i++){
+                        row = inventory.positionCodetoRow(slots[i]);
+                        col = inventory.positionCodetoCol(slots[i]);
+                        inventory.setItem(row,col,s.getItem(buy));
+                        minPlayerWealth(s.getItem(buy)->getPrice());
+                        success +=1;
+                    }
+                    break;
+                } catch(InputException e){
+                    cout<<e.what();
+                } catch(InvalidSlotException e){
+                    cout<<e.what();
+                }
+            }
+            if(success == capacity){
+                inventory.printStorage("Storage");
+                cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<s.getItem(buy)->getName()<<". You have "<<wealth<<" remaining."<<endl;
+            }
+            break;
+        } catch(ItemNotFoundException e){
+            cout<<e.what()<<endl;
+        }
+        catch(InputException e){
+            cout<<e.what();
+        }
+        catch(NotEnoughInventorySpaceException e){
+            cout<<e.what()<<endl;
+        }
+        catch(NotEnoughMoneyException e){
+            cout<<e.what()<<endl;
+        }
+    } 
+    
 }
 
 vector<string> Player::splitbyComa(const string& input) { // bentar masih ngebug ntar dilanjut
@@ -167,7 +223,6 @@ vector<string> Player::splitbyComa(const string& input) { // bentar masih ngebug
 
         start = end + 1;
         end = input.find(",", start);
-        cout<<item<<endl;
     }
 
     string lastItem = input.substr(start);

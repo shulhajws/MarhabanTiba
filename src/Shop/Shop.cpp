@@ -74,19 +74,30 @@ void Shop :: printShop(){
 
 }
 
-Item& Shop::getItem(int i){
-    if (i<=itemsBuilding.size()){
-        return get<0>(itemsBuilding[i]);
+int Shop::totalItem(){
+    return (itemsAnimals.size() + itemsPlantsProducts.size() + itemsAnimalsProducts.size() + itemsBuilding.size()+itemsPlants.size());
+}
+
+Item* Shop::getItem(int i){
+    int x2 = itemsBuilding.size();
+    int x3 = itemsAnimalsProducts.size() + itemsBuilding.size();
+    int x4 = itemsPlantsProducts.size() + itemsAnimalsProducts.size() + itemsBuilding.size();
+    int x5 = itemsAnimals.size() + itemsPlantsProducts.size() + itemsAnimalsProducts.size() + itemsBuilding.size();
+
+    if (i<=itemsBuilding.size() && itemsBuilding.size()!= 0){
+        return &get<0>(itemsBuilding[i-1]);
     }
-    else if(i<=itemsAnimalsProducts.size()){
-        return get<0>(itemsAnimalsProducts[i]);
+    else if(i<= itemsAnimalsProducts.size() + x2 && itemsAnimalsProducts.size()!= 0){
+        return &get<0>(itemsAnimalsProducts[i-x2-1]);
     }
-    else if(i<=itemsPlantsProducts.size()){
-        return get<0>(itemsPlantsProducts[i]);
+    else if(i<= itemsPlantsProducts.size() + x3 && itemsPlantsProducts.size()!= 0){
+        return &get<0>(itemsPlantsProducts[i-x3-1]);
     }
-    else if(i<=itemsAnimals.size()){
-        return itemsAnimals[i];
+    else if(i<= itemsAnimals.size() + x4 && itemsAnimals.size()!= 0){
+        return &itemsAnimals[i-x4-1];
     }
-    return itemsPlants[i];
-    //exception otw
+    else if(i<= itemsPlants.size() + x5 && itemsPlants.size()!= 0){
+        return &itemsPlants[i-x5-1];
+    }
+    return nullptr;
 }

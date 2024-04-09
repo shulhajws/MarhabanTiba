@@ -10,12 +10,14 @@ class Item{
         string code;
         string name;
         string type;
+        int price;
     public:
         Item(string code, string name, string type);
-        Item(int id, string code, string name, string type);
+        Item(int id, string code, string name, string type, int price);
         virtual ~Item();
         bool operator==(Item& Item2) const;
 
+        int getPrice() const;
         string getCode() const;
         string getName() const;
         string getType() const;

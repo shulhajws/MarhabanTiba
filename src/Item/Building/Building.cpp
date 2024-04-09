@@ -1,7 +1,7 @@
 #include "Building.hpp"
 using namespace std;
 
-Building::Building(int id, string code, string name, string type) : Item(id, code, name, type){}
+Building::Building(int id, string code, string name, string type) : Item(id, code, name, type,calculatePrice()){}
 
 Building::~Building() {}
 

@@ -17,34 +17,34 @@ AppleTree::AppleTree(int plantAge) : FruitPlant(5, "APL", "APPLE_TREE", AppleTre
 
 int OrangeTree::harvestDuration = 0;
 int OrangeTree::price = 0;
-OrangeTree::OrangeTree() :  FruitPlant(6, "ORG", "ORANGETree_TREE", OrangeTree::harvestDuration, OrangeTree::price){}
-OrangeTree::OrangeTree(int harvestDuration, int price) : FruitPlant(6, "ORG", "ORANGETree_TREE", harvestDuration, price){
+OrangeTree::OrangeTree() :  FruitPlant(6, "ORG", "ORANGE_TREE", OrangeTree::harvestDuration, OrangeTree::price){}
+OrangeTree::OrangeTree(int harvestDuration, int price) : FruitPlant(6, "ORG", "ORANGE_TREE", harvestDuration, price){
     OrangeTree::harvestDuration = harvestDuration;
     OrangeTree::price = price;
 }
-OrangeTree::OrangeTree(int plantAge) :  FruitPlant(6, "ORG", "ORANGETree_TREE", OrangeTree::harvestDuration, OrangeTree::price){
+OrangeTree::OrangeTree(int plantAge) :  FruitPlant(6, "ORG", "ORANGE_TREE", OrangeTree::harvestDuration, OrangeTree::price){
     this->setPlantAge(plantAge);
 }
 
 int BananaTree::harvestDuration = 0;
 int BananaTree::price = 0;
-BananaTree::BananaTree() : FruitPlant(7, "BNT", "BananaTree_TREE", BananaTree::harvestDuration, BananaTree::price){}
-BananaTree::BananaTree(int harvestDuration, int price) : FruitPlant(7, "BNT", "BananaTree_TREE", harvestDuration, price){
+BananaTree::BananaTree() : FruitPlant(7, "BNT", "Banana_TREE", BananaTree::harvestDuration, BananaTree::price){}
+BananaTree::BananaTree(int harvestDuration, int price) : FruitPlant(7, "BNT", "Banana_TREE", harvestDuration, price){
     BananaTree::harvestDuration = harvestDuration;
     BananaTree::price = price;
 }
-BananaTree::BananaTree(int plantAge) : FruitPlant(7, "BNT", "BananaTree_TREE", BananaTree::harvestDuration, BananaTree::price){
+BananaTree::BananaTree(int plantAge) : FruitPlant(7, "BNT", "Banana_TREE", BananaTree::harvestDuration, BananaTree::price){
     this->setPlantAge(plantAge);
 }
 
 int GuavaTree::harvestDuration = 0;
 int GuavaTree::price = 0;
-GuavaTree::GuavaTree() : FruitPlant(8, "GAV", "GuavaTree_TREE", GuavaTree::harvestDuration, GuavaTree::price){}
-GuavaTree::GuavaTree(int harvestDuration, int price) : FruitPlant(8, "GAV", "GuavaTree_TREE", harvestDuration, price){
+GuavaTree::GuavaTree() : FruitPlant(8, "GAV", "Guava_TREE", GuavaTree::harvestDuration, GuavaTree::price){}
+GuavaTree::GuavaTree(int harvestDuration, int price) : FruitPlant(8, "GAV", "Guava_TREE", harvestDuration, price){
     GuavaTree::harvestDuration = harvestDuration;
     GuavaTree::price = price;
 }
-GuavaTree::GuavaTree(int plantAge) : FruitPlant(8, "GAV", "GuavaTree_TREE", GuavaTree::harvestDuration, GuavaTree::price){
+GuavaTree::GuavaTree(int plantAge) : FruitPlant(8, "GAV", "Guava_TREE", GuavaTree::harvestDuration, GuavaTree::price){
     this->setPlantAge(plantAge);
 }
 

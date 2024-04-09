@@ -26,7 +26,8 @@ public:
     Shop();
     Shop(vector<tuple<Item, int>> items, vector<Plant> plants, vector<Animal> animals);
     Shop& operator+(Item& item);
-    Item& getItem(int i);
+    int totalItem();
+    Item* getItem(int i);
     void printShop();
 };
 

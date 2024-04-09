@@ -25,8 +25,8 @@ Storage<T>::~Storage(){}
 
 template<class T>
 void Storage<T>::setItem(int row, int col, T content){
-    if (row >= this->row || col >= this->col || row < 0 || col < 0) {
-        cout << "Posisi tidak valid!" << endl;
+    if (row >= this->row || col >= this->col || row < 0 || col < 0 || !isSlotEmpty(row,col)) {
+        throw InvalidSlotException();
     } else {
         storageContent[row][col] = content;
     }
@@ -67,7 +67,16 @@ T Storage<T>::getItemInfo(int row, int col){
 template<class T>
 bool Storage<T>::isItemValid(int row, int col){
     if (row >= this->row || col >= this->col || row < 0 || col < 0) {
-        cout << "Posisi tidak valid!" << endl;
+        return false;
+    } 
+    else{
+        return true;
+    }
+}
+
+template<class T>
+bool Storage<T>::isSlotEmpty(int row, int col){
+    if (storageContent[row][col]!=nullptr) {
         return false;
     } 
     else{
@@ -160,7 +169,7 @@ void Storage<T>::printStorage(string name){
             if (storageContent[j][m] == nullptr) {
             cout << "|     ";
             } else {
-                cout << "|"<< storageContent[j][m]->getCode();
+                cout << "| "<< storageContent[j][m]->getCode()<<" ";
             }
         }
 
@@ -197,8 +206,9 @@ int Storage<T>::positionCodetoRow(string position){
     if(position.length()!=3){
         throw ItemNotFoundException();
     }
-    char row = position[0];
-    return row - 'A';
+    int x1 = position[1] - '0';
+    int x2 = position[2] - '0';
+    return (x1*10+x2-1);
 }
 
 template<class T>
@@ -206,5 +216,6 @@ int Storage<T>::positionCodetoCol(string position){
     if(position.length()!=3){
         throw ItemNotFoundException();
     }
-    return ((position[1]*10+position[2])-1);
+    char row = position[0];
+    return row - 'A';
 }
