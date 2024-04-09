@@ -21,6 +21,10 @@ class Misc{
         int getminWeight();
         int getStorageRow() const;
         int getStorageCols() const;
+        int getFieldRow() const;
+        int getFieldeCols() const;
+        int getBarnRow() const;
+        int getBarnCols() const;
 };
 
 #endif

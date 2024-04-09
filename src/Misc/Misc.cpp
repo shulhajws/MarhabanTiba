@@ -36,3 +36,17 @@ int Misc::getStorageRow() const{
 int Misc::getStorageCols() const{
     return Misc::storageCols;
 }
+
+int Misc::getFieldRow() const{
+    return Misc::fieldRow;
+}
+int Misc::getFieldeCols() const{
+    return Misc::fieldCols;
+}
+
+int Misc::getBarnRow() const{
+    return Misc::barnRow;
+}
+int Misc::getBarnCols() const{
+    return Misc::barnCols;
+}

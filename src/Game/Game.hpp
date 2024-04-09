@@ -15,7 +15,7 @@ using namespace std;
 
 class Game{
     protected:
-        int currPlayer;
+        static int currPlayer;
         static int tambahPemain;
         static vector<Player*> players;
     public:

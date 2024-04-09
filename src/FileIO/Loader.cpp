@@ -282,212 +282,266 @@ Misc Loader::configOfMisc()
     return Misc(minMoney, minWeight, storageRow, storageCols, fieldRow, fieldCols, barnRow, barnCols);
 }
 
-// Item Loader::itemConstructor(string itemName){
-//   if (itemName == "TEAK_TREE"){
-//     return TeakTree();
-//   } else if (itemName == "SANDALWOOD_TREE"){
-//     return SandalwoodTree();
-//   } else if (itemName == "ALOE_TREE"){
-//     return AloeTree();
-//   } else if (itemName == "IRONWOOD_TREE"){
-//     return IronwoodTree();
-//   } else if (itemName == "APPLE_TREE"){
-//     return AppleTree();
-//   } else if (itemName == "ORANGE_TREE"){
-//     return OrangeTree();
-//   } else if (itemName == "BANANA_TREE"){
-//     return BananaTree();
-//   } else if (itemName == "GUAVA_TREE"){
-//     return GuavaTree();
-//   } else if (itemName == "COW"){
-//     return Cow();
-//   } else if (itemName == "SHEEP"){
-//     return Sheep();
-//   } else if (itemName == "HORSE"){
-//     return Horse();
-//   } else if (itemName == "RABBIT"){
-//     return Rabbit();
-//   } else if (itemName == "SNAKE"){
-//     return Snake();
-//   } else if (itemName == "CHICKEN"){
-//     return Chicken();
-//   } else if (itemName == "DUCK"){
-//     return Duck();
-//   } else if (itemName == "SMALL_HOUSE"){
-//     return SmallHouse();
-//   } else if (itemName == "MEDIUM_HOUSE"){
-//     return MediumHouse();
-//   } else if (itemName == "LARGE_HOUSE"){
-//     return LargeHouse();
-//   } else if (itemName == "HOTEL"){
-//     return Hotel();
-//   // } else if (itemName == "TEAK_WOOD"){
-//   //   return Sandalwood();
-//   // } else if (itemName == "SANDALWOOD_WOOD"){
-//   //   return Sandalwood();
-//   // } else if (itemName == "ALOE_WOOD"){
-//   //   return Sandalwood();
-//   // } else if (itemName == "IRONWOOD_WOOD"){
-//   //   return Sandalwood();
-//   // } else if (itemName == "APPLE"){
-//   //   return Sandalwood();
-//   // } else if (itemName == "ORANGE"){
-//   //   return Sandalwood();
-//   // } else if (itemName == "BANANA"){
-//   //   return Sandalwood();
-//   // } else if (itemName == "GUAVA"){
-//   //   return Sandalwood();
-//   } else if (itemName == "COW_MEAT"){
-//     return Cow();
-//   } else if (itemName == "SHEEP_MEAT"){
-//     return Sheep();
-//   } else if (itemName == "HORSE_MEAT"){
-//     return Horse();
-//   } else if (itemName == "RABBIT_MEAT"){
-//     return Rabbit();
-//   } else if (itemName == "SNAKE_MEAT"){
-//     return Snake();
-//   } else if (itemName == "CHICKEN_MEAT"){
-//     return Chicken();
-//   } else if (itemName == "DUCK_MEAT"){
-//     return Duck();
-//   } else if (itemName == "CHICKEN_EGG"){
-//     return Chicken();
-//   } else if (itemName == "DUCK_EGG"){
-//     return Duck();
-//   } else {
-//     // throw something
-//   }
-// }
+Building* Loader::buildingConstructor(string itemName){
+  if (itemName == "SMALL_HOUSE"){
+    return new SmallHouse();
+  } else if (itemName == "MEDIUM_HOUSE"){
+    return new MediumHouse();
+  } else if (itemName == "LARGE_HOUSE"){
+    return new LargeHouse();
+  } else if (itemName == "HOTEL"){
+    return new Hotel();
+  } 
+  return nullptr;
 
-// Plant Loader::plantConstructor(string itemName,  int plantAge = 0){
-//   if (itemName == "TEAK_TREE"){
-//     return TeakTree(plantAge);
-//   } else if (itemName == "SANDALWOOD_TREE"){
-//     return SandalwoodTree(plantAge);
-//   } else if (itemName == "ALOE_TREE"){
-//     return AloeTree(plantAge);
-//   } else if (itemName == "IRONWOOD_TREE"){
-//     return IronwoodTree(plantAge);
-//   } else if (itemName == "APPLE_TREE"){
-//     return AppleTree(plantAge);
-//   } else if (itemName == "ORANGE_TREE"){
-//     return OrangeTree(plantAge);
-//   } else if (itemName == "BANANA_TREE"){
-//     return BananaTree(plantAge);
-//   } else{
-//     return GuavaTree(plantAge);
-//   }
-// }
+}
 
-// // Animal Loader::animalConstructor(string itemName, int animalWeight = 0){
-// //   if (itemName == "COW"){
-// //     return Cow(animalWeight);
-// //   } else if (itemName == "SHEEP"){
-// //     return Sheep(animalWeight);
-// //   } else if (itemName == "HORSE"){
-// //     return Horse(animalWeight);
-// //   } else if (itemName == "RABBIT"){
-// //     return Rabbit(animalWeight);
-// //   } else if (itemName == "SNAKE"){
-// //     return Snake(animalWeight);
-// //   } else if (itemName == "CHICKEN"){
-// //     return Chicken(animalWeight);
-// //   } else{
-// //     return Duck(animalWeight);
-// //   }
-// // }
+Products* Loader::productsConstructor(string itemName){
+  return nullptr;
+  // if (itemName == "COW_MEAT"){
+  //   return Cow();
+  // } else if (itemName == "SHEEP_MEAT"){
+  //   return Sheep();
+  // } else if (itemName == "HORSE_MEAT"){
+  //   return Horse();
+  // } else if (itemName == "RABBIT_MEAT"){
+  //   return Rabbit();
+  // } else if (itemName == "SNAKE_MEAT"){
+  //   return Snake();
+  // } else if (itemName == "CHICKEN_MEAT"){
+  //   return Chicken();
+  // } else if (itemName == "DUCK_MEAT"){
+  //   return Duck();
+  // } else if (itemName == "CHICKEN_EGG"){
+  //   return Chicken();
+  // } else if (itemName == "DUCK_EGG"){
+  //   return Duck();
+  // } else {
+  //   // throw something
+  // }
+}
 
-// // vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
-// //   vector<vector<string>> vectorOfWords;
-// //   vector<Player> players;
+Item* Loader::itemConstructor(string itemName){
+  if (itemName == "TEAK_TREE"){
+    return new TeakTree();
+  } else if (itemName == "SANDALWOOD_TREE"){
+    return new  SandalwoodTree();
+  } else if (itemName == "ALOE_TREE"){
+    return new AloeTree();
+  } else if (itemName == "IRONWOOD_TREE"){
+    return new IronwoodTree();
+  } else if (itemName == "APPLE_TREE"){
+    return new AppleTree();
+  } else if (itemName == "ORANGE_TREE"){
+    return new OrangeTree();
+  } else if (itemName == "BANANA_TREE"){
+    return new BananaTree();
+  } else if (itemName == "GUAVA_TREE"){
+    return new GuavaTree();
+  } else if (itemName == "COW"){
+    return new Cow();
+  } else if (itemName == "SHEEP"){
+    return new Sheep();
+  } else if (itemName == "HORSE"){
+    return new Horse();
+  } else if (itemName == "RABBIT"){
+    return new Rabbit();
+  } else if (itemName == "SNAKE"){
+    return new Snake();
+  } else if (itemName == "CHICKEN"){
+    return new Chicken();
+  } else if (itemName == "DUCK"){
+    return new Duck();
+  } else if (itemName == "SMALL_HOUSE"){
+    return new SmallHouse();
+  } else if (itemName == "MEDIUM_HOUSE"){
+    return new MediumHouse();
+  } else if (itemName == "LARGE_HOUSE"){
+    return new LargeHouse();
+  } else if (itemName == "HOTEL"){
+    return new Hotel();
+  // } else if (itemName == "TEAK_WOOD"){
+  //   return Sandalwood();
+  // } else if (itemName == "SANDALWOOD_WOOD"){
+  //   return Sandalwood();
+  // } else if (itemName == "ALOE_WOOD"){
+  //   return Sandalwood();
+  // } else if (itemName == "IRONWOOD_WOOD"){
+  //   return Sandalwood();
+  // } else if (itemName == "APPLE"){
+  //   return Sandalwood();
+  // } else if (itemName == "ORANGE"){
+  //   return Sandalwood();
+  // } else if (itemName == "BANANA"){
+  //   return Sandalwood();
+  // } else if (itemName == "GUAVA"){
+  //   return Sandalwood();
+  } else if (itemName == "COW_MEAT"){
+    return new Cow();
+  } else if (itemName == "SHEEP_MEAT"){
+    return new Sheep();
+  } else if (itemName == "HORSE_MEAT"){
+    return new Horse();
+  } else if (itemName == "RABBIT_MEAT"){
+    return new Rabbit();
+  } else if (itemName == "SNAKE_MEAT"){
+    return new Snake();
+  } else if (itemName == "CHICKEN_MEAT"){
+    return new Chicken();
+  } else if (itemName == "DUCK_MEAT"){
+    return new Duck();
+  } else if (itemName == "CHICKEN_EGG"){
+    return new Chicken();
+  } else if (itemName == "DUCK_EGG"){
+    return new Duck();
+  } else {
+    // throw something
+  }
+  return nullptr;
+}
 
-// //   try {
-// //     vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
-// //   } catch (FileException &FE){
-// //     cout << FE.what();
-// //   }
 
-// //   *ctr = 0;
-// //   int numOfPlayers = stoi(vectorOfWords[0][0]);
-// //   *ctr++;
-// //   for(int i = 0; i < numOfPlayers; i++){
-// //     string username = vectorOfWords[*ctr][0];
-// //     string type = vectorOfWords[*ctr][1];
-// //     int weight = stoi(vectorOfWords[*ctr][2]);
-// //     int wealth = stoi(vectorOfWords[*ctr][3]);
-// //     *ctr++;
+Plant* Loader::plantConstructor(string itemName,  int plantAge = 0){
+  if (itemName == "TEAK_TREE"){
+    return new TeakTree(plantAge);
+  } else if (itemName == "SANDALWOOD_TREE"){
+    return new SandalwoodTree(plantAge);
+  } else if (itemName == "ALOE_TREE"){
+    return new AloeTree(plantAge);
+  } else if (itemName == "IRONWOOD_TREE"){
+    return new IronwoodTree(plantAge);
+  } else if (itemName == "APPLE_TREE"){
+    return new AppleTree(plantAge);
+  } else if (itemName == "ORANGE_TREE"){
+    return new OrangeTree(plantAge);
+  } else if (itemName == "BANANA_TREE"){
+    return new BananaTree(plantAge);
+  } else if(itemName == "GUAVA_TREE"){
+    return new GuavaTree(plantAge);
+  }
+  return nullptr;
+}
 
-// //     Storage<Item*> inventory;
-// //     int numOfInventories = stoi(vectorOfWords[*ctr][0]);
-// //     *ctr++;
-// //     for(int j = 0; j < numOfInventories; j++){
-// //       string inventoryItem = vectorOfWords[*ctr][0];
-// //       inventory.setItem(0, 0, &itemConstructor(inventoryItem));
-// //       *ctr++;
-// //     }
+Animal* Loader::animalConstructor(string itemName, int animalWeight = 0){
+  if (itemName == "COW"){
+    return new Cow(animalWeight);
+  } else if (itemName == "SHEEP"){
+    return new Sheep(animalWeight);
+  } else if (itemName == "HORSE"){
+    return new Horse(animalWeight);
+  } else if (itemName == "RABBIT"){
+    return new Rabbit(animalWeight);
+  } else if (itemName == "SNAKE"){
+    return new Snake(animalWeight);
+  } else if (itemName == "CHICKEN"){
+    return new Chicken(animalWeight);
+  } else if (itemName == "DUCK"){
+    return new Duck(animalWeight);
+  }
+  return nullptr;
+}
+
+vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
+  vector<vector<string>> vectorOfWords;
+  vector<Player> players;
+
+  string s = this->testsPath + "/" + statepath;
+    cout<<s;
+  try {
+    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath + ".txt");
+  } catch (FileException &FE){
+    cout << FE.what();
+  }
+
+  *ctr = 0;
+  int numOfPlayers = stoi(vectorOfWords[0][0]);
+  *ctr++;
+  for(int i = 0; i < numOfPlayers; i++){
+    string username = vectorOfWords[*ctr][0];
+    string type = vectorOfWords[*ctr][1];
+    int weight = stoi(vectorOfWords[*ctr][2]);
+    int wealth = stoi(vectorOfWords[*ctr][3]);
+    *ctr++;
+
+    Storage<Item*> inventory;
+    int numOfInventories = stoi(vectorOfWords[*ctr][0]);
+    *ctr++;
+    for(int j = 0; j < numOfInventories; j++){
+      string inventoryItem = vectorOfWords[*ctr][0];
+      inventory.setItem(0, 0, itemConstructor(inventoryItem));
+      *ctr++;
+    }
     
-// //     if (type == "Petani"){
-// //       PlantFarmer petani(username, wealth, weight);
-// //       petani.setInventory(inventory);
+    if (type == "Petani"){
+      PlantFarmer petani(username, wealth, weight);
+      petani.setInventory(inventory);
     
-// //       Storage<Plant*> garden;
-// //       int numOfPlants = stoi(vectorOfWords[*ctr][0]);
-// //       *ctr++;
-// //       for(int k = 0; k < numOfPlants; k++){
-// //         string plantLoc = vectorOfWords[*ctr][0]; 
-// //         string plantName = vectorOfWords[*ctr][1];
-// //         int plantAge = stoi(vectorOfWords[*ctr][2]);
-// //         garden.setItem(garden.positionCodetoRow(plantLoc), garden.positionCodetoCol(plantLoc), &plantConstructor(plantName, plantAge));
-// //         *ctr++;
-// //       }
-// //       petani.setGarden(garden);
-// //       players.push_back(petani);
-// //     } else if (type == "Peternak"){
-// //       AnimalFarmer peternak(username, wealth, weight);
-// //       peternak.setInventory(inventory);
+      Storage<Plant*> garden;
+      int numOfPlants = stoi(vectorOfWords[*ctr][0]);
+      *ctr++;
+      for(int k = 0; k < numOfPlants; k++){
+        string plantLoc = vectorOfWords[*ctr][0]; 
+        string plantName = vectorOfWords[*ctr][1];
+        int plantAge = stoi(vectorOfWords[*ctr][2]);
+        garden.setItem(garden.positionCodetoRow(plantLoc), garden.positionCodetoCol(plantLoc), plantConstructor(plantName, plantAge));
+        *ctr++;
+      }
+      petani.setGarden(garden);
+      players.push_back(petani);
+    } else if (type == "Peternak"){
+      AnimalFarmer peternak(username, wealth, weight);
+      peternak.setInventory(inventory);
 
-// //       Storage<Animal*> barn;
-// //       int numOfAnimals = stoi(vectorOfWords[*ctr][0]);
-// //       *ctr++;
-// //       for(int k = 0; k < numOfAnimals; k++){
-// //         string animalLoc = vectorOfWords[*ctr][0]; 
-// //         string animalName = vectorOfWords[*ctr][1];
-// //         int animalWeight = stoi(vectorOfWords[*ctr][2]);
-// //         barn.setItem(barn.positionCodetoRow(animalLoc), barn.positionCodetoCol(animalLoc), &animalConstructor(animalName, animalWeight));
-// //         *ctr++;
-// //       }
-// //       peternak.setBarn(barn);
-// //       players.push_back(peternak);
-// //     } else if (type == "Walikota"){
-// //       Mayor walikota(username, wealth, weight);
-// //       walikota.setInventory(inventory);
-// //       players.push_back(walikota);
-// //     } else {
-// //       // throw something
-// //     }
-// //   }
-// // }
+      Storage<Animal*> barn;
+      int numOfAnimals = stoi(vectorOfWords[*ctr][0]);
+      *ctr++;
+      for(int k = 0; k < numOfAnimals; k++){
+        string animalLoc = vectorOfWords[*ctr][0]; 
+        string animalName = vectorOfWords[*ctr][1];
+        int animalWeight = stoi(vectorOfWords[*ctr][2]);
+        barn.setItem(barn.positionCodetoRow(animalLoc), barn.positionCodetoCol(animalLoc), animalConstructor(animalName, animalWeight));
+        *ctr++;
+      }
+      peternak.setBarn(barn);
+      players.push_back(peternak);
+    } else if (type == "Walikota"){
+      Mayor walikota(username, wealth, weight);
+      walikota.setInventory(inventory);
+      players.push_back(walikota);
+    } else {
+      // throw something
+    }
+  }
+  return players;
+}
 
-// // Shop Loader::stateOfShop(string statepath, int ctr){
-// //   vector<vector<string>> vectorOfWords;
-// //   vector<tuple<Item, int>> shopItems;
-// //   vector<Animal> animals = Loader::configOfAnimal();
-// //   vector<Plant> plants = Loader::configOfPlant();
+Shop Loader::stateOfShop(string statepath, int ctr){
+  vector<vector<string>> vectorOfWords;
+  vector<tuple<Building*, int>> building;
+  vector<tuple<Products*, int>> products;
 
-// //   try {
-// //     vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
-// //   } catch (FileException &FE){
-// //     cout << FE.what();
-// //   }
+  try {
+    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
+  } catch (FileException &FE){
+    cout << FE.what();
+  }
 
-// //   int numOfShopItems = stoi(vectorOfWords[ctr][0]); ctr++;
-// //   for(int i = 0; i < numOfShopItems; i++){
-// //       string itemName = vectorOfWords[ctr][0];
-// //       int itemQty = stoi(vectorOfWords[ctr][1]);
-// //       ctr++;
-// //       shopItems.push_back(make_tuple(itemConstructor(itemName), itemQty));
-// //   }
+  int numOfShopItems = stoi(vectorOfWords[ctr][0]); ctr++;
+  for(int i = 0; i < numOfShopItems; i++){
+      string itemName = vectorOfWords[ctr][0];
+      int itemQty = stoi(vectorOfWords[ctr][1]);
+      ctr++;
+      if(isBuilding(itemName)){
+        building.push_back(make_tuple(buildingConstructor(itemName), itemQty));
+      }
+      else{
+        products.push_back(make_tuple(productsConstructor(itemName), itemQty));
+      }
+  }
 
-// //   return Shop(shopItems, plants, animals);
-// // }
+  return Shop(building, products);
+}
+
+bool Loader::isBuilding(string s){
+  return (s=="SMALL_HOUSE"||s=="MEDIUM_HOUSE"||s=="LARGE_HOUSE" || s=="HOTEL");
+}

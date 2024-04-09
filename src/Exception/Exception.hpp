@@ -52,6 +52,13 @@ public:
     }
 };
 
+class BarnFullException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mCannot place animal. Barn is full.\033[0m";
+    }
+};
+
 class InventoryFullException : public Exception {
 public:
     string what() override {

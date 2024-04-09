@@ -191,7 +191,7 @@ void Player::buyItem(){
             }
             if(success == capacity){
                 inventory.printStorage("Storage");
-                cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<s.getItem(buy)->getName()<<". You have "<<wealth<<" remaining."<<endl;
+                cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<s.getItem(buy)->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
             }
             break;
         } catch(ItemNotFoundException e){

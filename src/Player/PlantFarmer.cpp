@@ -1,15 +1,22 @@
 #include "PlantFarmer.hpp"
 #include "../Command/PetaniCommand/Tanam.hpp"
+#include "../Command/PetaniCommand/CetakLadang.hpp"
 
 #include <iostream>
 using namespace std;
 
 PlantFarmer::PlantFarmer() : Player(){
     this->commandList.push_back(new Tanam());
+    this->commandList.push_back(new CetakLadang());
+    Misc m;
+    this->Garden.setRowCols(m.getFieldRow(),m.getFieldeCols());
 }
 
 PlantFarmer::PlantFarmer(string username, int wealth, int weight) : Player(username, wealth, weight, "Petani") {
     this->commandList.push_back(new Tanam());
+    this->commandList.push_back(new CetakLadang());
+    Misc m;
+    this->Garden.setRowCols(m.getFieldRow(),m.getFieldeCols());
 }
 
 int PlantFarmer::getKTKP(){
@@ -35,49 +42,72 @@ void PlantFarmer::plantCrop() {
             throw GardenFullException();
         }
 
-        cout << "Pilih tanaman dari penyimpanan\n";
-        inventory.printStorage("Penyimpanan");
+        cout << "Select a plant from the storage\n";
+        inventory.printStorage("Storage");
 
-        cout << "Slot: ";
-        string slot;
-        cin >> slot;
+        int row,col;
+        Item* it ;
 
-        int row = inventory.positionCodetoRow(slot);
-        int col = inventory.positionCodetoCol(slot);
+        while(true){
+            try{
+                cout << "Slot: ";
+                string slot;
+                cin >> slot;
 
-        Item* selectedPlant = inventory.getItemInfo(row, col);
+                row = inventory.positionCodetoRow(slot);
+                col = inventory.positionCodetoCol(slot);
 
-        Plant* selectedPlantType = dynamic_cast<Plant*>(selectedPlant);
-        if (selectedPlantType == nullptr) {
-            throw InvalidPlantException();
+                if (inventory.isSlotEmpty(row,col)){
+                    throw InputException();
+                }
+                it = inventory.getItem(row, col);
+                if(it->getType()!="MATERIAL_PLANT" && it->getType()!="FRUIT_PLANT"){
+                    throw InputException();
+                }
+                break;
+            } catch(InputException e){
+                cout<<e.what();
+            }
+
         }
 
-        cout << "\nPilih petak tanah yang akan ditanami\n\n";
+        Plant* selectedPlantType = dynamic_cast<Plant*>(it);
+    
+        cout << "\nSelect a plot of land to plant\n\n";
         printGarden();
 
-        // Memproses lokasi petak tanah yang dipilih
-        cout << "\nPetak tanah: ";
-        string landSlot;
-        cin >> landSlot;
+        while (true){
+            try{
+                // Memproses lokasi petak tanah yang dipilih
+                cout << "\nLand plot: ";
+                string landSlot;
+                cin >> landSlot;
 
-        int rowField = landSlot[1] - '0' - 1;
-        int colField = landSlot[0] - 'A';
+                int rowField = Garden.positionCodetoRow(landSlot);
+                int colField = Garden.positionCodetoCol(landSlot);
 
-        if (selectedPlantType == nullptr) {
-            throw InvalidPlantException();
+                // Buat objek Plant baru dengan informasi dari selectedPlant
+                Garden.setItem(rowField, colField, selectedPlantType); 
+
+                cout << "\nDig, dig, dig deep into the soil~!\n";
+                cout << selectedPlantType->getName() << " successfully planted!\n";
+                break;
+            }
+            catch(InvalidPlantException e){
+                 cout << e.what()<<endl;
+            }
+            catch (ItemNotFoundException& e) {
+                cout << e.what()<<endl;
+            }
+            catch(InvalidSlotException e){
+                cout << e.what();
+            }
         }
-
-        // Buat objek Plant baru dengan informasi dari selectedPlant
-        Garden.setItem(rowField, colField, selectedPlantType); 
-
-        cout << "\nCangkul, cangkul, cangkul yang dalam~!\n";
-        cout << selectedPlantType->getName() << " berhasil ditanam!\n";
-            
     } catch (NoItemInStorageException& e) {
         cout << e.what()<<endl;
     } catch (GardenFullException& e) {
         cout << e.what()<<endl;
-    } catch (InvalidPlantException& e) {
+    } catch (ItemNotFoundException& e) {
         cout << e.what()<<endl;
     }
 }
@@ -101,33 +131,5 @@ void PlantFarmer::harvestCrop() {
 }
 
 void PlantFarmer::printGarden() {
-    
-    Garden.printStorage("Ladang"); 
-    
-    // Mencetak indeks garden (hanya yang terdapat di ladang)
-    string plantCodes[] = {"ALT", "APL", "BNT", "GAV", "IRN", "ORG", "SDT", "TEK"};
-    int numPlantCodes = sizeof(plantCodes) / sizeof(plantCodes[0]);
-
-    for (int i = 0; i < numPlantCodes; ++i) {
-        bool found = false;
-        string plantName;
-
-        for (int row = 0; row < Garden.getRow(); ++row) {
-            for (int col = 0; col < Garden.getCol(); ++col) {
-                Item* item = Garden.getItem(row, col);
-                if (item != nullptr && item->getCode() == plantCodes[i]) {
-                    found = true;
-                    plantName = item->getName();
-                    break;
-                }
-            }
-            if (found) {
-                break;
-            }
-        }
-
-        if (found) {
-            cout << "   - " << plantCodes[i] << ": " << plantName << endl;
-        }
-    }
+    Garden.printStorage("Field"); 
 }

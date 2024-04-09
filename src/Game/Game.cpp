@@ -5,6 +5,7 @@
 
 using namespace std;
 
+int Game::currPlayer;
 int Game::tambahPemain = 0;
 vector<Player*> Game::players;
 
@@ -47,7 +48,13 @@ void Game::askInput(){
     }
 
     if (option == "1"){ // file input
-
+        int ctr;
+        string state;
+        cout<<"Enter file location of the state (nameoffile.txt): ";
+        cin>>state;
+        Loader l;
+        l.stateOfPlayer(state,&ctr);
+        l.stateOfShop(state,ctr);
     }
     else{ // default input
         inputPlayer();

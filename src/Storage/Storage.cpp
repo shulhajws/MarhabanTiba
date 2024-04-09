@@ -41,7 +41,7 @@ void Storage<T>::setItemRandom(T content){
 
 template<class T>
 void Storage<T>::operator+(T content){
-    pass;
+
 }
 
 template<class T>
@@ -72,6 +72,7 @@ T Storage<T>::getItemInfo(int row, int col){
 template<class T>
 bool Storage<T>::isItemValid(int row, int col){
     if (row >= this->row || col >= this->col || row < 0 || col < 0) {
+        throw InvalidSlotException();
         return false;
     } 
     else{

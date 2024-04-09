@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include "Player.hpp"
-using namespace std;
 
 class AnimalFarmer : public Player{
     private:

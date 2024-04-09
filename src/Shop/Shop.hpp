@@ -7,24 +7,21 @@ using namespace std;
 #include "../Item/Animal/Animal.hpp"
 #include "../Item/Plant/Plant.hpp"
 #include "../Item/Building/Building.hpp"
-#include "../Item/Products/PlantsProducts.hpp"
-#include "../Item/Products/ProductsAnimal.hpp"
+#include "../Item/Products/Products.hpp"
 
 #include <vector>
 #include <tuple>
 
 class Shop {
 private:
-    vector<tuple<Building, int>> itemsBuilding;
-    vector<Plant> itemsPlants;
-    vector<Animal> itemsAnimals;
-    vector<tuple<PlantsProducts, int>> itemsPlantsProducts;
-    vector<tuple<ProductsAnimal, int>> itemsAnimalsProducts;
-    vector<tuple<Item, int>> shopItems; 
+    static vector<tuple<Building*, int>> itemsBuilding;
+    vector<Plant*> itemsPlants;
+    vector<Animal*> itemsAnimals;
+    static vector<tuple<Products*, int>> products;
 
 public:
     Shop();
-    Shop(vector<tuple<Item, int>> items, vector<Plant> plants, vector<Animal> animals);
+    Shop(vector<tuple<Building*, int>> building, vector<tuple<Products*, int>> products);
     Shop& operator+(Item& item);
     int totalItem();
     Item* getItem(int i);

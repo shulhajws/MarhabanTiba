@@ -57,15 +57,20 @@ public:
     // get misc
     Misc configOfMisc();
     // item constructor
-    Item itemConstructor(string);
+    Item* itemConstructor(string);
+    // building constructor
+    Building* buildingConstructor(string);
+    // product constructor
+    Products* productsConstructor(string itemName);
     // plant constructor
-    Plant plantConstructor(string, int);
+    Plant* plantConstructor(string, int);
     // animal constructor
-    Animal animalConstructor(string itemName, int animalWeight = 0);
+    Animal* animalConstructor(string itemName, int animalWeight);
     // vector of Player
     vector<Player> stateOfPlayer(string filepath, int *lineCounter);
     // get shop
     Shop stateOfShop(string filepath, int lineCounter);
+    bool isBuilding(string);
 };
 
 #endif
