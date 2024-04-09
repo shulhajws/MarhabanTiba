@@ -40,6 +40,11 @@ void Storage<T>::setItemRandom(T content){
 }
 
 template<class T>
+void Storage<T>::operator+(T content){
+    pass;
+}
+
+template<class T>
 void Storage<T>::setRowCols(int row, int col){
     this->row = row;
     this->col = col;
