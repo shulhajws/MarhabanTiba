@@ -517,8 +517,8 @@ vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
 
 Shop Loader::stateOfShop(string statepath, int ctr){
   vector<vector<string>> vectorOfWords;
-  vector<tuple<Building*, int>> building;
-  vector<tuple<Products*, int>> products;
+  vector<tuple<Building*, int*>> building;
+  vector<tuple<Products*, int*>> products;
 
   try {
     vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
@@ -532,10 +532,10 @@ Shop Loader::stateOfShop(string statepath, int ctr){
       int itemQty = stoi(vectorOfWords[ctr][1]);
       ctr++;
       if(isBuilding(itemName)){
-        building.push_back(make_tuple(buildingConstructor(itemName), itemQty));
+        building.push_back(make_tuple(buildingConstructor(itemName), &itemQty));
       }
       else{
-        products.push_back(make_tuple(productsConstructor(itemName), itemQty));
+        products.push_back(make_tuple(productsConstructor(itemName), &itemQty));
       }
   }
 

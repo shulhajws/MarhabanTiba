@@ -6,12 +6,9 @@
 #include "../Item/Plant/MaterialPlant.hpp"
 
 using namespace std;
-vector<tuple<Building*, int>> Shop::itemsBuilding;
-vector<tuple<Products*, int>> Shop::products;
+vector<tuple<Building*, int*>> Shop::itemsBuilding;
+vector<tuple<Products*, int*>> Shop::products;
 
-// Shop& Shop::operator+(Item& item) {
-//     // Implementation
-// }
 
 Shop::Shop(){
     itemsAnimals.push_back(new Cow());
@@ -32,7 +29,7 @@ Shop::Shop(){
     itemsPlants.push_back(new GuavaTree());
 }
 
-Shop::Shop(vector<tuple<Building*, int>> building, vector<tuple<Products*, int>> products){
+Shop::Shop(vector<tuple<Building*, int*>> building, vector<tuple<Products*, int*>> products){
     this->itemsBuilding = building;
     this->products = products;
 }
@@ -44,14 +41,14 @@ void Shop :: printShop(){
     int index = 1;
     for (const auto& item : itemsBuilding) {
         Building building = *get<0>(item);
-        int stock = get<1>(item);
+        int stock = *get<1>(item);
         cout << index << ". " << building.getName() << " - "<<building.calculatePrice()<<" (" << stock << ")" << endl;
         index++;
     }
 
     for (const auto& item : products) {
         Products prod = *get<0>(item);
-        int stock = get<1>(item);
+        int stock = *get<1>(item);
         cout << index << ". " << prod.getName() << " - "<<"Harga"<<" (" << stock << ")" << endl;
         index++;
     }
@@ -90,4 +87,53 @@ Item* Shop::getItem(int i){
         return itemsPlants[i-x4-1];
     }
     return nullptr;
+}
+
+void Shop::addBuilding(Building b){
+    bool found = false;
+    for (const auto& item : itemsBuilding) {
+        Building building = *get<0>(item);
+        if(building.getCode()==b.getCode()){
+            *get<1>(item) += 1;
+            found = true;
+        }
+    }
+
+    if(!found){
+        int num = 1;
+        itemsBuilding.push_back(make_tuple(&b, &num));
+    }
+
+}
+
+void Shop::addProducts(Products b){
+    bool found = false;
+    for (const auto& item : products) {
+        Products prod = *get<0>(item);
+        if(prod.getCode()==b.getCode()){
+            *get<1>(item) += 1;
+            found = true;
+        }
+    }
+
+    if(!found){
+        int num = 1;
+        products.push_back(make_tuple(&b, &num));
+    }
+
+}
+
+Shop& Shop::operator+(Item& item) {
+    if(item.getType()=="CARNIVORE" ||item.getType()=="OMNIVORE" || item.getType()=="HERBIVORE" || item.getType()=="MATERIAL_PLANT" || item.getType()=="FRUIT_PLANT"){
+        // do nothing
+    }
+    else if(item.getType()=="SMALL_HOUSE" || item.getType()=="MEDIUM_HOUSE" || item.getType()=="LARGE_HOUSE" || item.getType()=="HOTEL"){
+        Building* building = dynamic_cast<Building*>(&item);
+        addBuilding(*building);
+    }
+    else{
+        Products* prod = dynamic_cast<Products*>(&item);
+        addProducts(*prod);
+    }
+    return *this;
 }

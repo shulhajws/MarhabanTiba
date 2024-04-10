@@ -170,11 +170,13 @@ void Player::buyItem(){
                     if (capacity!= slots.size()){
                         throw InputException();
                     }
-                     for (int i=0;i<slots.size();i++){
+                    for (int i=0;i<slots.size();i++){
                         row = inventory.positionCodetoRow(slots[i]);
                         col = inventory.positionCodetoCol(slots[i]);
                         inventory.isItemValid(row,col);
-                        inventory.isSlotEmpty(row,col);
+                        if (!inventory.isSlotEmpty(row,col)){
+                            throw InvalidSlotException();
+                        }
                      }
                     for (int i=0;i<slots.size();i++){
                         row = inventory.positionCodetoRow(slots[i]);
@@ -209,6 +211,52 @@ void Player::buyItem(){
         }
     } 
     
+}
+
+void Player::sellItem(){
+    Shop s;
+    cout<<"Here is your storage\n"<<endl;
+    inventory.printStorage("Storage",0);
+    cout<<"Please choose item you want to sell!"<<endl;
+    while(true){
+        try{
+            string slot;
+            cout<<"\nFormat 'loc1,loc2,loc3,..'";
+            cout<<"\nSlot: ";
+            cin>>slot;
+            vector<string> slots;
+
+            slots = splitbyComa(slot);
+            int row,col;
+            for (int i=0;i<slots.size();i++){
+                row = inventory.positionCodetoRow(slots[i]);
+                col = inventory.positionCodetoCol(slots[i]);
+                inventory.isItemValid(row,col);
+                if(inventory.isSlotEmpty(row,col)){
+                    throw InvalidSlotException();
+                }
+            }
+
+            int money = 0;
+            for (int i=0;i<slots.size();i++){
+                row = inventory.positionCodetoRow(slots[i]);
+                col = inventory.positionCodetoCol(slots[i]);
+                Item* it = (inventory.getItem(row,col));
+                addPlayerWealth(it->getPrice());
+                money += it->getPrice();
+                s = s + *it;
+            }
+
+            cout<<"Your items have been sold successfully! You earned "<<money<<" guilders!"<<endl;
+            break;
+
+        } catch(InvalidSlotException e){
+            cout<<e.what()<<endl;
+        } catch(ItemNotFoundException e){
+            cout<<e.what()<<endl;
+        }
+       
+    }
 }
 
 vector<string> Player::splitbyComa(const string& input) { // bentar masih ngebug ntar dilanjut
