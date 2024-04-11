@@ -1,6 +1,6 @@
 #include "ProductFruitPlant.hpp"
 
-ProductFruitPlant :: ProductFruitPlant(int productFruitID, string code, string name, string origin, int addedWeight, int price) : Product(productID, code, name, "PRODUCT_FRUIT_Fruit", origin, addedWeight, priceProduct){}   
+ProductFruitPlant :: ProductFruitPlant(int productFruitID, string code, string name, string origin, int addedWeight, int price) : Product(productFruitID, code, name, "PRODUCT_FRUIT_Fruit", origin, addedWeight, price){}   
 
 int Apple::addedWeight = 0;
 int Apple::price = 0;

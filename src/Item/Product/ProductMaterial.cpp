@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-ProductMaterial :: ProductMaterial(int materialproductID, string code, string name, string origin, int addedWeight, int price) : Product(productID, code, name, "PRODUCT_MATERIAL_PLANT", origin, addedWeight, priceProduct){}
+ProductMaterial :: ProductMaterial(int materialproductID, string code, string name, string origin, int addedWeight, int price) : Product(materialproductID, code, name, "PRODUCT_MATERIAL_PLANT", origin, addedWeight, price){}
 
 int TeakWood::addedWeight = 0;
 int TeakWood::price = 0;

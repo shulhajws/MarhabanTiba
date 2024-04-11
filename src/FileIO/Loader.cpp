@@ -110,6 +110,7 @@ vector<Animal> Loader::configOfAnimal()
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
+        return animals;
     }
     catch (FileException &FE)
     {
@@ -170,6 +171,7 @@ vector<Plant> Loader::configOfPlant()
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
+        return plants;
     }
     catch (FileException &FE)
     {
@@ -266,6 +268,7 @@ vector<Product> Loader::configOfProduct()
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
+        return products;
     }
     catch (FileException &FE)
     {
@@ -337,6 +340,7 @@ vector<Building> Loader::configOfBuildingRecipes()
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
+        return buildings;
     }
     catch (FileException &FE)
     {
@@ -364,8 +368,8 @@ Misc Loader::configOfMisc()
     catch (FileException &FE)
     {
         cout << FE.what();
-        return Misc();
     }
+    return Misc();
 }
 
 Building* Loader::buildingConstructor(string itemName){
@@ -650,8 +654,8 @@ Shop Loader::stateOfShop(string statepath, int ctr){
     return Shop(building, product);
   } catch (FileException &FE){
       cout << FE.what();
-      return Shop();
   }
+  return Shop();
 }
 
 bool Loader::isBuilding(string s){
