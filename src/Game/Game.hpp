@@ -1,5 +1,5 @@
-#ifndef __OMNIVORE_HPP__
-#define __OMNIVORE_HPP__
+#ifndef __GAME_HPP__
+#define __GAME_HPP__
 
 #include <string>
 #include <vector>

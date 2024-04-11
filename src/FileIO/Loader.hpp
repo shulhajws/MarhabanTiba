@@ -19,7 +19,9 @@
 #include "../Player/PlantFarmer.hpp"
 #include "../Player/Mayor.hpp"
 #include "../Shop/Shop.hpp"
+#include "../Exception/Exception.hpp"
 #include "../Exception/FileException.hpp"
+#include "../Exception/LoaderException.hpp"
 #include "../Storage/Storage.hpp"
 
 #include "string.h"
