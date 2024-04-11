@@ -7,7 +7,7 @@ using namespace std;
 #include "../Item/Animal/Animal.hpp"
 #include "../Item/Plant/Plant.hpp"
 #include "../Item/Building/Building.hpp"
-#include "../Item/Products/Products.hpp"
+#include "../Item/Product/Product.hpp"
 
 #include <vector>
 #include <tuple>
@@ -17,15 +17,15 @@ private:
     static vector<tuple<Building*, int*>> itemsBuilding;
     vector<Plant*> itemsPlants;
     vector<Animal*> itemsAnimals;
-    static vector<tuple<Products*, int*>> products;
+    static vector<tuple<Product*, int*>> product;
 
 public:
     Shop();
-    Shop(vector<tuple<Building*, int*>> building, vector<tuple<Products*, int*>> products);
+    Shop(vector<tuple<Building*, int*>> building, vector<tuple<Product*, int*>> product);
     Shop& operator+(Item& item);
     int totalItem();
     void addBuilding(Building b);
-    void addProducts(Products p);
+    void addProduct(Product p);
     Item* getItem(int i);
     void printShop();
 };

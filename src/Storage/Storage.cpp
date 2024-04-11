@@ -2,7 +2,7 @@
 #include "../Exception/Exception.hpp"
 #include "../Item/Animal/Animal.hpp"
 #include "../Item/Plant/Plant.hpp"
-#include "../Item/Products/Products.hpp"
+#include "../Item/Product/Product.hpp"
 #include "../Item/Building/Building.hpp"
 #include "../Item/Item.hpp"
 using namespace std;

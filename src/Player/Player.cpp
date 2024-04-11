@@ -104,7 +104,7 @@ void Player::eat() {
 
             Item* storedItem = inventory.getItemInfo(row, col);
             if ((storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL")) {
-                Products* productPtr = dynamic_cast<Products*>(storedItem);
+                Product* productPtr = dynamic_cast<Product*>(storedItem);
                 int addedWeight = productPtr->getAddedWeight();
                 weight += addedWeight;
                 

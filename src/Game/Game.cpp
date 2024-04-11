@@ -66,7 +66,7 @@ void Game::initiation(){
     load.configOfAnimal();
     load.configOfPlant();
     load.configOfMisc();
-    load.configOfProducts();
+    load.configOfProduct();
     load.configOfBuildingRecipes();
 }
 

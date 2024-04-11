@@ -12,7 +12,6 @@ class Building : public Item {
         Building(int id, string code, string name, string type);
         ~Building();
         int calculatePrice();
-
 };
 
 class SmallHouse : public Building {

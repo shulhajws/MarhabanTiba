@@ -9,7 +9,7 @@ Carnivore::Carnivore(string code, string name,int harvestWeight,int price): Anim
 Carnivore::Carnivore(int harvestWeight,string code, string name,int animalWeight): Animal(code,name,"CARNIVORE", animalWeight,harvestWeight){
 }
 
-void Carnivore::makan(Products* m){
+void Carnivore::makan(Product* m){
     if (m->getType()=="PRODUCT_ANIMAL"){
         this->animalWeight += m->getAddedWeight(); 
     }

@@ -18,7 +18,7 @@ Animal::Animal(string code, string name, string type, int animalWeight, int harv
 
 Animal::~Animal(){}
 
-void Animal::makan(Products* p){}
+void Animal::makan(Product* p){}
 
 int Animal::getPrice(){
     return price;

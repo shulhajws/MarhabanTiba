@@ -8,7 +8,7 @@
 #include "../Item/Item.hpp"
 #include "../Item/Building/Building.hpp" 
 #include "../Storage/Storage.hpp"
-#include "../Item/Products/Products.hpp" 
+#include "../Item/Product/Product.hpp" 
 #include "../Misc/Misc.hpp"
 
 using namespace std;

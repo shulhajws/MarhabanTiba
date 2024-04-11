@@ -179,10 +179,10 @@ vector<Plant> Loader::configOfPlant()
     return plants;
 }
 
-vector<Products> Loader::configOfProducts()
+vector<Product> Loader::configOfProduct()
 {
-    vector<Products> products;
-    return products;
+    vector<Product> product;
+    return product;
     // TO DO
 }
 
@@ -296,29 +296,45 @@ Building* Loader::buildingConstructor(string itemName){
 
 }
 
-Products* Loader::productsConstructor(string itemName){
+Product* Loader::productConstructor(string itemName){
+  if(itemName == "TEAK_WOOD"){
+    return new TeakWood();
+  } else if (itemName == "SANDALWOOD_WOOD"){
+    return new SandalwoodWood();
+  } else if (itemName == "ALOE_WOOD"){
+    return new AloeWood();
+  } else if (itemName == "IRONWOOD_WOOD"){
+    return new IronwoodWood();
+  } else if (itemName == "APPLE"){
+    return new Apple();
+  } else if (itemName == "ORANGE"){
+    return new Orange();
+  } else if (itemName == "BANANA"){
+    return new Banana();
+  } else if (itemName == "GUAVA"){
+    return new Guava();
+  } else if(itemName == "COW MEAT"){
+    return new CowMeat();
+  } else if (itemName == "SHEEP MEAT"){
+    return new SheepMeat();
+  } else if (itemName == "HORSE MEAT"){
+    return new HorseMeat();
+  } else if (itemName == "RABBIT MEAT"){
+    return new RabbitMeat();
+  } else if (itemName == "SNAKE MEAT"){
+    return new SnakeMeat();
+  } else if (itemName == "CHICKEN MEAT"){
+    return new ChickenMeat();
+  } else if (itemName == "DUCK MEAT"){
+    return new DuckMeat();
+  } else if (itemName == "CHICKEN EGG"){
+    return new ChickenEgg();
+  } else if (itemName == "DUCK EGG"){
+    return new DuckEgg();
+  } else{
+    // throw something
+  }
   return nullptr;
-  // if (itemName == "COW_MEAT"){
-  //   return Cow();
-  // } else if (itemName == "SHEEP_MEAT"){
-  //   return Sheep();
-  // } else if (itemName == "HORSE_MEAT"){
-  //   return Horse();
-  // } else if (itemName == "RABBIT_MEAT"){
-  //   return Rabbit();
-  // } else if (itemName == "SNAKE_MEAT"){
-  //   return Snake();
-  // } else if (itemName == "CHICKEN_MEAT"){
-  //   return Chicken();
-  // } else if (itemName == "DUCK_MEAT"){
-  //   return Duck();
-  // } else if (itemName == "CHICKEN_EGG"){
-  //   return Chicken();
-  // } else if (itemName == "DUCK_EGG"){
-  //   return Duck();
-  // } else {
-  //   // throw something
-  // }
 }
 
 Item* Loader::itemConstructor(string itemName){
@@ -360,40 +376,40 @@ Item* Loader::itemConstructor(string itemName){
     return new LargeHouse();
   } else if (itemName == "HOTEL"){
     return new Hotel();
-  // } else if (itemName == "TEAK_WOOD"){
-  //   return Sandalwood();
-  // } else if (itemName == "SANDALWOOD_WOOD"){
-  //   return Sandalwood();
-  // } else if (itemName == "ALOE_WOOD"){
-  //   return Sandalwood();
-  // } else if (itemName == "IRONWOOD_WOOD"){
-  //   return Sandalwood();
-  // } else if (itemName == "APPLE"){
-  //   return Sandalwood();
-  // } else if (itemName == "ORANGE"){
-  //   return Sandalwood();
-  // } else if (itemName == "BANANA"){
-  //   return Sandalwood();
-  // } else if (itemName == "GUAVA"){
-  //   return Sandalwood();
+  } else if (itemName == "TEAK_WOOD"){
+    return new TeakWood();
+  } else if (itemName == "SANDALWOOD_WOOD"){
+    return new SandalwoodWood();
+  } else if (itemName == "ALOE_WOOD"){
+    return new AloeWood();
+  } else if (itemName == "IRONWOOD_WOOD"){
+    return new IronwoodWood();
+  } else if (itemName == "APPLE"){
+    return new Apple();
+  } else if (itemName == "ORANGE"){
+    return new Orange();
+  } else if (itemName == "BANANA"){
+    return new Banana();
+  } else if (itemName == "GUAVA"){
+    return new Guava();
   } else if (itemName == "COW_MEAT"){
-    return new Cow();
+    return new CowMeat();
   } else if (itemName == "SHEEP_MEAT"){
-    return new Sheep();
+    return new SheepMeat();
   } else if (itemName == "HORSE_MEAT"){
-    return new Horse();
+    return new HorseMeat();
   } else if (itemName == "RABBIT_MEAT"){
-    return new Rabbit();
+    return new RabbitMeat();
   } else if (itemName == "SNAKE_MEAT"){
-    return new Snake();
+    return new SnakeMeat();
   } else if (itemName == "CHICKEN_MEAT"){
-    return new Chicken();
+    return new ChickenMeat();
   } else if (itemName == "DUCK_MEAT"){
-    return new Duck();
+    return new DuckMeat();
   } else if (itemName == "CHICKEN_EGG"){
-    return new Chicken();
+    return new ChickenEgg();
   } else if (itemName == "DUCK_EGG"){
-    return new Duck();
+    return new DuckEgg();
   } else {
     // throw something
   }
@@ -518,7 +534,7 @@ vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
 Shop Loader::stateOfShop(string statepath, int ctr){
   vector<vector<string>> vectorOfWords;
   vector<tuple<Building*, int*>> building;
-  vector<tuple<Products*, int*>> products;
+  vector<tuple<Product*, int*>> product;
 
   try {
     vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
@@ -535,11 +551,11 @@ Shop Loader::stateOfShop(string statepath, int ctr){
         building.push_back(make_tuple(buildingConstructor(itemName), &itemQty));
       }
       else{
-        products.push_back(make_tuple(productsConstructor(itemName), &itemQty));
+        product.push_back(make_tuple(productConstructor(itemName), &itemQty));
       }
   }
 
-  return Shop(building, products);
+  return Shop(building, product);
 }
 
 bool Loader::isBuilding(string s){

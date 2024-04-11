@@ -10,7 +10,7 @@ Omnivore::Omnivore(int harvestWeight,string kode, string nama,int animalweight):
 }
 
 // ini harusnya produk
-void Omnivore::makan(Products* m){
+void Omnivore::makan(Product* m){
     if (m->getType()=="PRODUCT_ANIMAL" || m->getType()=="PRODUCT_FRUIT_PLANT"){
         this->berat_hewan += m->getAddedWeight(); 
     }

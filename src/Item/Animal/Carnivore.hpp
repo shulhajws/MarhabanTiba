@@ -2,13 +2,13 @@
 #define __CARNIVORA_HPP__
 
 #include "Animal.hpp"
-#include "../Products/ProductsAnimal.hpp"
+#include "../Product/ProductAnimal.hpp"
 
 class Carnivore : public Animal{
     public:
         Carnivore(string kode, string nama,int harvestweight, int price);
         Carnivore(int harvestWeight,string kode, string nama,int animalweight);
-        void makan(Products* m);
+        void makan(Product* m);
 };
 
 class Snake : public Carnivore{

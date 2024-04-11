@@ -2,7 +2,7 @@
 #define __Animal_HPP__
 
 #include "../Item.hpp"
-#include "../Products/Products.hpp"
+#include "../Product/Product.hpp"
 #include <string>
 using namespace std;
 
@@ -17,7 +17,7 @@ class Animal : public Item{
         Animal(int price, string code, string name,string type,int harvestWeight);
         Animal(string code, string name, string type, int animalWeight,int harvestWeight);
         ~Animal();
-        virtual void makan(Products* p);
+        virtual void makan(Product* p);
         int getPrice();
         bool isReadyToHarvest();
 };

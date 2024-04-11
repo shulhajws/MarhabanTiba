@@ -7,7 +7,7 @@
 
 using namespace std;
 vector<tuple<Building*, int*>> Shop::itemsBuilding;
-vector<tuple<Products*, int*>> Shop::products;
+vector<tuple<Product*, int*>> Shop::product;
 
 
 Shop::Shop(){
@@ -29,9 +29,9 @@ Shop::Shop(){
     itemsPlants.push_back(new GuavaTree());
 }
 
-Shop::Shop(vector<tuple<Building*, int*>> building, vector<tuple<Products*, int*>> products){
+Shop::Shop(vector<tuple<Building*, int*>> building, vector<tuple<Product*, int*>> product){
     this->itemsBuilding = building;
-    this->products = products;
+    this->product = product;
 }
 
 void Shop :: printShop(){
@@ -46,8 +46,8 @@ void Shop :: printShop(){
         index++;
     }
 
-    for (const auto& item : products) {
-        Products prod = *get<0>(item);
+    for (const auto& item : product) {
+        Product prod = *get<0>(item);
         int stock = *get<1>(item);
         cout << index << ". " << prod.getName() << " - "<<"Harga"<<" (" << stock << ")" << endl;
         index++;
@@ -66,19 +66,19 @@ void Shop :: printShop(){
 }
 
 int Shop::totalItem(){
-    return (itemsAnimals.size() + products.size() + itemsBuilding.size()+itemsPlants.size());
+    return (itemsAnimals.size() + product.size() + itemsBuilding.size()+itemsPlants.size());
 }
 
 Item* Shop::getItem(int i){
     int x2 = itemsBuilding.size();
-    int x3 = products.size() + itemsBuilding.size();    
-    int x4 = itemsAnimals.size() + products.size() + itemsBuilding.size();
+    int x3 = product.size() + itemsBuilding.size();    
+    int x4 = itemsAnimals.size() + product.size() + itemsBuilding.size();
 
     if (i<=itemsBuilding.size() && itemsBuilding.size()!= 0){
         return get<0>(itemsBuilding[i-1]);
     }
-    else if(i<= products.size() + x2 && products.size()!= 0){
-        return get<0>(products[i-x2-1]);
+    else if(i<= product.size() + x2 && product.size()!= 0){
+        return get<0>(product[i-x2-1]);
     }
     else if(i<= itemsAnimals.size() + x3 && itemsAnimals.size()!= 0){
         return itemsAnimals[i-x3-1];
@@ -106,10 +106,10 @@ void Shop::addBuilding(Building b){
 
 }
 
-void Shop::addProducts(Products b){
+void Shop::addProduct(Product b){
     bool found = false;
-    for (const auto& item : products) {
-        Products prod = *get<0>(item);
+    for (const auto& item : product) {
+        Product prod = *get<0>(item);
         if(prod.getCode()==b.getCode()){
             *get<1>(item) += 1;
             found = true;
@@ -118,7 +118,7 @@ void Shop::addProducts(Products b){
 
     if(!found){
         int num = 1;
-        products.push_back(make_tuple(&b, &num));
+        product.push_back(make_tuple(&b, &num));
     }
 
 }
@@ -132,8 +132,8 @@ Shop& Shop::operator+(Item& item) {
         addBuilding(*building);
     }
     else{
-        Products* prod = dynamic_cast<Products*>(&item);
-        addProducts(*prod);
+        Product* prod = dynamic_cast<Product*>(&item);
+        addProduct(*prod);
     }
     return *this;
 }

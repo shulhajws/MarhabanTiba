@@ -8,10 +8,10 @@
 #include "../Item/Plant/Plant.hpp"
 #include "../Item/Plant/MaterialPlant.hpp"
 #include "../Item/Plant/FruitPlant.hpp"
-#include "../Item/Products/Products.hpp"
-#include "../Item/Products/MaterialProducts.hpp"
-#include "../Item/Products/PlantsProducts.hpp"
-#include "../Item/Products/ProductsAnimal.hpp"
+#include "../Item/Product/Product.hpp"
+#include "../Item/Product/ProductMaterial.hpp"
+#include "../Item/Product/ProductFruitPlant.hpp"
+#include "../Item/Product/ProductAnimal.hpp"
 #include "../Item/Building/Building.hpp"
 #include "../Misc/Misc.hpp"
 #include "../Player/Player.hpp"
@@ -51,7 +51,7 @@ public:
     // vector of plant
     vector<Plant> configOfPlant();
     // vector of products
-    vector<Products> configOfProducts();
+    vector<Product> configOfProduct();
     // vector of recipe (building)
     vector<Building> configOfBuildingRecipes();
     // get misc
@@ -61,7 +61,7 @@ public:
     // building constructor
     Building* buildingConstructor(string);
     // product constructor
-    Products* productsConstructor(string itemName);
+    Product* productConstructor(string itemName);
     // plant constructor
     Plant* plantConstructor(string, int);
     // animal constructor

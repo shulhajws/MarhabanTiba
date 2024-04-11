@@ -2,7 +2,7 @@
 #define __OMNIVORE_HPP__
 
 #include "Animal.hpp"
-#include "../Products/Products.hpp"
+#include "../Product/Product.hpp"
 
 class Omnivore : public Animal{
     private:
@@ -11,7 +11,7 @@ class Omnivore : public Animal{
     public:
         Omnivore(string kode, string nama,int harvestWeight,int price);
         Omnivore(int harvestWeight,string kode, string nama,int animalweight);
-        void makan(Products* m);
+        void makan(Product* m);
 };
 
 class Chicken : public Omnivore{

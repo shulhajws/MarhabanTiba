@@ -10,7 +10,7 @@ Herbivore::Herbivore(int harvestWeight,string code, string name, int animalWeigh
 }
 
 // ini harusnya produk
-void Herbivore::makan(Products* m){
+void Herbivore::makan(Product* m){
     if (m->getType()=="PRODUCT_FRUIT_PLANT"){
         this->animalWeight += m->getAddedWeight(); // ini nanti diambil dari product
     }
