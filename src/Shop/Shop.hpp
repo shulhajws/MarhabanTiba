@@ -14,18 +14,22 @@ using namespace std;
 
 class Shop {
 private:
-    static vector<tuple<Building*, int*>> itemsBuilding;
+    static vector<tuple<Building*, int>> itemsBuilding;
     vector<Plant*> itemsPlants;
     vector<Animal*> itemsAnimals;
-    static vector<tuple<Product*, int*>> product;
+    static vector<tuple<Product*, int>> product;
 
 public:
     Shop();
-    Shop(vector<tuple<Building*, int*>> building, vector<tuple<Product*, int*>> product);
+    Shop(vector<tuple<Building*, int>> building, vector<tuple<Product*, int>> product);
     Shop& operator+(Item& item);
     int totalItem();
     void addBuilding(Building b);
+    void minBuilding(Building b, int num);
     void addProduct(Product p);
+    void minProduct(Product p, int num);
+    void minItems(Item& item,int num);
+    int getCapacity (Item& item);
     Item* getItem(int i);
     void printShop();
 };

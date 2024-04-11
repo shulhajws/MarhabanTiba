@@ -13,6 +13,7 @@ Herbivore::Herbivore(int harvestWeight,string code, string name, int animalWeigh
 void Herbivore::makan(Product* m){
     if (m->getType()=="PRODUCT_FRUIT_PLANT"){
         this->animalWeight += m->getAddedWeight(); // ini nanti diambil dari product
+        cout<<"The " <<this->getName()<<" has been fed and its weight becomes "<<this->animalWeight<<endl;
     }
     else{
         cout<<"\033[1;31mHewan hanya bisa makan buah.\033[0m"<<endl;

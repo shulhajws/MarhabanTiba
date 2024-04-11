@@ -12,6 +12,7 @@ Carnivore::Carnivore(int harvestWeight,string code, string name,int animalWeight
 void Carnivore::makan(Product* m){
     if (m->getType()=="PRODUCT_ANIMAL"){
         this->animalWeight += m->getAddedWeight(); 
+        cout<<"The " <<this->getName()<<" has been fed and its weight becomes "<<this->animalWeight<<endl;
     }
     else{
         cout<<"\033[1;31mHewan hanya bisa makan daging.\033[0m"<<endl;

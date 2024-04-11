@@ -42,11 +42,10 @@ void AnimalFarmer::placeAnimal() {
             throw NoItemInStorageException();
         }
 
-        cout<<"test"<<endl;
         if (Barn.isFull()) {
             throw BarnFullException();
         }
-        cout<<"test"<<endl;
+
         cout << "Select a animal from the storage\n";
         inventory.printStorage("Storage",0);
 
@@ -91,7 +90,6 @@ void AnimalFarmer::placeAnimal() {
                 int rowBarn = Barn.positionCodetoRow(landSlot);
                 int colBarn = Barn.positionCodetoCol(landSlot);
 
-                // Buat objek Plant baru dengan informasi dari selectedPlant
                 Barn.setItem(rowBarn, colBarn, selectedAnimalType); 
 
                 cout << "\nThere was a farmer who had a "<< selectedAnimalType->getName()<<", Ee-i-ee-i-o"<<endl;
@@ -118,7 +116,51 @@ void AnimalFarmer::placeAnimal() {
 }
 
 void AnimalFarmer::feedAnimal() {
-    cout << this->getName() <<" is feeding animals." << endl;
+       try {
+        if (inventory.isEmpty()||Barn.isEmpty()) {
+            throw NoItemInStorageException();
+        }
+        while (true){
+            cout << "\nSelect a plot of land to live\n\n";
+            Barn.printStorage("Barn",1); 
+            // Memproses lokasi petak tanah yang dipilih
+            cout << "\nLand plot: ";
+            string landSlot;
+            cin >> landSlot;
+
+            int rowBarn = Barn.positionCodetoRow(landSlot);
+            int colBarn = Barn.positionCodetoCol(landSlot);
+
+            if (Barn.isSlotEmpty(rowBarn,colBarn)){
+                throw InputException();
+            }
+            Animal* it = Barn.getItemInfo(rowBarn, colBarn);
+
+            cout<<"You choose to feed the "<< it->getName()<<endl;
+            cout<<"Choose the food to be given:"<<endl;
+            inventory.printStorage("Storage",0);
+
+            cout << "Slot: ";
+            string slot;
+            cin >> slot;
+
+            int row = inventory.positionCodetoRow(slot);
+            int col = inventory.positionCodetoCol(slot);
+            if (inventory.isSlotEmpty(row,col)){
+                throw InputException();
+            }
+
+            Item* food = inventory.getItem(row,col);
+            Product* prod = dynamic_cast<Product*>(food);
+
+            it->makan(prod);   
+            break;
+        
+        }
+       } catch(InputException e){
+            cout<<e.what();
+        }
+
 }
 
 void AnimalFarmer::harvestAnimal() {

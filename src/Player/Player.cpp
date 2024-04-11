@@ -146,7 +146,7 @@ void Player::buyItem(){
             if(s.getItem(buy)->getPrice()*capacity>wealth){
                 throw NotEnoughMoneyException();
             }
-            if(capacity<1){
+            if(capacity<1|| capacity>s.getCapacity(*(s.getItem(buy)))){
                 throw InputException();
             }
 
@@ -184,6 +184,9 @@ void Player::buyItem(){
                         inventory.setItem(row,col,s.getItem(buy));
                         minPlayerWealth(s.getItem(buy)->getPrice());
                         success +=1;
+                    }
+                    if(success==capacity){
+                        s.minItems(*s.getItem(buy),capacity);
                     }
                     break;
                 } catch(InputException e){

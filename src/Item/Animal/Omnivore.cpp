@@ -13,6 +13,7 @@ Omnivore::Omnivore(int harvestWeight,string kode, string nama,int animalweight):
 void Omnivore::makan(Product* m){
     if (m->getType()=="PRODUCT_ANIMAL" || m->getType()=="PRODUCT_FRUIT_PLANT"){
         this->berat_hewan += m->getAddedWeight(); 
+        cout<<"The " <<this->getName()<<" has been fed and its weight becomes "<<this->animalWeight<<endl;
     }
     else{
         cout<<"Hewan hanya bisa makan daging dan buah."<<endl;

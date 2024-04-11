@@ -4,10 +4,14 @@
 #include "../Item/Animal/Omnivore.hpp"
 #include "../Item/Plant/FruitPlant.hpp"
 #include "../Item/Plant/MaterialPlant.hpp"
+#include "../Item/Product/ProductAnimal.hpp"
+#include "../Item/Product/ProductFruitPlant.hpp"
+#include "../Item/Product/ProductMaterial.hpp"
+
 
 using namespace std;
-vector<tuple<Building*, int*>> Shop::itemsBuilding;
-vector<tuple<Product*, int*>> Shop::product;
+vector<tuple<Building*, int>> Shop::itemsBuilding;
+vector<tuple<Product*, int>> Shop::product;
 
 
 Shop::Shop(){
@@ -29,7 +33,7 @@ Shop::Shop(){
     itemsPlants.push_back(new GuavaTree());
 }
 
-Shop::Shop(vector<tuple<Building*, int*>> building, vector<tuple<Product*, int*>> product){
+Shop::Shop(vector<tuple<Building*, int>> building, vector<tuple<Product*, int>> product){
     this->itemsBuilding = building;
     this->product = product;
 }
@@ -41,15 +45,15 @@ void Shop :: printShop(){
     int index = 1;
     for (const auto& item : itemsBuilding) {
         Building building = *get<0>(item);
-        int stock = *get<1>(item);
+        int stock = get<1>(item);
         cout << index << ". " << building.getName() << " - "<<building.calculatePrice()<<" (" << stock << ")" << endl;
         index++;
     }
 
     for (const auto& item : product) {
         Product prod = *get<0>(item);
-        int stock = *get<1>(item);
-        cout << index << ". " << prod.getName() << " - "<<"Harga"<<" (" << stock << ")" << endl;
+        int stock = get<1>(item);
+        cout << index << ". " << prod.getName() << " - "<<prod.getPrice()<<" (" << stock << ")" << endl;
         index++;
     }
 
@@ -91,43 +95,112 @@ Item* Shop::getItem(int i){
 
 void Shop::addBuilding(Building b){
     bool found = false;
-    for (const auto& item : itemsBuilding) {
+    for (auto& item : itemsBuilding) {
         Building building = *get<0>(item);
         if(building.getCode()==b.getCode()){
-            *get<1>(item) += 1;
+            get<1>(item) += 1;
             found = true;
         }
     }
 
     if(!found){
-        int num = 1;
-        itemsBuilding.push_back(make_tuple(&b, &num));
+        itemsBuilding.push_back(make_tuple(&b, 1));
     }
 
 }
 
 void Shop::addProduct(Product b){
     bool found = false;
-    for (const auto& item : product) {
+    for (auto& item : product) {
         Product prod = *get<0>(item);
         if(prod.getCode()==b.getCode()){
-            *get<1>(item) += 1;
+            get<1>(item) += 1;
             found = true;
         }
     }
 
     if(!found){
-        int num = 1;
-        product.push_back(make_tuple(&b, &num));
+        product.push_back(make_tuple(&b,1));
     }
 
 }
 
+void Shop::minBuilding(Building b, int num) {
+    for (auto it = itemsBuilding.begin(); it != itemsBuilding.end(); ++it) {
+        if (get<0>(*it)->getCode() == b.getCode()) {
+            get<1>(*it) -= num;  
+            if (get<1>(*it)<= 0) {
+                it = itemsBuilding.erase(it); 
+            }
+            break;  
+        }
+    }
+}
+
+void Shop::minProduct(Product b, int num) {
+    for (auto it = product.begin(); it != product.end(); ++it) {
+        if (get<0>(*it)->getCode()  == b.getCode()) {
+            get<1>(*it) -= num;  
+            if (get<1>(*it) <= 0) {
+                it = product.erase(it); 
+            }
+            break;  
+        }
+    }
+}
+
+void Shop::minItems(Item& item, int num){
+    if(item.getType()=="CARNIVORE" ||item.getType()=="OMNIVORE" || item.getType()=="HERBIVORE" || 
+    item.getType()=="MATERIAL_PLANT" || item.getType()=="FRUIT_PLANT"){
+    }
+    else if(item.getType()=="SMALL_HOUSE" || item.getType()=="MEDIUM_HOUSE" || 
+    item.getType()=="LARGE_HOUSE" || item.getType()=="HOTEL"){
+        Building* building = dynamic_cast<Building*>(&item);
+        minBuilding(*building,num);
+    }
+    else{
+        Product* prod = dynamic_cast<Product*>(&item);
+        minProduct(*prod,num);
+    }
+}
+
+int Shop::getCapacity(Item& item) {
+    if (item.getType() == "CARNIVORE" || item.getType() == "OMNIVORE" || 
+        item.getType() == "HERBIVORE" || item.getType() == "MATERIAL_PLANT" || 
+        item.getType() == "FRUIT_PLANT") {
+        return 999999; 
+    }
+    else if (item.getType() == "SMALL_HOUSE" || item.getType() == "MEDIUM_HOUSE" || 
+             item.getType() == "LARGE_HOUSE" || item.getType() == "HOTEL") {
+        for (const auto& it : itemsBuilding) {
+            Building prod = *get<0>(it);  
+            int stock = get<1>(it);
+            if (prod.getCode() == item.getCode()) {
+                return stock;  
+            }
+        }
+    }
+    else {
+        for (const auto& it : product) {
+            Product prod = *get<0>(it);
+            int stock = get<1>(it);
+            if (prod.getCode() == item.getCode()) {
+                return stock;
+            }
+        }
+        
+    }
+    return 0;  
+}
+
 Shop& Shop::operator+(Item& item) {
-    if(item.getType()=="CARNIVORE" ||item.getType()=="OMNIVORE" || item.getType()=="HERBIVORE" || item.getType()=="MATERIAL_PLANT" || item.getType()=="FRUIT_PLANT"){
+    if(item.getType()=="CARNIVORE" ||item.getType()=="OMNIVORE" || 
+    item.getType()=="HERBIVORE" || item.getType()=="MATERIAL_PLANT" || 
+    item.getType()=="FRUIT_PLANT"){
         // do nothing
     }
-    else if(item.getType()=="SMALL_HOUSE" || item.getType()=="MEDIUM_HOUSE" || item.getType()=="LARGE_HOUSE" || item.getType()=="HOTEL"){
+    else if(item.getType()=="SMALL_HOUSE" || item.getType()=="MEDIUM_HOUSE" || 
+    item.getType()=="LARGE_HOUSE" || item.getType()=="HOTEL"){
         Building* building = dynamic_cast<Building*>(&item);
         addBuilding(*building);
     }
