@@ -29,6 +29,7 @@ class Game{
         bool checkEndGame();
         void playerTurn();
         void splashScreen();
+        void addAllPlantYear();
         string lowerCase(const string& str);
         bool nameNotValid(string name);
         ~Game();

@@ -94,7 +94,7 @@ template<class T>
 T Storage<T>::getItem(int row, int col){
     if(isItemValid(row,col)&&storageContent[row][col]!=NULL){
         T deletedValue = storageContent[row][col];
-        storageContent[row].erase(storageContent[row].begin() + col);
+        storageContent[row][col] = nullptr;
         return deletedValue;
     }
     else{

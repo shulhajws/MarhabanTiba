@@ -137,6 +137,7 @@ bool Game::inputCommand(){
                     currPlayer +=1;
                     Game::tambahPemain = 0;
                 }
+                addAllPlantYear();
                 break;
             }
         }
@@ -166,6 +167,16 @@ bool Game::nameNotValid(string name){
         }
     }
     return ada;
+}
+
+void Game::addAllPlantYear(){
+    for (auto &p : players){
+        if (p->getType()=="Petani"){
+            PlantFarmer* petani = dynamic_cast<PlantFarmer*>(p);
+            petani->addPlantYear();
+        }
+    }
+
 }
 
 bool Game::checkEndGame(){

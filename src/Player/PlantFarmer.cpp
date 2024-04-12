@@ -112,6 +112,16 @@ void PlantFarmer::plantCrop() {
     }
 }
 
+void PlantFarmer::addPlantYear(){
+    for (int i = 0; i < Garden.getRow(); i++) {
+        for (int j = 0; j < Garden.getCol(); j++) {
+            if (Garden.getItemInfo(i,j) != nullptr) {
+                 Garden.getItemInfo(i,j)->addAge();
+            }
+        }
+    }
+}
+
 void PlantFarmer::harvestCrop() {
     // try {
     //     printGarden();

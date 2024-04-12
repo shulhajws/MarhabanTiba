@@ -13,6 +13,7 @@ class PlantFarmer : public Player{
         PlantFarmer();
         PlantFarmer(string username, int wealth, int weight);
         int getKTKP();
+        void addPlantYear();
         void setGarden(Storage<Plant*>);
         void displayInfo() const;
         void plantCrop();
