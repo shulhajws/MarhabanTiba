@@ -228,6 +228,40 @@ int Storage<T>::getAvailableSlots(){
 }
 
 template<class T>
+int Storage<T>::countItems(string item){
+    int num = 0;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if(storageContent[i][j]!=nullptr){
+                if (storageContent[i][j]->getName() == item) {
+                    num+=1; 
+                }
+            }
+        }
+    }
+    return num;
+}
+
+template<class T>
+void Storage<T>::deleteItemCount(string item,int count){
+    int num = 0;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if(storageContent[i][j]!=nullptr){
+                if (storageContent[i][j]->getName() == item) {
+                    storageContent[row][col] = nullptr;
+                    num+=1; 
+                }
+            }
+            if(count==num){
+                break;
+            }
+        }
+    }
+}
+
+
+template<class T>
 int Storage<T>::positionCodetoRow(string position){
     if(position.length()!=3){
         throw ItemNotFoundException();

@@ -3,15 +3,23 @@
 
 #include "../Item.hpp"
 #include <map>
+#include <vector>
 #include <string>
 #include <iostream>
 using namespace std;
 
 class Building : public Item {
+    private:
+        int price;
+        map<string, int> materials;
+        vector<Building*> houses;
     public:
-        Building(int id, string code, string name, string type);
+        Building();
+        Building(int id, string code, string name, string type, int price);
         ~Building();
-        int calculatePrice();
+        int getMoney(string s);
+        virtual void printMaterial();
+        virtual map<string, int> getmaterial(string b);
 };
 
 class SmallHouse : public Building {
@@ -22,6 +30,8 @@ class SmallHouse : public Building {
     public:
         SmallHouse();
         SmallHouse(int price);
+        map<string, int> getmaterial(string b);
+        void printMaterial();
         void addRecipeMaterial(string materialName, int materialQty);
 };
 
@@ -33,6 +43,8 @@ class MediumHouse : public Building {
     public:
         MediumHouse();
         MediumHouse(int price);
+        map<string, int> getmaterial(string b);
+        void printMaterial();
         void addRecipeMaterial(string materialName, int materialQty);
 };
 
@@ -44,6 +56,8 @@ class LargeHouse : public Building {
     public:
         LargeHouse();
         LargeHouse(int price);
+        map<string, int> getmaterial(string b);
+        void printMaterial();
         void addRecipeMaterial(string materialName, int materialQty);
 };
 
@@ -55,6 +69,8 @@ class Hotel : public Building {
     public:
         Hotel();
         Hotel(int price);
+        map<string, int> getmaterial(string b);
+        void printMaterial();
         void addRecipeMaterial(string materialName, int materialQty);
 };
 

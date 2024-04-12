@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+Item::Item(){}
+
 Item::Item(int id, string code, string name, string type, int price){
     this->id = id;
     this->code = code;

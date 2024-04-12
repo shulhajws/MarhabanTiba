@@ -12,6 +12,7 @@ class Item{
         string type;
         int price;
     public:
+        Item();
         Item(string code, string name, string type);
         Item(int id, string code, string name, string type, int price);
         virtual ~Item();

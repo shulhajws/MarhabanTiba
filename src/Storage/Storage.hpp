@@ -41,6 +41,8 @@ class Storage {
         string rowtoPositionCode(int row);
         string coltoPositionCode(int col);
         int getAvailableSlots();
+        int countItems(string item);
+        void deleteItemCount (string item,int count);
         bool isEmpty() const;
         bool isFull() const;
         bool hasItem(const T& type) const;

@@ -1,4 +1,21 @@
 #include "Loader.hpp"
+#include "../Item/Animal/Herbivore.hpp"
+#include "../Item/Animal/Carnivore.hpp"
+#include "../Item/Animal/Omnivore.hpp"
+#include "../Item/Plant/MaterialPlant.hpp"
+#include "../Item/Plant/FruitPlant.hpp"
+#include "../Item/Product/ProductMaterial.hpp"
+#include "../Item/Product/ProductFruitPlant.hpp"
+#include "../Item/Product/ProductAnimal.hpp"
+#include "../Player/Player.hpp"
+#include "../Player/AnimalFarmer.hpp"
+#include "../Player/PlantFarmer.hpp"
+#include "../Shop/Shop.hpp"
+#include "../Exception/Exception.hpp"
+#include "../Exception/FileException.hpp"
+#include "../Exception/LoaderException.hpp"
+#include "../Storage/Storage.hpp"
+
 using namespace std;
 
 string Loader::configPath = "./config";

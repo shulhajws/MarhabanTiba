@@ -54,7 +54,7 @@ void Shop :: printShop(){
     for (const auto& item : itemsBuilding) {
         Building building = *get<0>(item);
         int stock = get<1>(item);
-        cout << index << ". " << building.getName() << " - "<<building.calculatePrice()<<" (" << stock << ")" << endl;
+        cout << index << ". " << building.getName() << " - "<<building.getPrice()<<" (" << stock << ")" << endl;
         index++;
     }
 
