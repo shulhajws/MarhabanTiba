@@ -81,7 +81,7 @@ bool Storage<T>::isItemValid(int row, int col){
 }
 
 template<class T>
-bool Storage<T>::isSlotEmpty(int row, int col){
+bool Storage<T>::isSlotEmpty(int row, int col) const{
     if (storageContent[row][col]!=nullptr) {
         return false;
     } 
@@ -261,3 +261,29 @@ template<class T>
 string Storage<T>::coltoPositionCode(int col){
     return string(1, static_cast<char>('A' + col));
 }
+
+template<class T>
+int Storage<T>::countFilledCells() const{
+    int count = 0;
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (!isSlotEmpty(i, j)) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+template<class T>
+vector<T> Storage<T>::getListOfContents() const{
+    vector<T> allItems;
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (!isSlotEmpty(i, j)) {
+                allItems.push_back(storageContent[i][j]);
+            }
+        }
+    }
+    return allItems;
+}   

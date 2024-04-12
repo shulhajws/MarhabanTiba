@@ -38,6 +38,14 @@ Shop::Shop(vector<tuple<Building*, int>> building, vector<tuple<Product*, int>> 
     this->product = product;
 }
 
+vector<tuple<Building*, int>> Shop::getItemsBuilding() const{
+    return this->itemsBuilding;
+}
+
+vector<tuple<Product*, int>> Shop::getItemsProduct() const{
+    return this->product;
+}
+
 void Shop :: printShop(){
     cout << "Welcome to MarhabanTiba Shop!" << endl;
     cout << "Here are the things that you can buy: " << endl;

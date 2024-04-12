@@ -20,6 +20,7 @@ class AnimalFarmer : public Player{
         void feedAnimal();
         void harvestAnimal();
         void printBarn();
+        vector<Animal*> getListOfAnimals() const;
 };
 
 #endif

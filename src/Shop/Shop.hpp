@@ -23,6 +23,8 @@ public:
     Shop();
     Shop(vector<tuple<Building*, int>> building, vector<tuple<Product*, int>> product);
     Shop& operator+(Item& item);
+    vector<tuple<Building*, int>> getItemsBuilding() const;
+    vector<tuple<Product*, int>> getItemsProduct() const;
     int totalItem();
     void addBuilding(Building b);
     void minBuilding(Building b, int num);

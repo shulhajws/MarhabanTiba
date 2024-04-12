@@ -33,7 +33,7 @@
 
 class Loader
 {
-protected:
+private:
     static string configPath;
     static string testsPath;
 

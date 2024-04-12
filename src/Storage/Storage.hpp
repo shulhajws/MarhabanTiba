@@ -32,7 +32,7 @@ class Storage {
         T getItemInfo(int row, int col);
         T getItem(int row, int col);
         bool isItemValid(int row, int col);
-        bool isSlotEmpty(int row, int col);
+        bool isSlotEmpty(int row, int col) const;
         void printStorage(string name, int color);
         void printLegends();
         bool operator==(const T& other) const;
@@ -44,6 +44,8 @@ class Storage {
         bool isEmpty() const;
         bool isFull() const;
         bool hasItem(const T& type) const;
+        int countFilledCells() const;
+        vector<T> getListOfContents() const;
 };
 
 #endif

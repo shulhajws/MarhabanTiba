@@ -171,3 +171,7 @@ void AnimalFarmer::printBarn() {
     Barn.printStorage("Barn",1); 
     Barn.printLegends();
 }
+
+vector<Animal*> AnimalFarmer::getListOfAnimals() const{
+    return this->Barn.getListOfContents();
+}

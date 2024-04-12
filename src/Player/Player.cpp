@@ -85,7 +85,7 @@ void Player::displayStorage(){
     cout<<"Total Empty Slot: "<<inventory.getAvailableSlots()<<endl;
 }
 
-bool Player::inventoryEmpty(){
+bool Player::inventoryEmpty() const{
     return inventory.isEmpty();
 }
 
@@ -289,8 +289,16 @@ vector<string> Player::splitbyComa(const string& input) { // bentar masih ngebug
     return items;
 }
 
+int Player::itemInInventories() const{
+    return this->inventory.countFilledCells();
+}
+
 void Player::displayInfo() const {
     cout << "Username: " << this->username << endl;
     cout << "Wealth  : " << this->wealth << endl;
     cout << "Weight  : " << this->weight << endl;
+}
+
+vector<Item*> Player::getListOfItems() const{
+    return this->inventory.getListOfContents();
 }

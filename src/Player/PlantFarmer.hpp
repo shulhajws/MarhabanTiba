@@ -19,6 +19,7 @@ class PlantFarmer : public Player{
         void plantCrop();
         void harvestCrop();
         void printGarden();
+        vector<Plant*> getListOfPlants() const;
 
 };
 

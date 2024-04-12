@@ -144,3 +144,7 @@ void PlantFarmer::printGarden() {
     Garden.printStorage("Field",1); 
     Garden.printLegends();
 }
+
+vector<Plant*> PlantFarmer::getListOfPlants() const{
+    return this->Garden.getListOfContents();
+}

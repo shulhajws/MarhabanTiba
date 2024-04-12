@@ -33,7 +33,7 @@ class Player{
         string getName() const;
         int getPlayerWealth() const;
         int getPlayerWeight() const;
-        bool inventoryEmpty();
+        bool inventoryEmpty() const;
         string getType() const;
         virtual int getKTKP();
         void setInventory(Storage<Item*>);
@@ -45,6 +45,8 @@ class Player{
         void sellItem();
         vector<string> splitbyComa(const string& input);
         bool operator==(string command) const;
+        int itemInInventories() const;
+        vector<Item*> getListOfItems() const;
 
         virtual void displayInfo() const;
         
