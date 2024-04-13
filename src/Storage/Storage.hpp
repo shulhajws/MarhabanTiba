@@ -42,7 +42,10 @@ class Storage {
         string coltoPositionCode(int col);
         int getAvailableSlots();
         int countItems(string item);
+        int countItemsHarvested(string item);
+        bool isReadytoHarvest();
         void deleteItemCount (string item,int count);
+        vector<string> printHarvestedItem();
         bool isEmpty() const;
         bool isFull() const;
         bool hasItem(const T& type) const;

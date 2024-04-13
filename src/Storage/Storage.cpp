@@ -243,6 +243,21 @@ int Storage<T>::countItems(string item){
 }
 
 template<class T>
+int Storage<T>::countItemsHarvested(string item){
+    int num = 0;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if(storageContent[i][j]!=nullptr){
+                if (storageContent[i][j]->getCode() == item && storageContent[i][j]->isReadyToHarvest()) {
+                    num+=1; 
+                }
+            }
+        }
+    }
+    return num;
+}
+
+template<class T>
 void Storage<T>::deleteItemCount(string item,int count){
     int num = 0;
     for (int i = 0; i < row; i++) {
@@ -258,6 +273,99 @@ void Storage<T>::deleteItemCount(string item,int count){
             }
         }
     }
+}
+
+template<class T>
+bool Storage<T>::isReadytoHarvest(){
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if(storageContent[i][j]!=nullptr){
+                if (storageContent[i][j]->isReadyToHarvest()) {
+                    return true; 
+                }
+            }
+        }
+    }
+    return false;
+}
+
+template<class T>
+vector<string> Storage<T>::printHarvestedItem(){ 
+    vector<string> items;
+    int i = 1;
+    if(countItemsHarvested("COW")>0){
+        cout<<i<<". COW ("<< countItemsHarvested("COW")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("COW");
+    }
+    if(countItemsHarvested("SHP")>0){
+        cout<<i<<". SHP ("<< countItemsHarvested("SHP")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("SHP");
+    }
+    if(countItemsHarvested("HRS")>0){
+        cout<<i<<". HRS ("<< countItemsHarvested("HRS")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("HRS");
+    }
+    if(countItemsHarvested("RBT")>0){
+        cout<<i<<". RBT ("<< countItemsHarvested("RBT")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("RBT");
+    }
+    if(countItemsHarvested("CHK")>0){
+        cout<<i<<". CHK ("<< countItemsHarvested("CHK")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("CHK");
+    }
+    if(countItemsHarvested("DCK")>0){
+        cout<<i<<". DCK ("<< countItemsHarvested("DCK")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("DCK");
+    }
+
+    i = 1;
+    if(countItemsHarvested("TEK")>0){
+        cout<<i<<". TEK ("<< countItemsHarvested("TEK")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("TEK");
+    }
+    if(countItemsHarvested("SDT")>0){
+        cout<<i<<". SDT ("<< countItemsHarvested("SDT")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("SDT");
+    }
+    if(countItemsHarvested("ALT")>0){
+        cout<<i<<". ALT ("<< countItemsHarvested("ALT")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("ALT");
+    }
+    if(countItemsHarvested("IRN")>0){
+        cout<<i<<". IRN ("<< countItemsHarvested("IRN")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("IRN");
+    }
+    if(countItemsHarvested("APL")>0){
+        cout<<i<<". APL ("<< countItemsHarvested("APL")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("APL");
+    }
+    if(countItemsHarvested("ORG")>0){
+        cout<<i<<". ORG ("<< countItemsHarvested("ORG")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("ORG");
+    }
+    if(countItemsHarvested("BNT")>0){
+        cout<<i<<". BNT ("<< countItemsHarvested("BNT")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("BNT");
+    }
+    if(countItemsHarvested("GAV")>0){
+        cout<<i<<". GAV ("<< countItemsHarvested("BNT")<<"  plots ready for harvest)"<<endl;
+        i++;
+        items.push_back("GAV ");
+    }
+    return items;
 }
 
 

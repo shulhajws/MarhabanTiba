@@ -1,6 +1,7 @@
 #include "PlantFarmer.hpp"
 #include "../Command/PetaniCommand/Tanam.hpp"
 #include "../Command/PetaniCommand/CetakLadang.hpp"
+#include "../Command/AllCommand/Panen.hpp"
 
 #include <iostream>
 using namespace std;
@@ -8,6 +9,7 @@ using namespace std;
 PlantFarmer::PlantFarmer() : Player(){
     this->commandList.push_back(new Tanam());
     this->commandList.push_back(new CetakLadang());
+    this->commandList.push_back(new Panen());
     Misc m;
     this->Garden.setRowCols(m.getFieldRow(),m.getFieldeCols());
 }
@@ -15,6 +17,7 @@ PlantFarmer::PlantFarmer() : Player(){
 PlantFarmer::PlantFarmer(string username, int wealth, int weight) : Player(username, wealth, weight, "Petani") {
     this->commandList.push_back(new Tanam());
     this->commandList.push_back(new CetakLadang());
+    this->commandList.push_back(new Panen());
     Misc m;
     this->Garden.setRowCols(m.getFieldRow(),m.getFieldeCols());
 }
@@ -123,21 +126,67 @@ void PlantFarmer::addPlantYear(){
 }
 
 void PlantFarmer::harvestCrop() {
-    // try {
-    //     printGarden();
-    //     displayReadyPlants();
+    try {
+        if (!Garden.isReadytoHarvest()){
+            throw HarvestException();
+        }
+        printGarden();
+        cout<<"\nChoose the ready-to-harvest crops you have:"<<endl;
+        vector<string> garden = Garden.printHarvestedItem();
 
-    //     int selectedPlantIndex = selectPlantToHarvest();
-    //     int numPlots = selectPlotsToHarvest();
+        int num, capacity;
+        while(true){
+            try{
+                cout<< "\nPlant number you want to harvest:";
+                cin >> num ;
+                cout<< "How many plots do you want to harvest:"; 
+                cin >> capacity ;
+                if (num<0 || num>garden.size() || Garden.countItemsHarvested(garden[num-1])<capacity){
+                    throw InputException();
+                }
+                else{
+                    break;
+                }
+            }catch(InputException e){
+                cout<<e.what();
+            }
+        }
 
-    //     vector<string> selectedPlots = selectPlots(numPlots);
+        vector<string> selectedPlots;
+        cout<<"Select the plots you want to harvest:\n";
+        for(int i=0;i<capacity;i++){
+            while(true){
+                try{
+                    string landSlot;
+                    cout<<"Plot "<<i+1<<":";
+                    cin>>landSlot;
 
-    //     harvestSelectedPlots(selectedPlots);
+                    int rowField = Garden.positionCodetoRow(landSlot);
+                    int colField = Garden.positionCodetoCol(landSlot);
 
-    //     printHarvestResult(selectedPlots);
-    // } catch (const InputException& e) {
-    //     cout << e.what() << endl;
-    // }
+                    if(!Garden.getItemInfo(rowField,colField)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField)){
+                        throw InvalidSlotException();
+                    }
+
+                    Garden.getItem(rowField,colField);
+                    selectedPlots.push_back(landSlot);
+                    break;
+                }
+                catch(InvalidSlotException e){
+                    cout<<e.what()<<endl;
+                }
+            }
+        }
+
+        cout<<"\n";
+        cout<<capacity<<" plots of "<< garden[num-1] << " plants in plots ";
+        for(int i=0;i<selectedPlots.size()-1;i++){
+            cout<<selectedPlots[i]<<", ";
+        }
+        cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested";
+    } catch (HarvestException e) {
+        cout << e.what() << endl;
+    }
 }
 
 void PlantFarmer::printGarden() {

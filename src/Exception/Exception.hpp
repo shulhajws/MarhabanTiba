@@ -101,6 +101,13 @@ public:
     }
 };
 
+class HarvestException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mUnable to proceed with harvesting, nothing is ready for harvest.\033[0m";
+    }
+};
+
 // nanti tambah exception disini
 
 #endif
