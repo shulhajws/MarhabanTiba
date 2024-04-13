@@ -72,8 +72,8 @@ void AnimalFarmer::placeAnimal() {
                     throw InputException();
                 }
                 break;
-            } catch(InputException e){
-                cout<<e.what();
+            } catch (InputException e){
+                cout << e.what();
             }
 
         }
@@ -98,14 +98,11 @@ void AnimalFarmer::placeAnimal() {
                 cout << "\nThere was a farmer who had a "<< selectedAnimalType->getName()<<", Ee-i-ee-i-o"<<endl;
                 cout << "This "<<selectedAnimalType->getName() << " has now become yours!\n";
                 break;
-            }
-            catch(InvalidPlantException e){
-                 cout << e.what()<<endl;
-            }
-            catch (ItemNotFoundException& e) {
+            } catch (InvalidPlantException e){
                 cout << e.what()<<endl;
-            }
-            catch(InvalidSlotException e){
+            } catch (ItemNotFoundException e) {
+                cout << e.what()<<endl;
+            } catch (InvalidSlotException e){
                 cout << e.what();
             }
         }
@@ -190,8 +187,8 @@ void AnimalFarmer::harvestAnimal() {
                 else{
                     break;
                 }
-            }catch(InputException e){
-                cout<<e.what();
+            } catch (InputException e){
+                cout << e.what() << endl;
             }
         }
 
@@ -214,9 +211,8 @@ void AnimalFarmer::harvestAnimal() {
                     Barn.getItem(rowField,colField);
                     selectedPlots.push_back(landSlot);
                     break;
-                }
-                catch(InvalidSlotException e){
-                    cout<<e.what()<<endl;
+                } catch(InvalidSlotException e){
+                    cout << e.what() << endl;
                 }
             }
         }

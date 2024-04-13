@@ -114,10 +114,10 @@ void Player::eat() {
                 throw ItemNotFoundException();
             }
         } catch (ItemNotFoundException e) {
-            cout << e.what()<<endl;
+            cout << e.what();
             break;
         } catch (NoItemInStorageException e) {
-            cout << e.what()<<endl;
+            cout << e.what();
             break;
         }
     }
@@ -134,9 +134,19 @@ void Player::buyItem(){
     while (true){
         try{
             cout<<"\nItem to be purchased: ";
-            cin>>buy;
+            if (!(cin >> buy)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                throw InputNotIntegerException();
+            }
+
             cout<<"Capacity: ";
-            cin>>capacity;
+            while (!(cin >> capacity)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                throw InputNotIntegerException();
+            }
+
             if((int)buy>(int)s.totalItem()||(int)buy<1){
                 throw ItemNotFoundException();
             }
@@ -200,17 +210,16 @@ void Player::buyItem(){
                 cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<s.getItem(buy)->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
             }
             break;
-        } catch(ItemNotFoundException e){
-            cout<<e.what()<<endl;
-        }
-        catch(InputException e){
-            cout<<e.what();
-        }
-        catch(NotEnoughInventorySpaceException e){
-            cout<<e.what()<<endl;
-        }
-        catch(NotEnoughMoneyException e){
-            cout<<e.what()<<endl;
+        } catch (ItemNotFoundException e){
+            cout << e.what();
+        } catch (InputException e){
+            cout << e.what();
+        } catch (InputNotIntegerException e){
+            cout << e.what();
+        } catch (NotEnoughInventorySpaceException e){
+            cout << e.what();
+        } catch (NotEnoughMoneyException e){
+            cout << e.what();
         }
     } 
     
@@ -258,9 +267,9 @@ void Player::sellItem(){
                 break;
 
             } catch(InvalidSlotException e){
-                cout<<e.what()<<endl;
+                cout << e.what();
             } catch(ItemNotFoundException e){
-                cout<<e.what()<<endl;
+                cout << e.what();
             }
         
         }

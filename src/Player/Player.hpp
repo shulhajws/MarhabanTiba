@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <limits>
 #include "../Command/Command.hpp"
 #include "../Shop/Shop.hpp"
 #include "../Item/Item.hpp"

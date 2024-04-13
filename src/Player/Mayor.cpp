@@ -59,8 +59,8 @@ void Mayor::buildBuilding(){
                 ++index;
             }
             break;
-        } catch(InputException e){
-            cout<<e.what();
+        } catch (InputException e){
+            cout << e.what();
         }
     }
 

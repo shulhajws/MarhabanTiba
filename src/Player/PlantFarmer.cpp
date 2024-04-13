@@ -95,23 +95,20 @@ void PlantFarmer::plantCrop() {
                 cout << "\nDig, dig, dig deep into the soil~!\n";
                 cout << selectedPlantType->getName() << " successfully planted!\n";
                 break;
-            }
-            catch(InvalidPlantException e){
-                 cout << e.what()<<endl;
-            }
-            catch (ItemNotFoundException& e) {
-                cout << e.what()<<endl;
-            }
-            catch(InvalidSlotException e){
+            } catch (InvalidPlantException e){
+                cout << e.what();
+            } catch (ItemNotFoundException e) {
+                cout << e.what();
+            } catch(InvalidSlotException e){
                 cout << e.what();
             }
         }
     } catch (NoItemInStorageException& e) {
-        cout << e.what()<<endl;
+        cout << e.what();
     } catch (GardenFullException& e) {
-        cout << e.what()<<endl;
+        cout << e.what();
     } catch (ItemNotFoundException& e) {
-        cout << e.what()<<endl;
+        cout << e.what();
     }
 }
 
@@ -147,8 +144,8 @@ void PlantFarmer::harvestCrop() {
                 else{
                     break;
                 }
-            }catch(InputException e){
-                cout<<e.what();
+            } catch (InputException e){
+                cout << e.what();
             }
         }
 
@@ -171,9 +168,8 @@ void PlantFarmer::harvestCrop() {
                     Garden.getItem(rowField,colField);
                     selectedPlots.push_back(landSlot);
                     break;
-                }
-                catch(InvalidSlotException e){
-                    cout<<e.what()<<endl;
+                } catch(InvalidSlotException e){
+                    cout << e.what();
                 }
             }
         }
@@ -185,7 +181,7 @@ void PlantFarmer::harvestCrop() {
         }
         cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested";
     } catch (HarvestException e) {
-        cout << e.what() << endl;
+        cout << e.what();
     }
 }
 
