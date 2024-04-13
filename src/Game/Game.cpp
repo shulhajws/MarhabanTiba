@@ -50,11 +50,25 @@ void Game::askInput(){
     if (option == "1"){ // file input
         int ctr;
         string state;
-        cout<<"Enter file location of the state (nameoffile.txt): ";
+        cout<<"Enter the name of the state file (without .txt): ";
         cin>>state;
+        ifstream configFileToWords( "./data/" + state + ".txt");
+        bool ada = true;
+        if(!configFileToWords){
+            ada = false;
+        }
+        while(!ada){
+            cout<<"File not found"<<endl;
+            cout<<"Enter the name of the state file (without .txt): ";
+            cin>>state;
+            
+            ifstream configFileToWords( "./data/" + state + ".txt");
+            if(configFileToWords){
+                ada = true;
+            }
+        }
         Loader l;
-        l.stateOfPlayer(state,&ctr);
-        l.stateOfShop(state,ctr);
+        Game::players = l.stateOfPlayer(state,ctr);
     }
     else{ // default input
         inputPlayer();

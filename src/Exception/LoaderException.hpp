@@ -15,7 +15,7 @@ class LoaderException : public Exception
         LoaderException(){}
         string what() override 
         {
-            cout << this->_inputName << "\033[1;31m tidak terdefinisi pada permainan ini.\n";
+            cout << this->_inputName << "\033[1;31mTidak terdefinisi pada permainan ini.\n";
             return "Cek kembali file Anda.\n \033[0m";
         }
 };

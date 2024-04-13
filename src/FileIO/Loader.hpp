@@ -52,9 +52,9 @@ public:
     // animal constructor
     Animal* animalConstructor(string itemName, int animalWeight);
     // vector of Player
-    vector<Player> stateOfPlayer(string filepath, int *lineCounter);
+    vector<Player*> stateOfPlayer(string filepath, int lineCounter);
     // get shop
-    Shop stateOfShop(string filepath, int lineCounter);
+    void stateOfShop(string filepath, int lineCounter);
     bool isBuilding(string);
 };
 

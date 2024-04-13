@@ -41,7 +41,7 @@ vector<string> Loader::getWordsFromSentence(string sentence)
 
     for (auto cc : sentence)
     {
-        if (cc == ' ')
+        if (cc == ' ' || cc=='\n' )
         {
             words.push_back(word);
             word = "";
@@ -421,23 +421,23 @@ Product* Loader::productConstructor(string itemName){
     return new Banana();
   } else if (itemName == "GUAVA"){
     return new Guava();
-  } else if(itemName == "COW MEAT"){
+  } else if(itemName == "COW_MEAT"){
     return new CowMeat();
-  } else if (itemName == "SHEEP MEAT"){
+  } else if (itemName == "SHEEP_MEAT"){
     return new SheepMeat();
-  } else if (itemName == "HORSE MEAT"){
+  } else if (itemName == "HORSE_MEAT"){
     return new HorseMeat();
-  } else if (itemName == "RABBIT MEAT"){
+  } else if (itemName == "RABBIT_MEAT"){
     return new RabbitMeat();
-  } else if (itemName == "SNAKE MEAT"){
+  } else if (itemName == "SNAKE_MEAT"){
     return new SnakeMeat();
-  } else if (itemName == "CHICKEN MEAT"){
+  } else if (itemName == "CHICKEN_MEAT"){
     return new ChickenMeat();
-  } else if (itemName == "DUCK MEAT"){
+  } else if (itemName == "DUCK_MEAT"){
     return new DuckMeat();
-  } else if (itemName == "CHICKEN EGG"){
+  } else if (itemName == "CHICKEN_EGG"){
     return new ChickenEgg();
-  } else if (itemName == "DUCK EGG"){
+  } else if (itemName == "DUCK_EGG"){
     return new DuckEgg();
   } else{
     throw LoaderException();
@@ -569,73 +569,96 @@ Animal* Loader::animalConstructor(string itemName, int animalWeight = 0){
   }
 }
 
-vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
-  vector<vector<string>> vectorOfWords;
-  vector<Player> players;
+string trim(const std::string& str) {
+    size_t start = str.find_first_not_of(" \t\r\n"); 
+    size_t end = str.find_last_not_of(" \t\r\n");   
 
-  // string stateFilename = this->testsPath + "/" + statepath;
-  // cout<<stateFilename;
+    if (start == std::string::npos || end == std::string::npos) {
+        return ""; 
+    }
+
+    return str.substr(start, end - start + 1); 
+}
+
+vector<Player*> Loader::stateOfPlayer(string statepath, int ctr){
+  vector<vector<string>> vectorOfWords;
+  vector<Player*> players;
+
   try {
-    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
-    *ctr = 0;
+    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath + ".txt");
+    ctr = 0;
     int numOfPlayers = stoi(vectorOfWords[0][0]);
-    *ctr++;
+    ctr++;
+
     for(int i = 0; i < numOfPlayers; i++){
-      string username = vectorOfWords[*ctr][0];
-      string type = vectorOfWords[*ctr][1];
-      int weight = stoi(vectorOfWords[*ctr][2]);
-      int wealth = stoi(vectorOfWords[*ctr][3]);
-      *ctr++;
+      string username = vectorOfWords[ctr][0];
+      string type = vectorOfWords[ctr][1];
+      int weight = stoi(vectorOfWords[ctr][2]);
+      int wealth = stoi(vectorOfWords[ctr][3]);
+      ctr++;
 
       Storage<Item*> inventory;
-      int numOfInventories = stoi(vectorOfWords[*ctr][0]);
-      *ctr++;
-      for(int j = 0; j < numOfInventories; j++){
-        string inventoryItem = vectorOfWords[*ctr][0];
-        inventory.setItem(0, 0, itemConstructor(inventoryItem));
-        *ctr++;
+      Misc m;
+      inventory.setRowCols(m.getStorageRow(),m.getStorageCols());
+      int numOfInventories = stoi(vectorOfWords[ctr][0]);
+      ctr++;
+
+      for(int j = 0; j < numOfInventories; j++) {
+        string inventoryItemName = trim(vectorOfWords[ctr][0]);
+        Item *newItem = itemConstructor(inventoryItemName);
+        inventory = inventory + newItem;
+    
+        ctr++;
       }
-      
+ 
       if (type == "Petani"){
-        PlantFarmer petani(username, wealth, weight);
-        petani.setInventory(inventory);
+        Player* petani = new PlantFarmer(username, wealth, weight);
+        petani->setInventory(inventory);
       
         Storage<Plant*> garden;
-        int numOfPlants = stoi(vectorOfWords[*ctr][0]);
-        *ctr++;
+        garden.setRowCols(m.getFieldRow(),m.getFieldeCols());
+        int numOfPlants = stoi(vectorOfWords[ctr][0]);
+        ctr++;
         for(int k = 0; k < numOfPlants; k++){
-          string plantLoc = vectorOfWords[*ctr][0]; 
-          string plantName = vectorOfWords[*ctr][1];
-          int plantAge = stoi(vectorOfWords[*ctr][2]);
+          string plantLoc = trim(vectorOfWords[ctr][0]); 
+          string plantName = trim(vectorOfWords[ctr][1]);
+          int plantAge = stoi(vectorOfWords[ctr][2]);
           garden.setItem(garden.positionCodetoRow(plantLoc), garden.positionCodetoCol(plantLoc), plantConstructor(plantName, plantAge));
-          *ctr++;
+          ctr++;
         }
-        petani.setGarden(garden);
-        players.push_back(petani);
+        PlantFarmer* p = dynamic_cast<PlantFarmer*>(petani);
+        p->setGarden(garden);
+        players.push_back(p);
+
       } else if (type == "Peternak"){
-        AnimalFarmer peternak(username, wealth, weight);
-        peternak.setInventory(inventory);
+        Player* peternak = new AnimalFarmer(username, wealth, weight);
+        peternak->setInventory(inventory);
 
         Storage<Animal*> barn;
-        int numOfAnimals = stoi(vectorOfWords[*ctr][0]);
-        *ctr++;
+        barn.setRowCols(m.getBarnRow(),m.getBarnCols());
+        int numOfAnimals = stoi(vectorOfWords[ctr][0]);
+        ctr++;
         for(int k = 0; k < numOfAnimals; k++){
-          string animalLoc = vectorOfWords[*ctr][0]; 
-          string animalName = vectorOfWords[*ctr][1];
-          int animalWeight = stoi(vectorOfWords[*ctr][2]);
+          string animalLoc = trim(vectorOfWords[ctr][0]); 
+          string animalName = trim(vectorOfWords[ctr][1]);
+          int animalWeight = stoi(vectorOfWords[ctr][2]);
           barn.setItem(barn.positionCodetoRow(animalLoc), barn.positionCodetoCol(animalLoc), animalConstructor(animalName, animalWeight));
-          *ctr++;
+          ctr++;
         }
-        peternak.setBarn(barn);
-        players.push_back(peternak);
+        AnimalFarmer* p = dynamic_cast<AnimalFarmer*>(peternak);
+        p->setBarn(barn);
+        players.push_back(p);
+
       } else if (type == "Walikota"){
-        Mayor walikota(username, wealth, weight);
-        walikota.setInventory(inventory);
+        Player* walikota = new Mayor(username, wealth, weight);
+        walikota->setInventory(inventory);
         players.push_back(walikota);
       } else {
         throw LoaderException();
       }
     }
+
+    stateOfShop(statepath,ctr);
   } 
   catch (FileException &FE)
   {
@@ -648,17 +671,16 @@ vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
   return players;
 }
 
-Shop Loader::stateOfShop(string statepath, int ctr){
+void Loader::stateOfShop(string statepath, int ctr){
   vector<vector<string>> vectorOfWords;
   vector<tuple<Building*, int>> building;
   vector<tuple<Product*, int>> product;
-
   try {
-    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
+    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath + ".txt");
 
     int numOfShopItems = stoi(vectorOfWords[ctr][0]); ctr++;
     for(int i = 0; i < numOfShopItems; i++){
-        string itemName = vectorOfWords[ctr][0];
+        string itemName = trim(vectorOfWords[ctr][0]);
         int itemQty = stoi(vectorOfWords[ctr][1]);
         ctr++;
         if(isBuilding(itemName)){
@@ -668,11 +690,10 @@ Shop Loader::stateOfShop(string statepath, int ctr){
           product.push_back(make_tuple(productConstructor(itemName), itemQty));
         }
     }
-    return Shop(building, product);
+    Shop(building, product);
   } catch (FileException &FE){
       cout << FE.what();
   }
-  return Shop();
 }
 
 bool Loader::isBuilding(string s){

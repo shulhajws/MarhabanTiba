@@ -40,8 +40,23 @@ void Storage<T>::setItemRandom(T content){
 }
 
 template<class T>
-void Storage<T>::operator+(T content){
-
+Storage<T>& Storage<T>::operator+(T& content){
+    bool done = false;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (storageContent[i][j] == nullptr) {
+                if(!done){
+                    storageContent[i][j] = content;
+                }
+                done = true;
+                break;
+            }
+            if(done){
+                break;
+            }
+        }
+    }
+    return *this;
 }
 
 template<class T>

@@ -26,7 +26,7 @@ class FileException : public Exception
 
         string what() override {
             cout << "File path: " << getFileException();
-            return "\033[1;31mFile name is not valid\n \033[0m";
+            return "\033[1;31m\nFile name is not valid\n \033[0m";
         }
 };
 

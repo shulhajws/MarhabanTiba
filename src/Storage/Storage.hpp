@@ -25,7 +25,7 @@ class Storage {
         ~Storage();
         void setItem(int row, int col, T content);
         void setItemRandom(T content);
-        void operator+(T content);
+        Storage<T>& operator+(T& content);
         void setRowCols(int row, int cols);
         int getRow() const;
         int getCol() const;
