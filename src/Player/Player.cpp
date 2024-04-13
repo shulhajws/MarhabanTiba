@@ -136,6 +136,7 @@ void Player::buyItem(){
     cout<<"Available storage slots: "<<inventory.getAvailableSlots()<<endl;
     
     int buy,capacity;
+    Item* tempItembuy = nullptr;
 
     while (true){
         try{
@@ -162,7 +163,9 @@ void Player::buyItem(){
             if(s.getItem(buy)->getPrice()*capacity>wealth){
                 throw NotEnoughMoneyException();
             }
-            if(capacity<1|| capacity>s.getCapacity(*(s.getItem(buy)))){
+            if(capacity<1|| capacity>(s.getCapacity(*(s.getItem(buy))))+1){
+                cout << s.getCapacity(*(s.getItem(buy)))<<endl;
+                cout << "CAPACITY"<<capacity<<endl;
                 throw InputException();
             }
             if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
@@ -208,6 +211,8 @@ void Player::buyItem(){
                         success +=1;
                     }
                     if(success==capacity){
+                        tempItembuy = s.getItem(buy);
+                        cout<< s.getItem(buy)->getType()<<endl;
                         s.minItems(*s.getItem(buy),capacity);
                     }
                     break;
@@ -219,7 +224,7 @@ void Player::buyItem(){
             }
             if(success == capacity){
                 inventory.printStorage("Storage",0);
-                cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<s.getItem(buy)->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
+                cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<tempItembuy->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
             }
             break;
         } catch (ItemNotFoundException e){
@@ -267,11 +272,11 @@ void Player::sellItem(){
                     inventory.isItemValid(row,col);
                     if(inventory.isSlotEmpty(row,col)){
                         throw InvalidSlotException();
-                    }if(s.isBuilding(*inventory.getItemInfo(row,col)) && type!="Walikota"){
+                    }if(type!="Walikota" && s.isBuilding(*inventory.getItemInfo(row,col))){
+                        cout<< "\nYou cannot sell building as a farmer !"<<endl;
                         throw SellException();
                     }
                 }
-
                 int money = 0;
                 for (int i=0;i<slots.size();i++){
                     row = inventory.positionCodetoRow(slots[i]);

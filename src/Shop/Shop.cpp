@@ -136,7 +136,7 @@ void Shop::addProduct(Product b){
 void Shop::minBuilding(Building b, int num) {
     for (auto it = itemsBuilding.begin(); it != itemsBuilding.end(); ++it) {
         if (get<0>(*it)->getCode() == b.getCode()) {
-            get<1>(*it) -= num;  
+            get<1>(*it) -= num; 
             if (get<1>(*it)<= 0) {
                 it = itemsBuilding.erase(it); 
             }
@@ -161,7 +161,7 @@ void Shop::minItems(Item& item, int num){
     if(item.getType()=="CARNIVORE" ||item.getType()=="OMNIVORE" || item.getType()=="HERBIVORE" || 
     item.getType()=="MATERIAL_PLANT" || item.getType()=="FRUIT_PLANT"){
     }
-    else if(item.getType()=="SMALL_HOUSE" || item.getType()=="MEDIUM_HOUSE" || 
+    else if(item.getType() =="BUILDING"|| item.getType()=="SMALL_HOUSE" || item.getType()=="MEDIUM_HOUSE" || 
     item.getType()=="LARGE_HOUSE" || item.getType()=="HOTEL"){
         Building* building = dynamic_cast<Building*>(&item);
         minBuilding(*building,num);
@@ -202,11 +202,14 @@ int Shop::getCapacity(Item& item) {
 }
 
 bool Shop::isBuilding(Item& item){
-    if (item.getType() == "SMALL_HOUSE" || item.getType() == "MEDIUM_HOUSE" || 
-        item.getType() == "LARGE_HOUSE" || item.getType() == "HOTEL") {
+    cout << "masuk name "<<item.getName()<<"masuk type"<<item.getType()<<endl;
+    if (item.getName() == "SMALL_HOUSE" || item.getName() == "MEDIUM_HOUSE" || item.getName()=="LARGE_HOUSE" || 
+    item.getName()=="HOTEL"|| item.getType()=="BUILDING" || item.getType() == "SMALL_HOUSE" || item.getType() == "MEDIUM_HOUSE" || 
+    item.getType() == "LARGE_HOUSE" || item.getType() == "HOTEL") {
         return true;
+    }else{
+        return false;
     }
-    return false;
 }
 Shop& Shop::operator+(Item& item) {
     if(item.getType()=="CARNIVORE" ||item.getType()=="OMNIVORE" || 
