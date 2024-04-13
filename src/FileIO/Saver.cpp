@@ -11,7 +11,7 @@ string Saver::getTestsPath()
 void Saver::saveGameState(string filepath, const vector<Player*>& players, const Shop& shop){
     try
     {
-        string statepath = getTestsPath() + "/" + filepath;
+        string statepath = getTestsPath() + "/" + filepath +".txt";
         ofstream oState(statepath);
 
         if (!oState)

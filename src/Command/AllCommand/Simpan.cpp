@@ -2,7 +2,7 @@
 
 void Simpan::useCommand(){
     string filepath;
-    cout << "Berkas state game akan disimpan pada folder 'state'. Masukkan nama file berkas state game: ";
+    cout<< "Game state file will be saved in the 'state' folder. Please enter the filename for the game state file: ";
     cin >> filepath;
 
     Saver save;

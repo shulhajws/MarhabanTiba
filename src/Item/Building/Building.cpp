@@ -27,6 +27,14 @@ int Building::getMoney(string s){
     return 0;
 }
 
+Building* Building::getBuilding(string s){
+    for (const auto house : houses) {
+        if(house->getName()==s){
+            return house;
+        }
+    }
+    return 0;
+}
 
 map<string, int> Building::getmaterial(string b){
     map<string, int> Building;

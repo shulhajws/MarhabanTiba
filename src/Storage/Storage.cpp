@@ -204,7 +204,6 @@ void Storage<T>::printStorage(string name, int color){ // 1: print w/color 2: pr
         }
 
         cout << "|" << endl;
-        cout << endl;
     }
 
     cout << "     "; // 5 space in the beginning
@@ -226,17 +225,25 @@ void Storage<T>::printLegends(){
 }
 
 template<class T>
-bool Storage<T>::operator==(const T& other) const{
-    return true;
-}
-
-template<class T>
 int Storage<T>::getAvailableSlots(){
     int num = 0;
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             if (storageContent[i][j] == nullptr) {
                 num+=1; 
+            }
+        }
+    }
+    return num;
+}
+
+template<class T>
+int Storage<T>::getTotalAssets(){
+    int num = 0;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if(storageContent[i][j]!=nullptr){
+                num+=storageContent[i][j]->getPrice();
             }
         }
     }

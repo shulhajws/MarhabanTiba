@@ -156,7 +156,7 @@ bool Game::inputCommand(){
     string command;
     while (true){
         if (isCurrentPlayerMayor()) {
-            cout << "Hoy, Mayor! Here are your available commands : " << endl;
+            cout << "\nHoy, Mayor! Here are your available commands : " << endl;
             cout << "1. NEXT" << endl;
             cout << "2. CETAK_PENYIMPANAN" << endl;
             cout << "3. PUNGUT_PAJAK" << endl;
@@ -167,7 +167,7 @@ bool Game::inputCommand(){
             cout << "8. JUAL" << endl;
             cout << "9. SIMPAN" << endl;
         } else if (isCurrentPlayerAnimalFarmer()) {
-            cout << "Hoy, Animal Farmer! Here are your available commands : " << endl;
+            cout << "\nHoy, Animal Farmer! Here are your available commands : " << endl;
             cout << "1. NEXT" << endl;
             cout << "2. CETAK_PENYIMPANAN" << endl;
             cout << "3. CETAK_PETERNAKAN" << endl;
@@ -179,7 +179,7 @@ bool Game::inputCommand(){
             cout << "9. JUAL" << endl;
             cout << "10. SIMPAN" << endl;
         } else if (isCurrentPlayerPlantFarmer()) {
-            cout << "Hoy, Plant Farmer! Here are your available commands : " << endl;
+            cout << "\nHoy, Plant Farmer! Here are your available commands : " << endl;
             cout << "1. NEXT" << endl;
             cout << "2. CETAK_PENYIMPANAN" << endl;
             cout << "3. CETAK_LADANG" << endl;

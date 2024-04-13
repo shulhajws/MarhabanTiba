@@ -12,6 +12,7 @@ class PlantFarmer : public Player{
     public:
         PlantFarmer();
         PlantFarmer(string username, int wealth, int weight);
+        int getPlayerAssets();
         int getKTKP();
         void addPlantYear();
         void setGarden(Storage<Plant*>);

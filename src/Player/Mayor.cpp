@@ -32,6 +32,8 @@ void Mayor::buildBuilding(){
             map<string, int> material = b.getmaterial(build);
             if(checkMaterialCapacity(material)&&wealth>=b.getMoney(build)){
                 minPlayerWealth(b.getMoney(build));
+                Item* building = b.getBuilding(build);
+                inventory = inventory + building;
                 cout<<build<<" successfully built and now belongs to the mayor!"<<endl;
             }
             else{

@@ -8,7 +8,7 @@ void PungutPajak::useCommand(){
     for (auto &p : players){
         if (p->getType()!="Walikota"){
             i++;
-            Tax t(p->getKTKP(),p->getPlayerWealth(),0); // harta masih 0 sementara
+            Tax t(p->getKTKP(),p->getPlayerWealth(),p->getPlayerAssets()); 
             cout<<i<<". "<<p->getName()<<" - "<<p->getType()<<" : "<<t.getTax()<<" gulden."<<endl;
             total+= t.getTax();
             t.payTax(*p,*players[currPlayer]);

@@ -35,7 +35,6 @@ class Storage {
         bool isSlotEmpty(int row, int col) const;
         void printStorage(string name, int color);
         void printLegends();
-        bool operator==(const T& other) const;
         int positionCodetoRow(string position);
         int positionCodetoCol(string position);
         string rowtoPositionCode(int row);
@@ -43,6 +42,7 @@ class Storage {
         int getAvailableSlots();
         int countItems(string item);
         int countItemsHarvested(string item);
+        int getTotalAssets();
         bool isReadytoHarvest();
         void deleteItemCount (string item,int count);
         vector<string> printHarvestedItem();

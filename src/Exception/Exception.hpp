@@ -115,6 +115,20 @@ public:
     }
 };
 
+class BuyException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mUnable to buy this Item, Please buy another item.\n \033[0m";
+    }
+};
+
+class SellException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mUnable to sell this Item, Please sell another item.\n \033[0m";
+    }
+};
+
 // nanti tambah exception disini
 
 #endif

@@ -35,6 +35,10 @@ void PlantFarmer::displayInfo() const {
     Player::displayInfo();
 }
 
+int PlantFarmer::getPlayerAssets(){
+    return inventory.getTotalAssets() + Garden.getTotalAssets();
+}
+
 void PlantFarmer::plantCrop() {
     try {
         if (inventory.isEmpty()) {
@@ -150,6 +154,7 @@ void PlantFarmer::harvestCrop() {
         }
 
         vector<string> selectedPlots;
+    
         cout<<"Select the plots you want to harvest:\n";
         for(int i=0;i<capacity;i++){
             while(true){
@@ -174,6 +179,13 @@ void PlantFarmer::harvestCrop() {
             }
         }
 
+        Product p;
+        vector<Product*> Prod = p.getProduct(garden[num-1]);
+        for (auto pro : Prod){
+            Item* produk = pro;
+            inventory = inventory + produk;
+        }
+        
         cout<<"\n";
         cout<<capacity<<" plots of "<< garden[num-1] << " plants in plots ";
         for(int i=0;i<selectedPlots.size()-1;i++){

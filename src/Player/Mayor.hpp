@@ -5,6 +5,7 @@
 #include <vector>
 #include "Player.hpp"
 #include "../Item/Building/Building.hpp"
+#include "../Storage/Storage.hpp"
 
 using namespace std;
 

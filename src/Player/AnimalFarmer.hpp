@@ -14,7 +14,7 @@ class AnimalFarmer : public Player{
         
         int getKTKP() override;
         void setBarn(Storage<Animal*>);
-
+        int getPlayerAssets();
         void displayInfo() const override;
         void placeAnimal();
         void feedAnimal();

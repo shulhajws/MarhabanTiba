@@ -18,6 +18,7 @@ class Building : public Item {
         Building(int id, string code, string name, string type, int price);
         ~Building();
         int getMoney(string s);
+        Building* getBuilding (string s);
         virtual void printMaterial();
         virtual map<string, int> getmaterial(string b);
 };

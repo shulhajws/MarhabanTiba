@@ -34,6 +34,7 @@ public:
     int getCapacity (Item& item);
     Item* getItem(int i);
     void printShop();
+    bool isBuilding(Item& item);
 };
 
 #endif // SHOP_HPP

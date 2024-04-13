@@ -201,6 +201,13 @@ int Shop::getCapacity(Item& item) {
     return 0;  
 }
 
+bool Shop::isBuilding(Item& item){
+    if (item.getType() == "SMALL_HOUSE" || item.getType() == "MEDIUM_HOUSE" || 
+        item.getType() == "LARGE_HOUSE" || item.getType() == "HOTEL") {
+        return true;
+    }
+    return false;
+}
 Shop& Shop::operator+(Item& item) {
     if(item.getType()=="CARNIVORE" ||item.getType()=="OMNIVORE" || 
     item.getType()=="HERBIVORE" || item.getType()=="MATERIAL_PLANT" || 

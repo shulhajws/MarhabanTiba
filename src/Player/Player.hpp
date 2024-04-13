@@ -34,6 +34,7 @@ class Player{
         string getName() const;
         int getPlayerWealth() const;
         int getPlayerWeight() const;
+        virtual int getPlayerAssets();
         bool inventoryEmpty() const;
         string getType() const;
         virtual int getKTKP();
@@ -44,11 +45,11 @@ class Player{
         void eat();
         void buyItem();
         void sellItem();
+        bool hasDuplicates(const vector<string>& slots);
         vector<string> splitbyComa(const string& input);
         bool operator==(string command) const;
         int itemInInventories() const;
         vector<Item*> getListOfItems() const;
-
         virtual void displayInfo() const;
         
 };

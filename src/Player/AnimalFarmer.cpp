@@ -38,6 +38,10 @@ void AnimalFarmer::displayInfo() const {
     Player::displayInfo();
 }
 
+int AnimalFarmer::getPlayerAssets(){
+    return inventory.getTotalAssets() + Barn.getTotalAssets();
+}
+
 void AnimalFarmer::placeAnimal() {
     Misc m;
     try {
@@ -217,6 +221,13 @@ void AnimalFarmer::harvestAnimal() {
             }
         }
         
+        Product p;
+        vector<Product*> Prod = p.getProduct(barn[num-1]);
+        for (auto pro : Prod){
+            Item* produk = pro;
+            inventory = inventory + produk;
+        }
+
         cout<<"\n";
         cout<<capacity<<" plots of "<< barn[num-1] << " animal in plots ";
         for(int i=0;i<selectedPlots.size()-1;i++){

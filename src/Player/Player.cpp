@@ -4,6 +4,7 @@
 #include "../Command/AllCommand/Makan.hpp"
 #include "../Command/AllCommand/Beli.hpp"
 #include "../Command/AllCommand/Jual.hpp"
+#include "../Command/AllCommand/Simpan.hpp"
 #include <iostream>
 using namespace std;
 
@@ -13,6 +14,7 @@ Player::Player(){
     this->commandList.push_back(new Makan());
     this->commandList.push_back(new Jual());
     this->commandList.push_back(new Beli());
+    this->commandList.push_back(new Simpan());
     Misc m;
     this->inventory.setRowCols(m.getStorageRow(),m.getStorageCols());
 }
@@ -60,6 +62,10 @@ int Player::getKTKP(){
     return 0;
 }
 
+int Player::getPlayerAssets(){
+    return inventory.getTotalAssets();
+}
+
 void Player::setInventory(Storage<Item*> inventory){
     this->inventory = inventory;
 }
@@ -102,7 +108,7 @@ void Player::eat() {
             int row = inventory.positionCodetoRow(slot);
             int col = inventory.positionCodetoCol(slot);
 
-            Item* storedItem = inventory.getItemInfo(row, col);
+            Item* storedItem = inventory.getItem(row, col);
             if ((storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL")) {
                 Product* productPtr = dynamic_cast<Product*>(storedItem);
                 int addedWeight = productPtr->getAddedWeight();
@@ -159,6 +165,9 @@ void Player::buyItem(){
             if(capacity<1|| capacity>s.getCapacity(*(s.getItem(buy)))){
                 throw InputException();
             }
+            if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
+                throw BuyException();
+            }
 
             inventory.printStorage("Storage",0);
 
@@ -173,6 +182,9 @@ void Player::buyItem(){
                     vector<string> slots;
                     if(capacity>1){
                         slots = splitbyComa(slot);
+                        if(hasDuplicates(slots)){
+                            throw InputException();
+                        }
                     }
                     else{
                         slots.push_back(slot);
@@ -220,6 +232,8 @@ void Player::buyItem(){
             cout << e.what();
         } catch (NotEnoughMoneyException e){
             cout << e.what();
+        } catch (BuyException e){
+            cout << e.what();
         }
     } 
     
@@ -243,6 +257,9 @@ void Player::sellItem(){
                 vector<string> slots;
 
                 slots = splitbyComa(slot);
+                if(hasDuplicates(slots)){
+                    throw InvalidSlotException();
+                }
                 int row,col;
                 for (int i=0;i<slots.size();i++){
                     row = inventory.positionCodetoRow(slots[i]);
@@ -250,6 +267,8 @@ void Player::sellItem(){
                     inventory.isItemValid(row,col);
                     if(inventory.isSlotEmpty(row,col)){
                         throw InvalidSlotException();
+                    }if(s.isBuilding(*inventory.getItemInfo(row,col)) && type!="Walikota"){
+                        throw SellException();
                     }
                 }
 
@@ -270,10 +289,23 @@ void Player::sellItem(){
                 cout << e.what();
             } catch(ItemNotFoundException e){
                 cout << e.what();
+            } catch(SellException e){
+                cout << e.what();
             }
         
         }
     }
+}
+
+bool Player::hasDuplicates(const vector<string>& slots) {
+    for (int i = 0; i < slots.size(); ++i) {
+        for (int j = i + 1; j < slots.size(); ++j) {
+            if (slots[i] == slots[j]) {
+                return true;  
+            }
+        }
+    }
+    return false;  
 }
 
 vector<string> Player::splitbyComa(const string& input) { // bentar masih ngebug ntar dilanjut
