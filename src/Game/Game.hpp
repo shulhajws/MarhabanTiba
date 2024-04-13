@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "../Exception/Exception.hpp"
+#include "../Exception/FileException.hpp"
 #include "../Player/Player.hpp"
 #include "../Player/Mayor.hpp"
 #include "../Player/AnimalFarmer.hpp"

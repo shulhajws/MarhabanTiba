@@ -576,7 +576,7 @@ vector<Player> Loader::stateOfPlayer(string statepath, int* ctr){
   // string stateFilename = this->testsPath + "/" + statepath;
   // cout<<stateFilename;
   try {
-    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath + ".txt");
+    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath);
     *ctr = 0;
     int numOfPlayers = stoi(vectorOfWords[0][0]);
     *ctr++;
