@@ -119,11 +119,11 @@ void AnimalFarmer::placeAnimal() {
 }
 
 void AnimalFarmer::feedAnimal() {
-       try {
+    try {
         if (inventory.isEmpty()||Barn.isEmpty()) {
             throw NoItemInStorageException();
         }
-        while (true){
+        while (true) {
             cout << "\nSelect a plot of land to live\n\n";
             Barn.printStorage("Barn",1); 
             // Memproses lokasi petak tanah yang dipilih
@@ -160,9 +160,11 @@ void AnimalFarmer::feedAnimal() {
             break;
         
         }
-       } catch(InputException e){
-            cout<<e.what();
-        }
+    } catch (NoItemInStorageException& e){
+        cout<<e.what();
+    } catch (InputException e) {
+        cout << e.what();
+    }
 
 }
 
