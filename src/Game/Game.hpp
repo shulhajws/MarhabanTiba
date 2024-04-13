@@ -24,6 +24,9 @@ class Game{
         void askInput();
         void initiation();
         void inputPlayer();
+        bool isCurrentPlayerMayor();
+        bool isCurrentPlayerPlantFarmer();
+        bool isCurrentPlayerAnimalFarmer();
         bool inputCommand();
         string inputName();
         void sortPlayer();

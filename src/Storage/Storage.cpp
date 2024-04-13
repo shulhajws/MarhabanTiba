@@ -204,6 +204,7 @@ void Storage<T>::printStorage(string name, int color){ // 1: print w/color 2: pr
         }
 
         cout << "|" << endl;
+        cout << endl;
     }
 
     cout << "     "; // 5 space in the beginning

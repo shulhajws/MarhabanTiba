@@ -125,9 +125,72 @@ string Game::inputName(){
     }
 }
 
+bool Game::isCurrentPlayerMayor() {
+    Mayor* mayorPlayer = dynamic_cast<Mayor*>(players[currPlayer]);
+    if (mayorPlayer) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Game::isCurrentPlayerPlantFarmer() {
+    PlantFarmer* plantFarmerPlayer = dynamic_cast<PlantFarmer*>(players[currPlayer]);
+    if (plantFarmerPlayer) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Game::isCurrentPlayerAnimalFarmer() {
+    AnimalFarmer* animalFarmerPlayer = dynamic_cast<AnimalFarmer*>(players[currPlayer]);
+    if (animalFarmerPlayer) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 bool Game::inputCommand(){
     string command;
     while (true){
+        if (isCurrentPlayerMayor()) {
+            cout << "Available commands : " << endl;
+            cout << "1. NEXT" << endl;
+            cout << "2. CETAK_PENYIMPANAN" << endl;
+            cout << "3. PUNGUT_PAJAK" << endl;
+            cout << "4. BANGUN" << endl;
+            cout << "5. TAMBAH_PEMAIN" << endl;
+            cout << "6. MAKAN" << endl;
+            cout << "7. BELI" << endl;
+            cout << "8. JUAL" << endl;
+            cout << "9. SIMPAN" << endl;
+        } else if (isCurrentPlayerAnimalFarmer()) {
+            cout << "Available commands : " << endl;
+            cout << "1. NEXT" << endl;
+            cout << "2. CETAK_PENYIMPANAN" << endl;
+            cout << "3. CETAK_PETERNAKAN" << endl;
+            cout << "4. TERNAK" << endl;
+            cout << "5. KASIH_MAKAN" << endl;
+            cout << "6. PANEN" << endl;
+            cout << "7. MAKAN" << endl;
+            cout << "8. BELI" << endl;
+            cout << "9. JUAL" << endl;
+            cout << "10. SIMPAN" << endl;
+        } else if (isCurrentPlayerPlantFarmer()) {
+            cout << "Available commands : " << endl;
+            cout << "1. NEXT" << endl;
+            cout << "2. CETAK_PENYIMPANAN" << endl;
+            cout << "3. CETAK_LADANG" << endl;
+            cout << "4. TANAM" << endl;
+            cout << "5. PANEN" << endl;
+            cout << "6. MAKAN" << endl;
+            cout << "7. BELI" << endl;
+            cout << "8. JUAL" << endl;
+            cout << "9. SIMPAN" << endl;
+        }
+        
         cout << "\nEnter command > ";
         cout << "\033[1;92m";
         cin >> command;
