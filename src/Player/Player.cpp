@@ -148,7 +148,6 @@ void Player::eat() {
         cout << e.what();
     }
 }
-
 void Player::buyItem(){
     Shop s;
     s.printShop();

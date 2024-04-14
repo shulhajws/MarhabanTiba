@@ -476,7 +476,6 @@ bool Storage<T>::noPlantInStorage() const {
         for (int j = 0; j < col; ++j) {
             if (!isSlotEmpty(i, j)) {
                 if (dynamic_cast<Plant*>(storageContent[i][j]) != nullptr) {
-                    cout << "false, Ada tanaman di penyimpanan" << endl;
                     return false; 
                 }
             }
@@ -491,8 +490,6 @@ bool Storage<T>::noFoodInStorage() const {
         for (int j = 0; j < col; ++j) {
             if (!isSlotEmpty(i, j)) {
                 if(storageContent[i][j]->getType() == "PRODUCT_FRUIT_PLANT" || storageContent[i][j]->getType() == "PRODUCT_ANIMAL"){
-                    cout << storageContent[i][j]->getType() << endl;
-                    cout << "false, Ada makanan di penyimpanan" << endl;
                     return false;
                     break; 
                 } else{
