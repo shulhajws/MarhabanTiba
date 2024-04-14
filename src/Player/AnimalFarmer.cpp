@@ -55,7 +55,6 @@ void AnimalFarmer::placeAnimal() {
 
         if (inventory.noAnimalInStorage()){
             throw NoAnimalInStorageException();
-            // return;
         }else{
             cout<< "Select a animal from the storage\n";
             inventory.printStorage("Storage",0);
@@ -87,9 +86,9 @@ void AnimalFarmer::placeAnimal() {
                 break;
             } catch (ItemNotFoundException e){
                 cout << e.what();
-            }catch (InputException e){
+            } catch (InputException e){
                 cout << e.what();
-            }catch (InvalidSlotException e){
+            } catch (InvalidSlotException e){
                 cout<< e.what();
             }
         }
@@ -114,8 +113,6 @@ void AnimalFarmer::placeAnimal() {
                 cout<< "\nThere was a farmer who had a "<< selectedAnimalType->getName()<<", Ee-i-ee-i-o"<<endl;
                 cout<< "This "<<selectedAnimalType->getName() << " has now become yours!\n";
                 break;
-            } catch (InvalidPlantException e){
-                cout<< e.what()<<endl;
             } catch (ItemNotFoundException e) {
                 cout<< e.what()<<endl;
             } catch (InvalidSlotException e){
@@ -137,8 +134,11 @@ void AnimalFarmer::placeAnimal() {
 
 void AnimalFarmer::feedAnimal() {
     try {
-        if (inventory.isEmpty()||Barn.isEmpty()) {
+        if (inventory.isEmpty()) {
             throw NoItemInStorageException();
+        }
+        if (Barn.isEmpty()) {
+            throw BarnEmptyException();
         }
         while (true) {
             cout<< "\nSelect a plot of land to live\n\n";

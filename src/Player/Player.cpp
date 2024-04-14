@@ -185,7 +185,7 @@ void Player::buyItem(){
                 throw InputException();
             }
             if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
-                throw BuyException();
+                throw MayorBuyException();
             }
 
             inventory.printStorage("Storage",0);
@@ -244,7 +244,7 @@ void Player::buyItem(){
             }
             if(success == capacity){
                 inventory.printStorage("Storage",0);
-                cout<<"\n Congratulations! You have successfully purchased "<<capacity<<" "<<tempItembuy->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
+                cout<<"Congratulations! You have successfully purchased "<<capacity<<" "<<tempItembuy->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
             }
             break;
         } catch (ItemNotFoundException e){
@@ -257,7 +257,7 @@ void Player::buyItem(){
             cout << e.what();
         } catch (NotEnoughMoneyException e){
             cout << e.what();
-        } catch (BuyException e){
+        } catch (MayorBuyException e){
             cout << e.what();
         }
     } 

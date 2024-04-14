@@ -103,11 +103,9 @@ void PlantFarmer::plantCrop() {
                 cout << "\nDig, dig, dig deep into the soil~!\n";
                 cout << selectedPlantType->getName() << " successfully planted!\n";
                 break;
-            } catch (InvalidPlantException e){
-                cout << e.what();
             } catch (ItemNotFoundException e) {
                 cout << e.what();
-            } catch(InvalidSlotException e){
+            } catch (InvalidSlotException e){
                 cout << e.what();
             }
         }
