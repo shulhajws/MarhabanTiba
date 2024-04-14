@@ -143,12 +143,12 @@ void AnimalFarmer::feedAnimal() {
         while (true) {
             cout<< "\nSelect a plot of land to live\n\n";
             Barn.printStorage("Barn",1); 
-             int rowBarn, colBarn;
+            int rowBarn, colBarn;
+            string landSlot;
             // Memproses lokasi petak tanah yang dipilih
             while(true){
                 try{
                     cout<< "\nLand plot: ";
-                    string landSlot;
                     cin >> landSlot;
 
                     rowBarn = Barn.positionCodetoRow(landSlot);
@@ -172,7 +172,7 @@ void AnimalFarmer::feedAnimal() {
 
             
             }
-            Animal* it = Barn.getItemInfo(rowBarn, colBarn);
+            Animal* it = Barn.getItemInfo(landSlot);
 
             cout<<"You choose to feed the "<< it->getName()<<endl;
             cout<<"Choose the food to be given:"<<endl;
@@ -193,7 +193,7 @@ void AnimalFarmer::feedAnimal() {
                 throw InputException();
             }
 
-            Item* food = inventory.getItemInfo(row,col);
+            Item* food = inventory.getItemInfo(slot);
             if(food->getType()=="PRODUCT_ANIMAL"||food->getType()=="PRODUCT_FRUIT_PLANT"){
                 food = inventory.getItem(row,col);
                 Product* prod = dynamic_cast<Product*>(food);
@@ -254,7 +254,7 @@ void AnimalFarmer::harvestAnimal() {
                     int rowField = Barn.positionCodetoRow(landSlot);
                     int colField = Barn.positionCodetoCol(landSlot);
 
-                    if(!Barn.getItemInfo(rowField,colField)->isReadyToHarvest() || Barn.isSlotEmpty(rowField,colField)){
+                    if(!Barn.getItemInfo(landSlot)->isReadyToHarvest() || Barn.isSlotEmpty(rowField,colField)){
                         throw InvalidSlotException();
                     }
 

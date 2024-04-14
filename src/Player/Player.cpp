@@ -121,7 +121,7 @@ void Player::eat() {
                     throw InputException();
                 }
 
-                Item* storedItem = inventory.getItemInfo(row, col);
+                Item* storedItem = inventory.getItemInfo(slot);
                 if ((storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL")) {
                     storedItem = inventory.getItem(row, col);
                     Product* productPtr = dynamic_cast<Product*>(storedItem);
@@ -291,7 +291,7 @@ void Player::sellItem(){
                     inventory.isItemValid(row,col);
                     if(inventory.isSlotEmpty(row,col)){
                         throw InvalidSlotException();
-                    }if(type!="Walikota" && s.isBuilding(*inventory.getItemInfo(row,col))){
+                    }if(type!="Walikota" && s.isBuilding(*inventory.getItemInfo(slots[i]))){
                         cout<< "\nYou cannot sell building as a farmer !"<<endl;
                         throw SellException();
                     }

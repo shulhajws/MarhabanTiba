@@ -122,11 +122,23 @@ void PlantFarmer::plantCrop() {
     }
 }
 
+// void PlantFarmer::addPlantYear(){
+//     for (int i = 0; i < Garden.getRow(); i++) {
+//         for (int j = 0; j < Garden.getCol(); j++) {
+//             if (Garden.getItemInfo(i,j) != nullptr) {
+//                  Garden.getItemInfo(i,j)->addAge();
+//             }
+//         }
+//     }
+// }
+
 void PlantFarmer::addPlantYear(){
     for (int i = 0; i < Garden.getRow(); i++) {
         for (int j = 0; j < Garden.getCol(); j++) {
-            if (Garden.getItemInfo(i,j) != nullptr) {
-                 Garden.getItemInfo(i,j)->addAge();
+            if (Garden.getItem(i,j) != nullptr) {
+                Plant* x = Garden.getItem(i,j);
+                x->addAge();
+                Garden.setItem(i, j, x);
             }
         }
     }
@@ -172,7 +184,7 @@ void PlantFarmer::harvestCrop() {
                     int rowField = Garden.positionCodetoRow(landSlot);
                     int colField = Garden.positionCodetoCol(landSlot);
 
-                    if(!Garden.getItemInfo(rowField,colField)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField)){
+                    if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField)){
                         throw InvalidSlotException();
                     }
 

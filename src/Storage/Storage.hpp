@@ -15,7 +15,6 @@ using namespace std;
 template<class T>
 class Storage {
     private :
-        //player storageOwner;
         int row;
         int col;
         vector<vector<T> > storageContent;
@@ -29,8 +28,9 @@ class Storage {
         void setRowCols(int row, int cols);
         int getRow() const;
         int getCol() const;
-        T getItemInfo(int row, int col);
+        T getItemInfo(string position);
         T getItem(int row, int col);
+        T getItemString(string position);
         bool isItemValid(int row, int col);
         bool isSlotEmpty(int row, int col) const;
         void printStorage(string name, int color);

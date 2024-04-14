@@ -18,6 +18,8 @@ Storage<T>::Storage(){
     vector<T> v(col);
     vector<vector<T> > storageContent(row, v);
     this->storageContent = storageContent;
+    map<string, T> store;
+    this->store = store;
 }
 
 template<class T>
@@ -28,15 +30,19 @@ void Storage<T>::setItem(int row, int col, T content){
     if (row >= this->row || col >= this->col || row < 0 || col < 0 || !isSlotEmpty(row,col)) {
         throw InvalidSlotException();
     } else {
+        string position = coltoPositionCode(col) + rowtoPositionCode(row);
         storageContent[row][col] = content;
+        store[position] = storageContent[row][col];
     }
 }
 
 template<class T>
 void Storage<T>::setItemRandom(T content){
-    int rowPosition = 0 + (rand() % row);
-    int colPosition = 0 + (rand() % col);
+    int rowPosition = 0 + (rand() % (row - 1));
+    int colPosition = 0 + (rand() % (col - 1));
+    string position = coltoPositionCode(colPosition) + rowtoPositionCode(rowPosition);
     storageContent[rowPosition][colPosition] = content;
+    store[position] = storageContent[rowPosition][colPosition];
 }
 
 template<class T>
@@ -46,14 +52,16 @@ Storage<T>& Storage<T>::operator+(T& content){
         for (int j = 0; j < col; j++) {
             if (storageContent[i][j] == nullptr) {
                 if(!done){
+                    string position = coltoPositionCode(j) + rowtoPositionCode(i);
                     storageContent[i][j] = content;
+                    store[position] = storageContent[i][j];
                 }
                 done = true;
                 break;
             }
-            if(done){
-                break;
-            }
+        }
+        if(done){
+            break;
         }
     }
     return *this;
@@ -80,8 +88,8 @@ int Storage<T>::getCol() const {
 }
 
 template<class T>
-T Storage<T>::getItemInfo(int row, int col){
-    return storageContent[row][col];
+T Storage<T>::getItemInfo(string position){
+    return store[position];
 }
 
 template<class T>
@@ -117,6 +125,22 @@ T Storage<T>::getItem(int row, int col){
         throw ItemNotFoundException();
     }
     return nullptr;
+}
+
+template<class T>
+T Storage<T>::getItemString(string position){
+    int rowPosition = positionCodetoRow(position);
+    int colPosition = positionCodetoCol(position);
+    if(isItemValid(rowPosition ,colPosition)&&storageContent[rowPosition][colPosition]!=NULL){
+        T deletedValue = storageContent[rowPosition][colPosition];
+        storageContent[row][col] = nullptr;
+        store.erase(position); 
+        return deletedValue;
+    }
+    else{
+        throw ItemNotFoundException();
+    }
+
 }
 
 template<class T>
@@ -213,6 +237,7 @@ void Storage<T>::printStorage(string name, int color){ // 1: print w/color 2: pr
         cout << "+-----";
     }
     cout << "+" << endl;
+    cout << endl;
 }
 
 template<class T>
@@ -500,3 +525,17 @@ bool Storage<T>::noFoodInStorage() const {
     }
     return true; 
 }
+
+// int main() {
+//     Animal cow("COW", "Cow", "Animal", 50,  100); 
+//     Storage<Animal*> s;
+
+//     s + &cow;
+//     s.printStorage("Peternakan", 0);
+//     cout << s.getItemInfo("A01")->getCode() << endl;
+
+//     Animal* x = s.getItem(0, 0);
+
+//     cout << x->getCode() << endl;
+//     s.printStorage("Peternakan", 0);
+// }
