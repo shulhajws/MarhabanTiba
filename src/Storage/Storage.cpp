@@ -87,7 +87,6 @@ T Storage<T>::getItemInfo(int row, int col){
 template<class T>
 bool Storage<T>::isItemValid(int row, int col){
     if (row >= this->row || col >= this->col || row < 0 || col < 0) {
-        throw InvalidSlotException();
         return false;
     } 
     else{
@@ -107,14 +106,17 @@ bool Storage<T>::isSlotEmpty(int row, int col) const{
 
 template<class T>
 T Storage<T>::getItem(int row, int col){
-    if(isItemValid(row,col)&&storageContent[row][col]!=NULL){
+    if(isItemValid(row,col)){
+        if(storageContent[row][col]!=NULL){
         T deletedValue = storageContent[row][col];
         storageContent[row][col] = nullptr;
         return deletedValue;
+        }
     }
     else{
         throw ItemNotFoundException();
     }
+    return nullptr;
 }
 
 template<class T>

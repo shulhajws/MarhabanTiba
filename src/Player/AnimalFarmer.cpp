@@ -68,15 +68,23 @@ void AnimalFarmer::placeAnimal() {
                 row = inventory.positionCodetoRow(slot);
                 col = inventory.positionCodetoCol(slot);
 
-                if (inventory.isSlotEmpty(row,col)){
+                if (!inventory.isItemValid(row,col)){
+                    throw InvalidSlotException();
+                }
+                if(inventory.isSlotEmpty(row,col)){
                     throw InputException();
                 }
+                
                 it = inventory.getItem(row, col);
                 if(it->getType()!="CARNIVORE" && it->getType()!="HERBIVORE" && it->getType()!="OMNIVORE"){
                     throw InputException();
                 }
                 break;
-            } catch (InputException e){
+            } catch (ItemNotFoundException e){
+                cout << e.what();
+            }catch (InputException e){
+                cout << e.what();
+            }catch (InvalidSlotException e){
                 cout << e.what();
             }
 
@@ -127,16 +135,34 @@ void AnimalFarmer::feedAnimal() {
         while (true) {
             cout << "\nSelect a plot of land to live\n\n";
             Barn.printStorage("Barn",1); 
+             int rowBarn, colBarn;
             // Memproses lokasi petak tanah yang dipilih
-            cout << "\nLand plot: ";
-            string landSlot;
-            cin >> landSlot;
+            while(true){
+                try{
+                    cout << "\nLand plot: ";
+                    string landSlot;
+                    cin >> landSlot;
 
-            int rowBarn = Barn.positionCodetoRow(landSlot);
-            int colBarn = Barn.positionCodetoCol(landSlot);
+                    rowBarn = Barn.positionCodetoRow(landSlot);
+                    colBarn = Barn.positionCodetoCol(landSlot);
 
-            if (Barn.isSlotEmpty(rowBarn,colBarn)){
-                throw InputException();
+                    if (!Barn.isItemValid(rowBarn,colBarn)){
+                        throw InvalidSlotException();
+                    }
+
+                    if (Barn.isSlotEmpty(rowBarn,colBarn)){
+                        throw InputException();
+                    }
+                    break;
+                    
+                } catch (InputException e) {
+                    cout << e.what();
+                } catch (InvalidSlotException e) {
+                    cout << e.what();
+                } catch (ItemNotFoundException e) {
+                    cout << e.what();}
+
+            
             }
             Animal* it = Barn.getItemInfo(rowBarn, colBarn);
 
@@ -150,20 +176,32 @@ void AnimalFarmer::feedAnimal() {
 
             int row = inventory.positionCodetoRow(slot);
             int col = inventory.positionCodetoCol(slot);
+            
+            if (!inventory.isItemValid(rowBarn,colBarn)){
+                throw InvalidSlotException();
+            }
+
             if (inventory.isSlotEmpty(row,col)){
                 throw InputException();
             }
 
-            Item* food = inventory.getItem(row,col);
-            Product* prod = dynamic_cast<Product*>(food);
-
-            it->makan(prod);   
+            Item* food = inventory.getItemInfo(row,col);
+            if(food->getType()=="PRODUCT_ANIMAL"||food->getType()=="PRODUCT_FRUIT_PLANT"){
+                food = inventory.getItem(row,col);
+                Product* prod = dynamic_cast<Product*>(food);
+                it->makan(prod);
+            }
+            else{
+                cout<<"Animal cannot eat this product.\n";
+            } 
             break;
         
         }
     } catch (NoItemInStorageException& e){
         cout<<e.what();
     } catch (InputException e) {
+        cout << e.what();
+    } catch (InvalidSlotException e) {
         cout << e.what();
     }
 
