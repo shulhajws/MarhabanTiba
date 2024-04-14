@@ -518,7 +518,7 @@ bool Storage<T>::noFoodInStorage() const {
                     return false;
                     break; 
                 } else{
-                    cout << storageContent[i][j]->getType() << endl;
+        
                 }
             }
         }

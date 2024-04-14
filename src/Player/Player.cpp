@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include <algorithm> 
 #include "../Command/AllCommand/Next.hpp"
 #include "../Command/AllCommand/CetakStorage.hpp"
 #include "../Command/AllCommand/Makan.hpp"
@@ -113,7 +114,6 @@ void Player::eat() {
                 cin >> slot;
                 int row = inventory.positionCodetoRow(slot);
                 int col = inventory.positionCodetoCol(slot);
-                cout << row<< col<< endl;
                 if (!inventory.isItemValid(row,col)){
                     throw InvalidSlotException();
                 }
@@ -161,18 +161,13 @@ void Player::buyItem(){
         try{
             cout<<"\nItem to be purchased: ";
             if (!(cin >> buy)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 throw InputNotIntegerException();
             }
 
             cout<<"Capacity: ";
             while (!(cin >> capacity)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 throw InputNotIntegerException();
             }
-
             if((int)buy>(int)s.totalItem()||(int)buy<1){
                 throw ItemNotFoundException();
             }
@@ -182,8 +177,7 @@ void Player::buyItem(){
             if(s.getItem(buy)->getPrice()*capacity>wealth){
                 throw NotEnoughMoneyException();
             }
-            if(capacity<1|| capacity>(s.getCapacity(*(s.getItem(buy))))+1){
-                cout << s.getCapacity(*(s.getItem(buy)))<<endl;
+            if(capacity<1|| capacity>(s.getCapacity(*(s.getItem(buy))))){
                 throw InputException();
             }
             if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
@@ -195,11 +189,14 @@ void Player::buyItem(){
             string slot; 
             int success = 0;
             int row,col;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             while(true){
                 try{
                     cout<<"\nFormat 'loc1,loc2,loc3,..'";
                     cout<<"\nSlot: ";
-                    cin>>slot;
+                    string slot;
+                    getline(cin, slot);
+                    slot.erase(remove_if(slot.begin(), slot.end(), ::isspace), slot.end());
                     vector<string> slots;
                     if(capacity>1){
                         slots = splitbyComa(slot);
@@ -216,7 +213,9 @@ void Player::buyItem(){
                     for (int i=0;i<slots.size();i++){
                         row = inventory.positionCodetoRow(slots[i]);
                         col = inventory.positionCodetoCol(slots[i]);
-                        inventory.isItemValid(row,col);
+                        if(!inventory.isItemValid(row,col)){
+                            throw InvalidSlotException();
+                        }
                         if (!inventory.isSlotEmpty(row,col)){
                             throw InvalidSlotException();
                         }
@@ -272,12 +271,13 @@ void Player::sellItem(){
         return;
     }else{
         cout<<"Please choose item you want to sell!"<<endl;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         while(true){
             try{
                 string slot;
                 cout<<"\nFormat 'loc1,loc2,loc3,..'";
                 cout<<"\nSlot: ";
-                cin>>slot;
+                getline(cin >> ws, slot);
                 vector<string> slots;
 
                 slots = splitbyComa(slot);
@@ -288,7 +288,9 @@ void Player::sellItem(){
                 for (int i=0;i<slots.size();i++){
                     row = inventory.positionCodetoRow(slots[i]);
                     col = inventory.positionCodetoCol(slots[i]);
-                    inventory.isItemValid(row,col);
+                    if(!inventory.isItemValid(row,col)){
+                        throw InvalidSlotException();
+                    }
                     if(inventory.isSlotEmpty(row,col)){
                         throw InvalidSlotException();
                     }if(type!="Walikota" && s.isBuilding(*inventory.getItemInfo(slots[i]))){

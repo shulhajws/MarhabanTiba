@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Omnivore::Omnivore(string kode, string nama,int harvestWeight, int price): Animal(kode,nama,"Omnivore",harvestWeight,price){
+Omnivore::Omnivore(string kode, string nama,int harvestWeight, int price): Animal(kode,nama,"OMNIVORE",harvestWeight,price){
 }
 
 
