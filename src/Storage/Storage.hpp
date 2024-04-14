@@ -51,6 +51,8 @@ class Storage {
         bool hasItem(const T& type) const;
         int countFilledCells() const;
         vector<T> getListOfContents() const;
+        bool noAnimalInStorage() const;
+        bool noPlantInStorage() const;
 };
 
 #endif

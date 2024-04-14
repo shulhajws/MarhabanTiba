@@ -49,8 +49,12 @@ void PlantFarmer::plantCrop() {
             throw GardenFullException();
         }
 
-        cout << "Select a plant from the storage\n";
-        inventory.printStorage("Storage",0);
+        if (inventory.noPlantInStorage()){
+            throw NoPlantInStorageException();
+        }else{
+            cout << "Select a plant from the storage\n";
+            inventory.printStorage("Storage",0);
+        }
 
         int row,col;
         Item* it ;
@@ -112,6 +116,8 @@ void PlantFarmer::plantCrop() {
     } catch (GardenFullException& e) {
         cout << e.what();
     } catch (ItemNotFoundException& e) {
+        cout << e.what();
+    } catch (NoPlantInStorageException& e) {
         cout << e.what();
     }
 }

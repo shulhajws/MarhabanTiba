@@ -34,7 +34,7 @@ void AnimalFarmer::setBarn(Storage<Animal*> barn){
 }
 
 void AnimalFarmer::displayInfo() const {
-    cout << "Animal Farmer - ";
+    cout<< "Animal Farmer - ";
     Player::displayInfo();
 }
 
@@ -53,15 +53,20 @@ void AnimalFarmer::placeAnimal() {
             throw BarnFullException();
         }
 
-        cout << "Select a animal from the storage\n";
-        inventory.printStorage("Storage",0);
+        if (inventory.noAnimalInStorage()){
+            throw NoAnimalInStorageException();
+            // return;
+        }else{
+            cout<< "Select a animal from the storage\n";
+            inventory.printStorage("Storage",0);
+        }
 
         int row,col;
         Item* it ;
 
         while(true){
             try{
-                cout << "Slot: ";
+                cout<< "Slot: ";
                 string slot;
                 cin >> slot;
 
@@ -77,20 +82,19 @@ void AnimalFarmer::placeAnimal() {
                 }
                 break;
             } catch (InputException e){
-                cout << e.what();
+                cout<< e.what();
             }
-
         }
 
         Animal* selectedAnimalType = dynamic_cast<Animal*>(it);
     
-        cout << "\nSelect a plot of land to live\n\n";
+        cout<< "\nSelect a plot of land to live\n\n";
         Barn.printStorage("Barn",1); 
 
         while (true){
             try{
                 // Memproses lokasi petak tanah yang dipilih
-                cout << "\nLand plot: ";
+                cout<< "\nLand plot: ";
                 string landSlot;
                 cin >> landSlot;
 
@@ -99,23 +103,27 @@ void AnimalFarmer::placeAnimal() {
 
                 Barn.setItem(rowBarn, colBarn, selectedAnimalType); 
 
-                cout << "\nThere was a farmer who had a "<< selectedAnimalType->getName()<<", Ee-i-ee-i-o"<<endl;
-                cout << "This "<<selectedAnimalType->getName() << " has now become yours!\n";
+                cout<< "\nThere was a farmer who had a "<< selectedAnimalType->getName()<<", Ee-i-ee-i-o"<<endl;
+                cout<< "This "<<selectedAnimalType->getName() << " has now become yours!\n";
                 break;
             } catch (InvalidPlantException e){
-                cout << e.what()<<endl;
+                cout<< e.what()<<endl;
             } catch (ItemNotFoundException e) {
-                cout << e.what()<<endl;
+                cout<< e.what()<<endl;
             } catch (InvalidSlotException e){
-                cout << e.what();
+                cout<< e.what();
             }
         }
     } catch (NoItemInStorageException& e) {
-        cout << e.what()<<endl;
+        cout<< e.what()<<endl;
     } catch (GardenFullException& e) {
-        cout << e.what()<<endl;
+        cout<< e.what()<<endl;
     } catch (ItemNotFoundException& e) {
-        cout << e.what()<<endl;
+        cout<< e.what()<<endl;
+    } catch (BarnFullException& e) {
+        cout<< e.what()<<endl;
+    } catch (NoAnimalInStorageException& e) {
+        cout<< e.what()<<endl;
     }
 }
 
@@ -125,10 +133,10 @@ void AnimalFarmer::feedAnimal() {
             throw NoItemInStorageException();
         }
         while (true) {
-            cout << "\nSelect a plot of land to live\n\n";
+            cout<< "\nSelect a plot of land to live\n\n";
             Barn.printStorage("Barn",1); 
             // Memproses lokasi petak tanah yang dipilih
-            cout << "\nLand plot: ";
+            cout<< "\nLand plot: ";
             string landSlot;
             cin >> landSlot;
 
@@ -144,7 +152,7 @@ void AnimalFarmer::feedAnimal() {
             cout<<"Choose the food to be given:"<<endl;
             inventory.printStorage("Storage",0);
 
-            cout << "Slot: ";
+            cout<< "Slot: ";
             string slot;
             cin >> slot;
 
@@ -164,7 +172,7 @@ void AnimalFarmer::feedAnimal() {
     } catch (NoItemInStorageException& e){
         cout<<e.what();
     } catch (InputException e) {
-        cout << e.what();
+        cout<< e.what();
     }
 
 }
@@ -192,7 +200,7 @@ void AnimalFarmer::harvestAnimal() {
                     break;
                 }
             } catch (InputException e){
-                cout << e.what() << endl;
+                cout<< e.what() << endl;
             }
         }
 
@@ -216,7 +224,7 @@ void AnimalFarmer::harvestAnimal() {
                     selectedPlots.push_back(landSlot);
                     break;
                 } catch(InvalidSlotException e){
-                    cout << e.what() << endl;
+                    cout<< e.what() << endl;
                 }
             }
         }
@@ -235,7 +243,7 @@ void AnimalFarmer::harvestAnimal() {
         }
         cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested";
     } catch (HarvestException e) {
-        cout << e.what() << endl;
+        cout<< e.what() << endl;
     }
 }
 

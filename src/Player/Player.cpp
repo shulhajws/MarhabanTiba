@@ -212,7 +212,6 @@ void Player::buyItem(){
                     }
                     if(success==capacity){
                         tempItembuy = s.getItem(buy);
-                        cout<< s.getItem(buy)->getType()<<endl;
                         s.minItems(*s.getItem(buy),capacity);
                     }
                     break;

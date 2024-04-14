@@ -52,6 +52,20 @@ public:
     }
 };
 
+class NoAnimalInStorageException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mCannot do this command. No animal available in storage.\n \033[0m";
+    }
+};
+
+class NoPlantInStorageException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mCannot do this command. No plant available in storage.\n \033[0m";
+    }
+};
+
 class GardenFullException : public Exception {
 public:
     string what() override {
