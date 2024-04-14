@@ -172,6 +172,9 @@ void Player::buyItem(){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 throw InputNotIntegerException();
             }
+            if(quantity<1){
+                throw InputException();
+            }
             if((int)buy>(int)s.totalItem()||(int)buy<1){
                 throw ItemNotFoundException();
             }
@@ -181,8 +184,8 @@ void Player::buyItem(){
             if(s.getItem(buy)->getPrice()*quantity>wealth){
                 throw NotEnoughMoneyException();
             }
-            if(quantity<1 || quantity>(s.getCapacity(*(s.getItem(buy))))){
-                throw InputException();
+            if(quantity>(s.getCapacity(*(s.getItem(buy))))){
+                throw NotEnoughItemStockException();
             }
             if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
                 throw MayorBuyException();
@@ -256,6 +259,8 @@ void Player::buyItem(){
         } catch (NotEnoughInventorySpaceException e){
             cout << e.what();
         } catch (NotEnoughMoneyException e){
+            cout << e.what();
+        } catch (NotEnoughItemStockException e){
             cout << e.what();
         } catch (MayorBuyException e){
             cout << e.what();
