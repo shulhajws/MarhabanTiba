@@ -3,11 +3,9 @@
 
 using namespace std;
 
-Carnivore::Carnivore(string code, string name,int harvestWeight,int price): Animal(price,code,name,"CARNIVORE", harvestWeight){
+Carnivore::Carnivore(string code, string name,int harvestWeight,int price): Animal(code,name,"CARNIVORE", harvestWeight,price){
 }
 
-Carnivore::Carnivore(int harvestWeight,string code, string name,int animalWeight): Animal(code,name,"CARNIVORE", animalWeight,harvestWeight){
-}
 
 void Carnivore::makan(Product* m){
     if (m->getType()=="PRODUCT_ANIMAL"){
@@ -22,13 +20,14 @@ void Carnivore::makan(Product* m){
 int Snake::harvestWeight = 0;
 int Snake::price = 0;
 
-Snake::Snake():Carnivore("SNK","SNAKE",harvestWeight, price){
+Snake::Snake():Carnivore("SNK","SNAKE",Snake::harvestWeight,Snake::price){
 }
 
-Snake::Snake(int animalweight): Carnivore(harvestWeight,"SNK","SNAKE",animalweight){
+Snake::Snake(int weight): Carnivore("SNK","SNAKE",Snake::harvestWeight,Snake::price){
+    this->setAnimalWeight(weight);
 }
 
-Snake::Snake(int harvestWeight,int price): Carnivore("SNK","SNAKE",harvestWeight,price){
+Snake::Snake(int harvestWeight,int price): Carnivore("SNK","SNAKE",Snake::harvestWeight,Snake::price){
     Snake::harvestWeight = harvestWeight;
     Snake::price = price;
 }

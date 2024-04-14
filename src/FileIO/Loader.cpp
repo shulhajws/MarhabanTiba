@@ -642,7 +642,8 @@ vector<Player*> Loader::stateOfPlayer(string statepath, int ctr){
           string animalLoc = trim(vectorOfWords[ctr][0]); 
           string animalName = trim(vectorOfWords[ctr][1]);
           int animalWeight = stoi(vectorOfWords[ctr][2]);
-          barn.setItem(barn.positionCodetoRow(animalLoc), barn.positionCodetoCol(animalLoc), animalConstructor(animalName, animalWeight));
+          Animal * animal = animalConstructor(animalName, animalWeight);
+          barn.setItem(barn.positionCodetoRow(animalLoc), barn.positionCodetoCol(animalLoc), animal);
           ctr++;
         }
         AnimalFarmer* p = dynamic_cast<AnimalFarmer*>(peternak);

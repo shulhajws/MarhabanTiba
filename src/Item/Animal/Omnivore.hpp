@@ -10,7 +10,6 @@ class Omnivore : public Animal{
         string nama;
     public:
         Omnivore(string kode, string nama,int harvestWeight,int price);
-        Omnivore(int harvestWeight,string kode, string nama,int animalweight);
         void makan(Product* m);
 };
 
