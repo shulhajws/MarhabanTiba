@@ -22,13 +22,13 @@ private:
 public:
     Shop();
     Shop(vector<tuple<Building*, int>> building, vector<tuple<Product*, int>> product);
-    Shop& operator+(Item& item);
+    Shop& operator+(Item* item);
     vector<tuple<Building*, int>> getItemsBuilding() const;
     vector<tuple<Product*, int>> getItemsProduct() const;
     int totalItem();
-    void addBuilding(Building b);
+    void addBuilding(Building* b);
     void minBuilding(Building b, int num);
-    void addProduct(Product p);
+    void addProduct(Product* p);
     void minProduct(Product p, int num);
     void minItems(Item& item,int num);
     int getCapacity (Item& item);

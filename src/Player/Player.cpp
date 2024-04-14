@@ -165,7 +165,6 @@ void Player::buyItem(){
             }
             if(capacity<1|| capacity>(s.getCapacity(*(s.getItem(buy))))+1){
                 cout << s.getCapacity(*(s.getItem(buy)))<<endl;
-                cout << "CAPACITY"<<capacity<<endl;
                 throw InputException();
             }
             if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
@@ -245,6 +244,8 @@ void Player::buyItem(){
 
 void Player::sellItem(){
     Shop s;
+    Item* tempItemsell;
+
     cout<<"Here is your storage\n"<<endl;
     inventory.printStorage("Storage",0);
     if(inventory.isEmpty() ){
@@ -280,10 +281,10 @@ void Player::sellItem(){
                 for (int i=0;i<slots.size();i++){
                     row = inventory.positionCodetoRow(slots[i]);
                     col = inventory.positionCodetoCol(slots[i]);
-                    Item* it = (inventory.getItem(row,col));
-                    addPlayerWealth(it->getPrice());
-                    money += it->getPrice();
-                    s = s + *it;
+                    tempItemsell = (inventory.getItem(row,col));
+                    addPlayerWealth(tempItemsell->getPrice());
+                    money += tempItemsell->getPrice();
+                    s = s + tempItemsell;
                 }
 
                 cout<<"Your items have been sold successfully! You earned "<<money<<" guilders!"<<endl;
