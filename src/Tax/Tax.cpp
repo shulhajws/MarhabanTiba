@@ -39,7 +39,7 @@ double Tax::countTax(){
 }
 
 int Tax::getTax(){
-    return countTax() * totalWealth();
+    return countTax() * countKKP(); 
 }
 void Tax::payTax(Player& p1, Player& walkot){
     int Tax = getTax();

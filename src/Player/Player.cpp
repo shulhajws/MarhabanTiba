@@ -161,11 +161,15 @@ void Player::buyItem(){
         try{
             cout<<"\nItem to be purchased: ";
             if (!(cin >> buy)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 throw InputNotIntegerException();
             }
 
             cout<<"Capacity: ";
-            while (!(cin >> capacity)) {
+            if (!(cin >> capacity)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 throw InputNotIntegerException();
             }
             if((int)buy>(int)s.totalItem()||(int)buy<1){
