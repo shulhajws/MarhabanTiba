@@ -14,10 +14,10 @@ class Animal : public Item{
         int price;
 
     public:
-        Animal(int price, string code, string name,string type,int harvestWeight);
-        Animal(string code, string name, string type, int animalWeight,int harvestWeight);
+        Animal(string code, string name, string type, int harvestWeight, int price);
         ~Animal();
         virtual void makan(Product* p);
+        void setAnimalWeight(int weight);
         int getPrice();
         bool isReadyToHarvest();
 };

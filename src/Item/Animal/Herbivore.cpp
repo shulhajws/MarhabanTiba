@@ -3,10 +3,7 @@
 
 using namespace std;
 
-Herbivore::Herbivore(string code, string name, int harvestWeight, int price) : Animal(price, code,name,"HERBIVORE",harvestWeight){
-}
-
-Herbivore::Herbivore(int harvestWeight,string code, string name, int animalWeight) : Animal(code,name,"HERBIVORE",animalWeight,harvestWeight){
+Herbivore::Herbivore(string code, string name, int harvestWeight, int price) : Animal(code,name,"HERBIVORE",harvestWeight,price){
 }
 
 // ini harusnya produk
@@ -32,40 +29,43 @@ int Rabbit::price = 0;
 
 
 // COW CLASS
-Cow::Cow(): Herbivore("COW","COW",harvestWeight, price){
+Cow::Cow(): Herbivore("COW","COW",Cow::harvestWeight, Cow::price){
 }
 
-Cow::Cow(int berat, int price) : Herbivore("COW","COW",berat, price){
+Cow::Cow(int berat, int price) : Herbivore("COW","COW",Cow::harvestWeight, Cow::price){
     Cow::harvestWeight = berat;
     Cow::price = price;
 }
 
-Cow::Cow(int AnimalWeight) : Herbivore(harvestWeight,"COW","COW",AnimalWeight){
+Cow::Cow(int weight) : Herbivore("COW","COW",Cow::harvestWeight, Cow::price){
+    this->setAnimalWeight(weight);
 }
 
 
 // SHEEP CLASS
-Sheep::Sheep() : Herbivore("SHP","SHEEP",harvestWeight, price){
+Sheep::Sheep() : Herbivore("SHP","SHEEP",Sheep::harvestWeight, Sheep::price){
 
 }
 
-Sheep::Sheep(int berat, int price) : Herbivore("SHP","SHEEP",berat, price){
+Sheep::Sheep(int berat, int price) : Herbivore("SHP","SHEEP",Sheep::harvestWeight, Sheep::price){
     Sheep::harvestWeight = berat;
     Sheep::price = price;
 }
 
-Sheep::Sheep(int AnimalWeight) : Herbivore(harvestWeight,"SHP","SHP",AnimalWeight){
+Sheep::Sheep(int weight) : Herbivore("SHP","SHEEP",Sheep::harvestWeight, Sheep::price){
+    this->setAnimalWeight(weight);
 }
 
 
 // HORSE CLASS
-Horse::Horse() : Herbivore("HRS","HORSE",harvestWeight, price){
+Horse::Horse() : Herbivore("HRS","HORSE",Horse::harvestWeight, Horse::price){
 }
 
-Horse::Horse(int AnimalWeight) : Herbivore(harvestWeight,"HRS","HRS",AnimalWeight){
+Horse::Horse(int weight) : Herbivore("HRS","HORSE",Horse::harvestWeight, Horse::price){
+    this->setAnimalWeight(weight);
 }
 
-Horse::Horse(int berat, int price) : Herbivore("HRS","HORSE",berat, price){
+Horse::Horse(int berat, int price) : Herbivore("HRS","HORSE",Horse::harvestWeight, Horse::price){
     Horse::harvestWeight = berat;
     Horse::price = price;
 }
@@ -73,13 +73,14 @@ Horse::Horse(int berat, int price) : Herbivore("HRS","HORSE",berat, price){
 
 // RABBIT CLASS
 
-Rabbit::Rabbit() : Herbivore("RBT","RABBIT",harvestWeight, price){
+Rabbit::Rabbit() : Herbivore("RBT","RABBIT",Rabbit::harvestWeight, Rabbit::price){
 }
 
-Rabbit::Rabbit(int harvestWeight, int price) : Herbivore("RBT","RABBIT",harvestWeight, price){
+Rabbit::Rabbit(int harvestWeight, int price) : Herbivore("RBT","RABBIT",Rabbit::harvestWeight, Rabbit::price){
     Rabbit::harvestWeight = harvestWeight;
     Rabbit::price = price;
 }
 
-Rabbit::Rabbit(int AnimalWeight) : Herbivore(harvestWeight,"RBT","RABBIT",AnimalWeight){
+Rabbit::Rabbit(int weight) :Herbivore("RBT","RABBIT",Rabbit::harvestWeight, Rabbit::price){
+    this->setAnimalWeight(weight);
 }
