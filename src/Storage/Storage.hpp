@@ -53,6 +53,7 @@ class Storage {
         vector<T> getListOfContents() const;
         bool noAnimalInStorage() const;
         bool noPlantInStorage() const;
+        bool noFoodInStorage() const;
 };
 
 #endif

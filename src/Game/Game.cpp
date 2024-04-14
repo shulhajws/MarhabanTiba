@@ -92,8 +92,9 @@ void Game::sortPlayer() {
 
 void Game::inputPlayer(){
     string Walkot, Petani, Peternak;
-     cout << "\nPlease Input All The Players!!" << endl;
+    cout << "\nPlease Input All The Players!!" << endl;
     cout << "Input the Mayor" << endl;
+    cin.ignore();
     Walkot = inputName();
     this->players.push_back(new Mayor(Walkot,50,40));
 
@@ -111,7 +112,7 @@ string Game::inputName(){
     while (true){
         cout << "Enter username: ";
         cout << "\033[1;92m";
-        cin >> name;
+        getline(cin,name);
         cout << "\033[0m";
         try{
             if(!nameNotValid(name)){

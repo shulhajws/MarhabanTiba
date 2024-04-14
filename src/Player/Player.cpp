@@ -97,36 +97,55 @@ bool Player::inventoryEmpty() const{
 
 void Player::eat() {
     string slot;
-    while(true) {
-        try {
-            if (inventory.isEmpty()) {
-                throw NoItemInStorageException();
-            }
 
-            cout << "Slot: ";
-            cin >> slot;
-            int row = inventory.positionCodetoRow(slot);
-            int col = inventory.positionCodetoCol(slot);
-
-            Item* storedItem = inventory.getItemInfo(row, col);
-            if ((storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL")) {
-                storedItem = inventory.getItem(row, col);
-                Product* productPtr = dynamic_cast<Product*>(storedItem);
-                int addedWeight = productPtr->getAddedWeight();
-                weight += addedWeight;
-                
-                cout << "Player " << username << " has eaten " << storedItem->getName() << ". Weight increased by " << addedWeight << " kg.\n";
-                break;
-            } else {
-                throw ItemNotFoundException();
-            }
-        } catch (ItemNotFoundException e) {
-            cout << e.what();
-            break;
-        } catch (NoItemInStorageException e) {
-            cout << e.what();
-            break;
+    try {
+        if (inventory.isEmpty()) {
+            throw NoItemInStorageException();
         }
+
+        if (inventory.noFoodInStorage()){
+            throw NoFoodInStorageException();
+        }
+
+        while(true) {
+            try {
+                cout << "Slot: ";
+                cin >> slot;
+                int row = inventory.positionCodetoRow(slot);
+                int col = inventory.positionCodetoCol(slot);
+                cout << row<< col<< endl;
+                if (!inventory.isItemValid(row,col)){
+                    throw InvalidSlotException();
+                }
+                if(inventory.isSlotEmpty(row,col)){
+                    throw InputException();
+                }
+
+                Item* storedItem = inventory.getItemInfo(row, col);
+                if ((storedItem->getType() == "PRODUCT_FRUIT_PLANT" || storedItem->getType() == "PRODUCT_ANIMAL")) {
+                    storedItem = inventory.getItem(row, col);
+                    Product* productPtr = dynamic_cast<Product*>(storedItem);
+                    int addedWeight = productPtr->getAddedWeight();
+                    weight += addedWeight;
+                    
+                    cout << "Player " << username << " has eaten " << storedItem->getName() << ". Weight increased by " << addedWeight << " kg.\n";
+                    break;
+                } else {
+                    throw ItemNotFoundException();
+                }
+            } catch (ItemNotFoundException e) {
+                cout << "bukan makanan"<<endl;
+                cout << e.what();
+            } catch (InputException e){
+                cout << e.what();
+            } catch (InvalidSlotException e){
+                cout<< e.what();
+            }
+        }
+    } catch (NoFoodInStorageException e) {
+        cout << e.what();
+    } catch (NoItemInStorageException e) {
+        cout << e.what();
     }
 }
 

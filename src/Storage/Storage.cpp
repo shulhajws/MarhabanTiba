@@ -484,3 +484,22 @@ bool Storage<T>::noPlantInStorage() const {
     }
     return true; 
 }
+
+template<class T>
+bool Storage<T>::noFoodInStorage() const {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (!isSlotEmpty(i, j)) {
+                if(storageContent[i][j]->getType() == "PRODUCT_FRUIT_PLANT" || storageContent[i][j]->getType() == "PRODUCT_ANIMAL"){
+                    cout << storageContent[i][j]->getType() << endl;
+                    cout << "false, Ada makanan di penyimpanan" << endl;
+                    return false;
+                    break; 
+                } else{
+                    cout << storageContent[i][j]->getType() << endl;
+                }
+            }
+        }
+    }
+    return true; 
+}

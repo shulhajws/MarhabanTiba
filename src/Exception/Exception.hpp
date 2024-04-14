@@ -143,6 +143,13 @@ public:
     }
 };
 
+class NoFoodInStorageException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mCannot eat. No food available in storage.\n \033[0m";
+    }
+};
+
 // nanti tambah exception disini
 
 #endif
