@@ -33,6 +33,7 @@ public:
     void minItems(Item& item,int num);
     int getCapacity (Item& item);
     Item* getItem(int i);
+    Item* getNewItem(int i);
     void printShop();
     bool isBuilding(Item& item);
 };

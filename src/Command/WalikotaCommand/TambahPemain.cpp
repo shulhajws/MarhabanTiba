@@ -16,6 +16,7 @@ void TambahPemain::useCommand(){
                 throw InputException();
             }
             else {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 string name = inputName();
                 if (lowerCase(pemain) == "peternak") {
                     this->players.push_back(new AnimalFarmer(name, 50, 40));

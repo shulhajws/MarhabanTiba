@@ -71,12 +71,17 @@ void PlantFarmer::plantCrop() {
                 if (inventory.isSlotEmpty(row,col)){
                     throw InputException();
                 }
+                if (!inventory.isItemValid(row,col)){
+                    throw InputException();
+                }
                 it = inventory.getItem(row, col);
                 if(it->getType()!="MATERIAL_PLANT" && it->getType()!="FRUIT_PLANT"){
                     throw InputException();
                 }
                 break;
             } catch(InputException e){
+                cout<<e.what();
+            } catch(InvalidSlotException e){
                 cout<<e.what();
             }
 
@@ -98,6 +103,9 @@ void PlantFarmer::plantCrop() {
                 int colField = Garden.positionCodetoCol(landSlot);
 
                 // Buat objek Plant baru dengan informasi dari selectedPlant
+                if(!Garden.isItemValid(rowField,colField)){
+                    throw InvalidSlotException();
+                }
                 Garden.setItem(rowField, colField, selectedPlantType); 
 
                 cout << "\nDig, dig, dig deep into the soil~!\n";
@@ -120,23 +128,15 @@ void PlantFarmer::plantCrop() {
     }
 }
 
-// void PlantFarmer::addPlantYear(){
-//     for (int i = 0; i < Garden.getRow(); i++) {
-//         for (int j = 0; j < Garden.getCol(); j++) {
-//             if (Garden.getItemInfo(i,j) != nullptr) {
-//                  Garden.getItemInfo(i,j)->addAge();
-//             }
-//         }
-//     }
-// }
 
 void PlantFarmer::addPlantYear(){
     for (int i = 0; i < Garden.getRow(); i++) {
         for (int j = 0; j < Garden.getCol(); j++) {
-            if (Garden.getItem(i,j) != nullptr) {
-                Plant* x = Garden.getItem(i,j);
+            if (Garden.getItemInfoInt(i,j) != nullptr) {
+                Plant *x = Garden.getItemInfoInt(i,j);
                 x->addAge();
-                Garden.setItem(i, j, x);
+                Garden.getItem(i,j);
+                Garden.setItem(i,j,x);
             }
         }
     }
@@ -154,9 +154,9 @@ void PlantFarmer::harvestCrop() {
         int num, capacity;
         while(true){
             try{
-                cout<< "\nPlant number you want to harvest:";
+                cout<< "\nPlant number you want to harvest: ";
                 cin >> num ;
-                cout<< "How many plots do you want to harvest:"; 
+                cout<< "How many plots do you want to harvest: "; 
                 cin >> capacity ;
                 if (num<0 || num>garden.size() || Garden.countItemsHarvested(garden[num-1])<capacity){
                     throw InputException();
@@ -171,18 +171,18 @@ void PlantFarmer::harvestCrop() {
 
         vector<string> selectedPlots;
     
-        cout<<"Select the plots you want to harvest:\n";
+        cout<<"\nSelect the plots you want to harvest:\n";
         for(int i=0;i<capacity;i++){
             while(true){
                 try{
                     string landSlot;
-                    cout<<"Plot "<<i+1<<":";
+                    cout<<"Plot "<<i+1<<": ";
                     cin>>landSlot;
 
                     int rowField = Garden.positionCodetoRow(landSlot);
                     int colField = Garden.positionCodetoCol(landSlot);
 
-                    if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField)){
+                    if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField) || !Garden.isItemValid(rowField,colField)){
                         throw InvalidSlotException();
                     }
 
@@ -197,9 +197,11 @@ void PlantFarmer::harvestCrop() {
 
         Product p;
         vector<Product*> Prod = p.getProduct(garden[num-1]);
-        for (auto pro : Prod){
-            Item* produk = pro;
-            inventory = inventory + produk;
+        for (int i=0; i<capacity;i++){
+            for (auto pro : Prod){
+                Item* produk = pro;
+                inventory = inventory + produk;
+            }
         }
         
         cout<<"\n";
@@ -207,7 +209,7 @@ void PlantFarmer::harvestCrop() {
         for(int i=0;i<selectedPlots.size()-1;i++){
             cout<<selectedPlots[i]<<", ";
         }
-        cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested";
+        cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested"<<endl;
     } catch (HarvestException e) {
         cout << e.what();
     }

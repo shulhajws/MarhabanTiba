@@ -92,9 +92,9 @@ void Game::sortPlayer() {
 
 void Game::inputPlayer(){
     string Walkot, Petani, Peternak;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "\nPlease Input All The Players!!" << endl;
     cout << "Input the Mayor" << endl;
-    cin.ignore();
     Walkot = inputName();
     this->players.push_back(new Mayor(Walkot,50,40));
 
@@ -204,15 +204,14 @@ bool Game::inputCommand(){
                 return true;
             }
             if(command=="NEXT"){
-               if (currPlayer==players.size()-1){
-                    currPlayer = 0;
+               if (Game::currPlayer==players.size()-1){
+                    Game::currPlayer = 0;
                 }
                 else{
                     if(tambahPemain>0){
-                        cout<<tambahPemain<<endl;
-                        currPlayer += Game::tambahPemain;
+                        Game::currPlayer += Game::tambahPemain;
                     }
-                    currPlayer +=1;
+                    Game::currPlayer +=1;
                     Game::tambahPemain = 0;
                 }
                 addAllPlantYear();
@@ -243,12 +242,15 @@ bool Game::nameNotValid(string name){
             ada = true; 
             throw UsernameException();
         }
+    }if(name == ""){
+        ada = true; 
+        throw InputException();
     }
     return ada;
 }
 
 void Game::addAllPlantYear(){
-    for (auto &p : players){
+    for (auto p : players){
         if (p->getType()=="Petani"){
             PlantFarmer* petani = dynamic_cast<PlantFarmer*>(p);
             petani->addPlantYear();

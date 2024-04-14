@@ -7,7 +7,7 @@
 #include "../Item/Product/ProductAnimal.hpp"
 #include "../Item/Product/ProductFruitPlant.hpp"
 #include "../Item/Product/ProductMaterial.hpp"
-
+#include "../FileIO/Loader.hpp"
 
 using namespace std;
 vector<tuple<Building*, int>> Shop::itemsBuilding;
@@ -100,6 +100,28 @@ Item* Shop::getItem(int i){
     }
     return nullptr;
 }
+
+Item* Shop::getNewItem(int i){
+    int x2 = itemsBuilding.size();
+    int x3 = product.size() + itemsBuilding.size();    
+    int x4 = itemsAnimals.size() + product.size() + itemsBuilding.size();
+    Loader l;
+
+    if (i<=itemsBuilding.size() && itemsBuilding.size()!= 0){
+        return l.buildingConstructor(get<0>(itemsBuilding[i-1])->getName());
+    }
+    else if(i<= product.size() + x2 && product.size()!= 0){
+        return l.productConstructor(get<0>(product[i-x2-1])->getName());
+    }
+    else if(i<= itemsAnimals.size() + x3 && itemsAnimals.size()!= 0){
+        return l.animalConstructor((itemsAnimals[i-x3-1])->getName(),0);
+    }
+    else if(i<= itemsPlants.size() + x4 && itemsPlants.size()!= 0){
+        return l.plantConstructor((itemsPlants[i-x4-1])->getName(),0);
+    }
+    return nullptr;
+}
+
 
 void Shop::addBuilding(Building* b){
     bool found = false;

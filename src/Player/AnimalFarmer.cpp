@@ -121,9 +121,7 @@ void AnimalFarmer::placeAnimal() {
         }
     } catch (NoItemInStorageException& e) {
         cout<< e.what()<<endl;
-    } catch (GardenFullException& e) {
-        cout<< e.what()<<endl;
-    } catch (ItemNotFoundException& e) {
+    }  catch (ItemNotFoundException& e) {
         cout<< e.what()<<endl;
     } catch (BarnFullException& e) {
         cout<< e.what()<<endl;
@@ -225,39 +223,40 @@ void AnimalFarmer::harvestAnimal() {
         }
         printBarn();
         cout<<"\nChoose the ready-to-harvest animal you have:"<<endl;
-        vector<string> barn = Barn.printHarvestedItem();
+        vector<string> garden = Barn.printHarvestedItem();
 
         int num, capacity;
         while(true){
             try{
-                cout<< "\nAnimal number you want to harvest:";
+                cout<< "\nAnimal number you want to harvest: ";
                 cin >> num ;
-                cout<< "How many plots do you want to harvest:"; 
+                cout<< "How many plots do you want to harvest: "; 
                 cin >> capacity ;
-                if (num<0 || num>barn.size() || Barn.countItemsHarvested(barn[num-1])<capacity){
+                if (num<0 || num>garden.size() || Barn.countItemsHarvested(garden[num-1])<capacity){
                     throw InputException();
                 }
                 else{
                     break;
                 }
             } catch (InputException e){
-                cout<< e.what() << endl;
+                cout << e.what();
             }
         }
 
         vector<string> selectedPlots;
-        cout<<"Select the plots you want to harvest:\n";
+    
+        cout<<"\nSelect the plots you want to harvest:\n";
         for(int i=0;i<capacity;i++){
             while(true){
                 try{
                     string landSlot;
-                    cout<<"Plot "<<i+1<<":";
+                    cout<<"Plot "<<i+1<<": ";
                     cin>>landSlot;
 
                     int rowField = Barn.positionCodetoRow(landSlot);
                     int colField = Barn.positionCodetoCol(landSlot);
 
-                    if(!Barn.getItemInfo(landSlot)->isReadyToHarvest() || Barn.isSlotEmpty(rowField,colField)){
+                    if(!Barn.getItemInfo(landSlot)->isReadyToHarvest() || Barn.isSlotEmpty(rowField,colField) || !Barn.isItemValid(rowField,colField)){
                         throw InvalidSlotException();
                     }
 
@@ -265,26 +264,28 @@ void AnimalFarmer::harvestAnimal() {
                     selectedPlots.push_back(landSlot);
                     break;
                 } catch(InvalidSlotException e){
-                    cout<< e.what() << endl;
+                    cout << e.what();
                 }
             }
         }
-        
-        Product p;
-        vector<Product*> Prod = p.getProduct(barn[num-1]);
-        for (auto pro : Prod){
-            Item* produk = pro;
-            inventory = inventory + produk;
-        }
 
+        Product p;
+        vector<Product*> Prod = p.getProduct(garden[num-1]);
+        for (int i=0; i<capacity;i++){
+            for (auto pro : Prod){
+                Item* produk = pro;
+                inventory = inventory + produk;
+            }
+        }
+        
         cout<<"\n";
-        cout<<capacity<<" plots of "<< barn[num-1] << " animal in plots ";
+        cout<<capacity<<" plots of "<< garden[num-1] << " animals in plots ";
         for(int i=0;i<selectedPlots.size()-1;i++){
             cout<<selectedPlots[i]<<", ";
         }
-        cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested";
+        cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested"<<endl;
     } catch (HarvestException e) {
-        cout<< e.what() << endl;
+        cout << e.what();
     }
 }
 

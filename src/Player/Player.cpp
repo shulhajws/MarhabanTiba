@@ -227,7 +227,7 @@ void Player::buyItem(){
                     for (int i=0;i<slots.size();i++){
                         row = inventory.positionCodetoRow(slots[i]);
                         col = inventory.positionCodetoCol(slots[i]);
-                        inventory.setItem(row,col,s.getItem(buy));
+                        inventory.setItem(row,col,s.getNewItem(buy));
                         minPlayerWealth(s.getItem(buy)->getPrice());
                         success +=1;
                     }

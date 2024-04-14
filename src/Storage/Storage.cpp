@@ -93,6 +93,11 @@ T Storage<T>::getItemInfo(string position){
 }
 
 template<class T>
+T Storage<T>::getItemInfoInt(int row, int col){
+    return storageContent[row][col];
+}
+
+template<class T>
 bool Storage<T>::isItemValid(int row, int col){
     if (row >= this->row || col >= this->col || row < 0 || col < 0) {
         return false;
@@ -298,7 +303,7 @@ int Storage<T>::countItemsHarvested(string item){
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             if(storageContent[i][j]!=nullptr){
-                if (storageContent[i][j]->getCode() == item && storageContent[i][j]->isReadyToHarvest()) {
+                if (storageContent[i][j]->getName() == item && storageContent[i][j]->isReadyToHarvest()) {
                     num+=1; 
                 }
             }
@@ -348,72 +353,72 @@ vector<string> Storage<T>::printHarvestedItem(){
         i++;
         items.push_back("COW");
     }
-    if(countItemsHarvested("SHP")>0){
-        cout<<i<<". SHP ("<< countItemsHarvested("SHP")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("SHEEP")>0){
+        cout<<i<<". SHP ("<< countItemsHarvested("SHEEP")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("SHP");
+        items.push_back("SHEEP");
     }
-    if(countItemsHarvested("HRS")>0){
-        cout<<i<<". HRS ("<< countItemsHarvested("HRS")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("HORSE")>0){
+        cout<<i<<". HRS ("<< countItemsHarvested("HORSE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("HRS");
+        items.push_back("HORSE");
     }
-    if(countItemsHarvested("RBT")>0){
-        cout<<i<<". RBT ("<< countItemsHarvested("RBT")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("RABBIT")>0){
+        cout<<i<<". RBT ("<< countItemsHarvested("RABBIT")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("RBT");
+        items.push_back("RABBIT");
     }
-    if(countItemsHarvested("CHK")>0){
-        cout<<i<<". CHK ("<< countItemsHarvested("CHK")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("CHICKEN")>0){
+        cout<<i<<". CHK ("<< countItemsHarvested("CHICKEN")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("CHK");
+        items.push_back("CHICKEN");
     }
-    if(countItemsHarvested("DCK")>0){
-        cout<<i<<". DCK ("<< countItemsHarvested("DCK")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("DUCK")>0){
+        cout<<i<<". DCK ("<< countItemsHarvested("DUCK")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("DCK");
+        items.push_back("DUCK");
     }
 
     i = 1;
-    if(countItemsHarvested("TEK")>0){
-        cout<<i<<". TEK ("<< countItemsHarvested("TEK")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("TEAK_TREE")>0){
+        cout<<i<<". TEK ("<< countItemsHarvested("TEAK_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("TEK");
+        items.push_back("TEAK_TREE");
     }
-    if(countItemsHarvested("SDT")>0){
-        cout<<i<<". SDT ("<< countItemsHarvested("SDT")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("SANDALWOOD_TREE")>0){
+        cout<<i<<". SDT ("<< countItemsHarvested("SANDALWOOD_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("SDT");
+        items.push_back("SANDALWOOD_TREE");
     }
-    if(countItemsHarvested("ALT")>0){
-        cout<<i<<". ALT ("<< countItemsHarvested("ALT")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("ALOE_TREE")>0){
+        cout<<i<<". ALT ("<< countItemsHarvested("ALOE_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("ALT");
+        items.push_back("ALOE_TREE");
     }
-    if(countItemsHarvested("IRN")>0){
-        cout<<i<<". IRN ("<< countItemsHarvested("IRN")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("IRONWOOD_TREE")>0){
+        cout<<i<<". IRN ("<< countItemsHarvested("IRONWOOD_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("IRN");
+        items.push_back("IRONWOOD_TREE");
     }
-    if(countItemsHarvested("APL")>0){
-        cout<<i<<". APL ("<< countItemsHarvested("APL")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("APPLE_TREE")>0){
+        cout<<i<<". APL ("<< countItemsHarvested("APPLE_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("APL");
+        items.push_back("APPLE_TREE");
     }
-    if(countItemsHarvested("ORG")>0){
-        cout<<i<<". ORG ("<< countItemsHarvested("ORG")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("ORAGE_TREE")>0){
+        cout<<i<<". ORG ("<< countItemsHarvested("ORAGE_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("ORG");
+        items.push_back("ORAGE_TREE");
     }
-    if(countItemsHarvested("BNT")>0){
-        cout<<i<<". BNT ("<< countItemsHarvested("BNT")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("BANANA_TREE")>0){
+        cout<<i<<". BNT ("<< countItemsHarvested("BANANA_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("BNT");
+        items.push_back("BANANA_TREE");
     }
-    if(countItemsHarvested("GAV")>0){
-        cout<<i<<". GAV ("<< countItemsHarvested("BNT")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("GUAVA_TREE")>0){
+        cout<<i<<". GAV ("<< countItemsHarvested("GUAVA_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("GAV ");
+        items.push_back("GUAVA_TREE");
     }
     return items;
 }

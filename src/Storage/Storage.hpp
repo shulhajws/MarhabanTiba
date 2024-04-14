@@ -29,6 +29,7 @@ class Storage {
         int getRow() const;
         int getCol() const;
         T getItemInfo(string position);
+        T getItemInfoInt(int row, int col);
         T getItem(int row, int col);
         T getItemString(string position);
         bool isItemValid(int row, int col);
