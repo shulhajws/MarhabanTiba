@@ -133,14 +133,14 @@ T Storage<T>::getItemString(string position){
     int colPosition = positionCodetoCol(position);
     if(isItemValid(rowPosition ,colPosition)&&storageContent[rowPosition][colPosition]!=NULL){
         T deletedValue = storageContent[rowPosition][colPosition];
-        storageContent[row][col] = nullptr;
+        storageContent[rowPosition][colPosition] = nullptr;
         store.erase(position); 
         return deletedValue;
     }
     else{
         throw ItemNotFoundException();
     }
-
+    return nullptr;
 }
 
 template<class T>
@@ -526,16 +526,35 @@ bool Storage<T>::noFoodInStorage() const {
     return true; 
 }
 
+template<class T>
+void Storage<T>::printmap(string position){
+    cout << store[position] << endl;
+}
+
 // int main() {
 //     Animal cow("COW", "Cow", "Animal", 50,  100); 
 //     Storage<Animal*> s;
 
-//     s + &cow;
+//     s.setItemRandom(&cow);
 //     s.printStorage("Peternakan", 0);
-//     cout << s.getItemInfo("A01")->getCode() << endl;
+//     cout << s.getItemInfo("H04")->getCode() << endl;
 
-//     Animal* x = s.getItem(0, 0);
+//     Animal* x = s.getItemString("H04");
 
 //     cout << x->getCode() << endl;
 //     s.printStorage("Peternakan", 0);
+//     s.printmap("H04");
+
+//     Animal cos("COL", "Cow", "Animal", 50,  100); 
+//     s.setItem(3, 7, &cos);
+//     s.printStorage("Peternakan", 0);
+//     s.printmap("H04");
+//     cout << "di atas adalah hasil print map" << endl;
+//     cout << s.getItemInfo("H04")->getCode() << endl;
+
+//     Animal* y = s.getItemString("H04");
+
+//     cout << y->getCode() << endl;
+//     s.printStorage("Peternakan", 0);
+//     s.printmap("H04");
 // }

@@ -54,6 +54,7 @@ class Storage {
         bool noAnimalInStorage() const;
         bool noPlantInStorage() const;
         bool noFoodInStorage() const;
+        void printmap(string position);
 };
 
 #endif
