@@ -454,3 +454,33 @@ vector<T> Storage<T>::getListOfContents() const{
     }
     return allItems;
 }   
+
+template<class T>
+bool Storage<T>::noAnimalInStorage() const {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (!isSlotEmpty(i, j)) {
+                if (dynamic_cast<Animal*>(storageContent[i][j]) != nullptr) {
+                    cout << "false, Ada hewan di penyimpanan" << endl;
+                    return false; // Ada hewan di penyimpanan
+                }
+            }
+        }
+    }
+    return true; // Tidak ada hewan di penyimpanan
+}
+
+template<class T>
+bool Storage<T>::noPlantInStorage() const {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (!isSlotEmpty(i, j)) {
+                if (dynamic_cast<Plant*>(storageContent[i][j]) != nullptr) {
+                    cout << "false, Ada tanaman di penyimpanan" << endl;
+                    return false; 
+                }
+            }
+        }
+    }
+    return true; 
+}
