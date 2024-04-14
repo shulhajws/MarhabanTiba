@@ -154,7 +154,7 @@ void Player::buyItem(){
     cout<<"\nYour money: "<<wealth<<endl;
     cout<<"Available storage slots: "<<inventory.getAvailableSlots()<<endl;
     
-    int buy,capacity;
+    int buy, quantity;
     Item* tempItembuy = nullptr;
 
     while (true){
@@ -166,8 +166,8 @@ void Player::buyItem(){
                 throw InputNotIntegerException();
             }
 
-            cout<<"Capacity: ";
-            if (!(cin >> capacity)) {
+            cout<<"Quantity: ";
+            if (!(cin >> quantity)) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 throw InputNotIntegerException();
@@ -175,13 +175,13 @@ void Player::buyItem(){
             if((int)buy>(int)s.totalItem()||(int)buy<1){
                 throw ItemNotFoundException();
             }
-            if (capacity>inventory.getAvailableSlots()){
+            if (quantity>inventory.getAvailableSlots()){
                 throw NotEnoughInventorySpaceException();
             }
-            if(s.getItem(buy)->getPrice()*capacity>wealth){
+            if(s.getItem(buy)->getPrice()*quantity>wealth){
                 throw NotEnoughMoneyException();
             }
-            if(capacity<1|| capacity>(s.getCapacity(*(s.getItem(buy))))){
+            if(quantity<1 || quantity>(s.getCapacity(*(s.getItem(buy))))){
                 throw InputException();
             }
             if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
@@ -202,7 +202,7 @@ void Player::buyItem(){
                     getline(cin, slot);
                     slot.erase(remove_if(slot.begin(), slot.end(), ::isspace), slot.end());
                     vector<string> slots;
-                    if(capacity>1){
+                    if(quantity>1){
                         slots = splitbyComa(slot);
                         if(hasDuplicates(slots)){
                             throw InputException();
@@ -211,7 +211,7 @@ void Player::buyItem(){
                     else{
                         slots.push_back(slot);
                     }
-                    if (capacity!= slots.size()){
+                    if (quantity!= slots.size()){
                         throw InputException();
                     }
                     for (int i=0;i<slots.size();i++){
@@ -231,9 +231,9 @@ void Player::buyItem(){
                         minPlayerWealth(s.getItem(buy)->getPrice());
                         success +=1;
                     }
-                    if(success==capacity){
+                    if(success==quantity){
                         tempItembuy = s.getItem(buy);
-                        s.minItems(*s.getItem(buy),capacity);
+                        s.minItems(*s.getItem(buy),quantity);
                     }
                     break;
                 } catch(InputException e){
@@ -242,9 +242,9 @@ void Player::buyItem(){
                     cout<<e.what();
                 }
             }
-            if(success == capacity){
+            if(success == quantity){
                 inventory.printStorage("Storage",0);
-                cout<<"Congratulations! You have successfully purchased "<<capacity<<" "<<tempItembuy->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
+                cout<<"Congratulations! You have successfully purchased "<<quantity<<" "<<tempItembuy->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
             }
             break;
         } catch (ItemNotFoundException e){

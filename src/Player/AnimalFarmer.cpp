@@ -145,6 +145,7 @@ void AnimalFarmer::feedAnimal() {
             Barn.printStorage("Barn",1); 
             int rowBarn, colBarn;
             string landSlot;
+        
             // Memproses lokasi petak tanah yang dipilih
             while(true){
                 try{
@@ -168,8 +169,8 @@ void AnimalFarmer::feedAnimal() {
                 } catch (InvalidSlotException e) {
                     cout << e.what();
                 } catch (ItemNotFoundException e) {
-                    cout << e.what();}
-
+                    cout << e.what();
+                }
             
             }
             Animal* it = Barn.getItemInfo(landSlot);
@@ -205,12 +206,14 @@ void AnimalFarmer::feedAnimal() {
             break;
         
         }
+    } catch (BarnEmptyException e){
+        cout << e.what();
     } catch (NoItemInStorageException& e){
-        cout<<e.what();
+        cout << e.what();
     } catch (InputException e) {
         cout << e.what();
     } catch (InvalidSlotException e) {
-        cout<< e.what();
+        cout << e.what();
     }
 
 }

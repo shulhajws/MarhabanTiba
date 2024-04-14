@@ -104,7 +104,7 @@ public:
 class NotEnoughMoneyException : public Exception {
 public:
     string what() override {
-        return "\033[1;31mYour wallet feels lighter than air. 💸 \nIt seems we're a bit short on coins for this transaction. \n \033[0m";
+        return "\033[1;31mYour wallet feels lighter than air. 💸 \nIt seems we're a bit short on gulden for this transaction. \n \033[0m";
     }
 };
 
