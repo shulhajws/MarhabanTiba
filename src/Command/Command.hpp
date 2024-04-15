@@ -9,6 +9,7 @@ using namespace std;
 
 class Command{
 public:
+    // Pure Virtual Method
     virtual void useCommand() = 0;
     virtual string getName() = 0;
 };

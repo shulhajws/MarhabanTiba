@@ -13,29 +13,28 @@ using namespace std;
 #include <tuple>
 
 class Shop {
-private:
-    static vector<tuple<Building*, int>> itemsBuilding;
-    vector<Plant*> itemsPlants;
-    vector<Animal*> itemsAnimals;
-    static vector<tuple<Product*, int>> product;
-
-public:
-    Shop();
-    Shop(vector<tuple<Building*, int>> building, vector<tuple<Product*, int>> product);
-    Shop& operator+(Item* item);
-    vector<tuple<Building*, int>> getItemsBuilding() const;
-    vector<tuple<Product*, int>> getItemsProduct() const;
-    int totalItem();
-    void addBuilding(Building* b);
-    void minBuilding(Building b, int num);
-    void addProduct(Product* p);
-    void minProduct(Product p, int num);
-    void minItems(Item& item,int num);
-    int getCapacity (Item& item);
-    Item* getItem(int i);
-    Item* getNewItem(int i);
-    void printShop();
-    bool isBuilding(Item& item);
+    private:
+        static vector<tuple<Building*, int>> itemsBuilding;
+        static vector<tuple<Product*, int>> product;
+        vector<Plant*> itemsPlants;
+        vector<Animal*> itemsAnimals;
+    public:
+        Shop();
+        Shop(vector<tuple<Building*, int>> building, vector<tuple<Product*, int>> product);
+        Shop& operator+(Item* item);
+        vector<tuple<Building*, int>> getItemsBuilding() const;
+        vector<tuple<Product*, int>> getItemsProduct() const;
+        int totalItem();
+        void addBuilding(Building* b);
+        void minBuilding(Building b, int num);
+        void addProduct(Product* p);
+        void minProduct(Product p, int num);
+        void minItems(Item& item,int num);
+        int getCapacity (Item& item);
+        Item* getItem(int i);
+        Item* getNewItem(int i);
+        void printShop();
+        bool isBuilding(Item& item);
 };
 
 #endif // SHOP_HPP

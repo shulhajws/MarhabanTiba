@@ -31,8 +31,8 @@ bool Player::operator==(string command) const{
     bool ada = false; // cari command punya player atau bukan
     for (auto &c : commandList){
         if (c->getName() == command){
-            ada = true; // command ada
-            c->useCommand();
+            ada = true; // command ditemukan
+            c->useCommand(); // command digunakan
         }
     }
     return ada;

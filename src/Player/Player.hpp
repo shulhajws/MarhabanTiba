@@ -19,13 +19,17 @@ class Player{
         string username;
         int wealth;
         int weight;
+        string type;
         Storage<Item*> inventory;
         vector<Command*> commandList;
-        string code;
-        string name;
-        string type;
 
     public:
+        // VIRTUAL METHOD
+        virtual void displayInfo() const;
+        virtual int getPlayerAssets()=0;
+        virtual int getKTKP()=0;
+        virtual int calculateTax()=0;
+
         // CLASS CONSTRUCTOR AND DESTRUCTOR
         Player();
         Player(string username, int wealth, int weight, string type);
@@ -63,12 +67,6 @@ class Player{
 
         // OPERATOR OVERLOADING
         bool operator==(string command) const;
-        
-        // VIRTUAL METHOD
-        virtual void displayInfo() const;
-        virtual int getPlayerAssets()=0;
-        virtual int getKTKP()=0;
-        virtual int calculateTax()=0;
         
 };
 
