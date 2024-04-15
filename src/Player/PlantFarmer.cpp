@@ -57,7 +57,7 @@ void PlantFarmer::plantCrop() {
         }
 
         int row,col;
-        Item* it ;
+        Item* it;
 
         while(true){
             try{
@@ -74,9 +74,12 @@ void PlantFarmer::plantCrop() {
                 if (!inventory.isItemValid(row,col)){
                     throw InputException();
                 }
-                it = inventory.getItem(row, col);
+                it = inventory.getItemInfoInt(row, col);
+                cout << it->getType() << endl; 
                 if(it->getType()!="MATERIAL_PLANT" && it->getType()!="FRUIT_PLANT"){
                     throw InputException();
+                }else{
+                    it = inventory.getItem(row, col); 
                 }
                 break;
             } catch(InputException e){
@@ -155,21 +158,33 @@ void PlantFarmer::harvestCrop() {
         while(true){
             try{
                 cout<< "\nPlant number you want to harvest: ";
-                cin >> num ;
+                if(!(cin>> num)){
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    throw InputNotIntegerException();
+                }
+                
                 cout<< "How many plots do you want to harvest: "; 
-                cin >> capacity ;
-                if (num<0 || num>garden.size() || Garden.countItemsHarvested(garden[num-1])<capacity){
+                if(!(cin>> capacity)){
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    throw InputNotIntegerException();
+                }
+
+                if (num<1 || num>garden.size() || capacity<1 || Garden.countItemsHarvested(garden[num-1])<capacity){
                     throw InputException();
                 }
-                else{
-                    break;
-                }
+
+                break;
             } catch (InputException e){
                 cout << e.what();
-            }
+            } catch (InputNotIntegerException e){
+                cout << e.what();
+            }   
         }
 
         vector<string> selectedPlots;
+        int row,col;
     
         cout<<"\nSelect the plots you want to harvest:\n";
         for(int i=0;i<capacity;i++){
@@ -182,6 +197,12 @@ void PlantFarmer::harvestCrop() {
                     int rowField = Garden.positionCodetoRow(landSlot);
                     int colField = Garden.positionCodetoCol(landSlot);
 
+                    if (!Garden.isItemValid(rowField,colField)){
+                    throw InvalidSlotException();
+                    }
+                    if(Garden.isSlotEmpty(rowField,colField)){
+                        throw InputException();
+                    }
                     if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField) || !Garden.isItemValid(rowField,colField)){
                         throw InvalidSlotException();
                     }
@@ -190,6 +211,10 @@ void PlantFarmer::harvestCrop() {
                     selectedPlots.push_back(landSlot);
                     break;
                 } catch(InvalidSlotException e){
+                    cout << e.what();
+                } catch(InputException e){
+                    cout << e.what();
+                } catch (ItemNotFoundException e) {
                     cout << e.what();
                 }
             }
@@ -210,6 +235,7 @@ void PlantFarmer::harvestCrop() {
             cout<<selectedPlots[i]<<", ";
         }
         cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested"<<endl;
+         
     } catch (HarvestException e) {
         cout << e.what();
     }
