@@ -200,8 +200,7 @@ int Shop::getCapacity(Item& item) {
         item.getType() == "FRUIT_PLANT") {
         return 999999; 
     }
-    else if (item.getType() == "SMALL_HOUSE" || item.getType() == "MEDIUM_HOUSE" || 
-             item.getType() == "LARGE_HOUSE" || item.getType() == "HOTEL") {
+    else if (item.getType() == "BUILDING") {
         for (const auto& it : itemsBuilding) {
             Building prod = *get<0>(it);  
             int stock = get<1>(it);
