@@ -13,8 +13,19 @@ template class Storage<Animal*>;
 
 template<class T>
 Storage<T>::Storage(){
-    row = 5;
-    col = 10;
+    row = 0;
+    col = 0;
+    vector<T> v(col);
+    vector<vector<T> > storageContent(row, v);
+    this->storageContent = storageContent;
+    map<string, T> store;
+    this->store = store;
+}
+
+template<class T>
+Storage<T>::Storage(int row, int col){
+    this->row = row;
+    this->col = col;
     vector<T> v(col);
     vector<vector<T> > storageContent(row, v);
     this->storageContent = storageContent;
@@ -27,6 +38,19 @@ Storage<T>::~Storage(){}
 
 template<class T>
 void Storage<T>::setItem(int row, int col, T content){
+    if (row >= this->row || col >= this->col || row < 0 || col < 0 || !isSlotEmpty(row,col)) {
+        throw InvalidSlotException();
+    } else {
+        string position = coltoPositionCode(col) + rowtoPositionCode(row);
+        storageContent[row][col] = content;
+        store[position] = storageContent[row][col];
+    }
+}
+
+template<class T>
+void Storage<T>::setItemString(string position, T content){
+    row = positionCodetoRow(position);
+    col = positionCodetoCol(position);
     if (row >= this->row || col >= this->col || row < 0 || col < 0 || !isSlotEmpty(row,col)) {
         throw InvalidSlotException();
     } else {
@@ -430,7 +454,13 @@ int Storage<T>::positionCodetoRow(string position){
         throw InvalidSlotException();
     }
     int x1 = position[1] - '0';
+    if(x1 > 9 || x1 < 0){
+        throw InputException();
+    }
     int x2 = position[2] - '0';
+    if(x2 > 9 || x2 < 0){
+        throw InputException();
+    }
     return (x1*10+x2-1);
 }
 
@@ -562,6 +592,30 @@ bool Storage<T>::onlyAnimalProd() const {
         }
     }
     return true; 
+}
+
+template<class T>
+void Storage<T>::printmap(string position){
+    cout << store[position] << endl;
+}
+
+template<class T>
+typename map<string, T>::iterator Storage<T>::getMapBeginning(){
+    return store.begin();
+}
+
+template<class T>
+typename map<string, T>::iterator Storage<T>::getMapEnding(){
+    return store.end();
+}
+
+template<class T>
+void Storage<T>::updateValue(string position, T content){
+    store.erase(position);
+    store[position] = content;
+    row = positionCodetoRow(position);
+    col = positionCodetoCol(position);
+    storageContent[row][col] = store[position];
 }
 
 // template<class T>

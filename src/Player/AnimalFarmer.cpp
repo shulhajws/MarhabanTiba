@@ -121,6 +121,8 @@ void AnimalFarmer::placeAnimal() {
                 break;
             } catch (ItemNotFoundException e) {
                 cout<< e.what()<<endl;
+            } catch (InputException e){
+                cout << e.what();
             } catch (InvalidSlotException e){
                 cout<< e.what();
             }

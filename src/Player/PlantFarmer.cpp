@@ -122,6 +122,8 @@ void PlantFarmer::plantCrop() {
                 break;
             } catch (ItemNotFoundException e) {
                 cout << e.what();
+            } catch (InputException e){
+                cout << e.what();
             } catch (InvalidSlotException e){
                 cout << e.what();
             }

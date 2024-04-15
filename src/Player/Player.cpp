@@ -318,8 +318,9 @@ void Player::sellItem(){
                 }
 
                 cout<<"Your items have been sold successfully! You earned "<<money<<" guilders!"<<endl;
-                break;
-
+                break;               
+            } catch (InputException e){
+                cout << e.what();
             } catch(InvalidSlotException e){
                 cout << e.what();
             } catch(ItemNotFoundException e){

@@ -21,8 +21,10 @@ class Storage {
         map<string, T> store;
     public :
         Storage();
+        Storage(int row, int col);
         ~Storage();
         void setItem(int row, int col, T content);
+        void setItemString(string position, T content);
         void setItemRandom(T content);
         Storage<T>& operator+(T& content);
         void setRowCols(int row, int cols);
@@ -58,6 +60,9 @@ class Storage {
         bool onlyAnimalProd() const;
         bool onlyFruitProd() const ;
         void printmap(string position);
+        typename map<string, T>::iterator getMapBeginning();
+        typename map<string, T>::iterator getMapEnding();
+        void updateValue(string position, T content);
 };
 
 #endif
