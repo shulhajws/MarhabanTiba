@@ -405,10 +405,10 @@ vector<string> Storage<T>::printHarvestedItem(){
         i++;
         items.push_back("APPLE_TREE");
     }
-    if(countItemsHarvested("ORAGE_TREE")>0){
-        cout<<i<<". ORG ("<< countItemsHarvested("ORAGE_TREE")<<"  plots ready for harvest)"<<endl;
+    if(countItemsHarvested("ORANGE_TREE")>0){
+        cout<<i<<". ORG ("<< countItemsHarvested("ORANGE_TREE")<<"  plots ready for harvest)"<<endl;
         i++;
-        items.push_back("ORAGE_TREE");
+        items.push_back("ORANGE_TREE");
     }
     if(countItemsHarvested("BANANA_TREE")>0){
         cout<<i<<". BNT ("<< countItemsHarvested("BANANA_TREE")<<"  plots ready for harvest)"<<endl;

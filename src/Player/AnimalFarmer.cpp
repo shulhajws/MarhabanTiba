@@ -174,7 +174,7 @@ void AnimalFarmer::feedAnimal() {
             Animal* it = Barn.getItemInfo(landSlot);
 
             cout<<"You choose to feed the "<< it->getName()<<endl;
-            cout<<"Choose the food to be given:"<<endl;
+            cout<<"Choose the food to be given (pick one):"<<endl;
             inventory.printStorage("Storage",0);
 
             cout<< "Slot: ";
