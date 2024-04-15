@@ -15,6 +15,18 @@ Mayor::Mayor(string username, int wealth, int weight) : Player(username, wealth,
     this->commandList.push_back(new TambahPemain());
 }
 
+int Mayor::getKTKP(){
+    return 0;
+}
+
+int Mayor::getPlayerAssets(){
+    return 0;
+}
+
+int Mayor::calculateTax(){
+    return 0;
+}
+
 void Mayor::buildBuilding(){
     Building b;
 

@@ -10,17 +10,34 @@ class PlantFarmer : public Player{
     private:
         Storage<Plant*> Garden;
     public:
+        // CONSTRUCTOR 
         PlantFarmer();
         PlantFarmer(string username, int wealth, int weight);
+
+        // GETTER AND SETTER
         int getPlayerAssets();
         int getKTKP();
-        void addPlantYear();
-        void setGarden(Storage<Plant*>);
-        void displayInfo() const;
-        void plantCrop();
-        void harvestCrop();
-        void printGarden();
         vector<Plant*> getListOfPlants() const;
+        void setGarden(Storage<Plant*>);
+
+        // CLASS METHOD
+        // add  all plant year in Garden
+        void addPlantYear();
+
+        // display player info
+        void displayInfo() const;
+
+        // "TANAM" method
+        void plantCrop();
+
+        // "PANEN" method
+        void harvestCrop();
+
+        // print player garden
+        void printGarden();
+
+        // calculate player tax
+        int calculateTax();
 
 };
 

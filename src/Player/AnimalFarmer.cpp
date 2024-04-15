@@ -3,6 +3,7 @@
 #include "../Command/PeternakCommand/Ternak.hpp"
 #include "../Command/PeternakCommand/CetakPeternakan.hpp"
 #include "../Command/AllCommand/Panen.hpp"
+#include "../Tax/Tax.hpp"
 
 #include <iostream>
 using namespace std;
@@ -31,6 +32,11 @@ int AnimalFarmer::getKTKP(){
 
 void AnimalFarmer::setBarn(Storage<Animal*> barn){
     this->Barn = barn;
+}
+
+int AnimalFarmer::calculateTax(){
+    Tax t(getKTKP(), wealth,getPlayerAssets());
+    return t.getTax();
 }
 
 void AnimalFarmer::displayInfo() const {

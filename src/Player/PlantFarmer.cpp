@@ -2,6 +2,7 @@
 #include "../Command/PetaniCommand/Tanam.hpp"
 #include "../Command/PetaniCommand/CetakLadang.hpp"
 #include "../Command/AllCommand/Panen.hpp"
+#include "../Tax/Tax.hpp"
 
 #include <iostream>
 using namespace std;
@@ -28,6 +29,11 @@ int PlantFarmer::getKTKP(){
 
 void PlantFarmer::setGarden(Storage<Plant*> garden){
     this->Garden = garden;
+}
+
+int PlantFarmer::calculateTax(){
+    Tax t(getKTKP(), wealth,getPlayerAssets());
+    return t.getTax();
 }
 
 void PlantFarmer::displayInfo() const {

@@ -26,31 +26,49 @@ class Player{
         string type;
 
     public:
+        // CLASS CONSTRUCTOR AND DESTRUCTOR
         Player();
         Player(string username, int wealth, int weight, string type);
         Player(const Player& other);
         virtual ~Player();
 
+        // GETTER AND SETTER
         string getName() const;
         int getPlayerWealth() const;
         int getPlayerWeight() const;
-        virtual int getPlayerAssets();
-        bool inventoryEmpty() const;
         string getType() const;
-        virtual int getKTKP();
+        vector<Item*> getListOfItems() const;
         void setInventory(Storage<Item*>);
+
+        // CLASS METHOD
+        // Player Storage Method
         void displayStorage();
+        bool inventoryEmpty() const;
+        int itemInInventories() const;
+
+        // Adding and Reduce Player Money
         void addPlayerWealth(int money);
         void minPlayerWealth(int money);
+
+        // Eat method
         void eat();
+
+        // Buy and Sell method
         void buyItem();
         void sellItem();
+
+        // Method for handle input
         bool hasDuplicates(const vector<string>& slots);
-        vector<string> splitbyComa(const string& input);
+        vector<string> splitbyComa(const string& input);;
+
+        // OPERATOR OVERLOADING
         bool operator==(string command) const;
-        int itemInInventories() const;
-        vector<Item*> getListOfItems() const;
+        
+        // VIRTUAL METHOD
         virtual void displayInfo() const;
+        virtual int getPlayerAssets()=0;
+        virtual int getKTKP()=0;
+        virtual int calculateTax()=0;
         
 };
 

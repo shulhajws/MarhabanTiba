@@ -13,7 +13,7 @@ void PungutPajak::useCommand(){
         if (p->getType()!="Walikota"){
             i++;
             Tax t(p->getKTKP(),p->getPlayerWealth(),p->getPlayerAssets()); 
-            playerTaxes.emplace_back(p, t.getTax());
+            playerTaxes.emplace_back(p, p->calculateTax());
             total+= t.getTax();
             t.payTax(*p,*players[currPlayer]);
         }

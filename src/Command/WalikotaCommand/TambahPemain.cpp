@@ -19,10 +19,10 @@ void TambahPemain::useCommand(){
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 string name = inputName();
                 if (lowerCase(pemain) == "peternak") {
-                    this->players.push_back(new AnimalFarmer(name, 50, 40));
+                    this->players.push_back(new AnimalFarmer(name, 50, 0));
                 }
                 else {
-                    this->players.push_back(new PlantFarmer(name, 50, 40));
+                    this->players.push_back(new PlantFarmer(name, 50, 0));
                 }
                 players[currPlayer]->minPlayerWealth(50);
 
