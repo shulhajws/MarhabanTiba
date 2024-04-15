@@ -585,7 +585,7 @@ vector<Player*> Loader::stateOfPlayer(string statepath, int ctr){
   vector<Player*> players;
 
   try {
-    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath + ".txt");
+    vectorOfWords = Loader::getWordsFromFile(statepath);
     ctr = 0;
     int numOfPlayers = stoi(vectorOfWords[0][0]);
     ctr++;
@@ -677,7 +677,7 @@ void Loader::stateOfShop(string statepath, int ctr){
   vector<tuple<Building*, int>> building;
   vector<tuple<Product*, int>> product;
   try {
-    vectorOfWords = Loader::getWordsFromFile(this->testsPath + "/" + statepath + ".txt");
+    vectorOfWords = Loader::getWordsFromFile(statepath);
 
     int numOfShopItems = stoi(vectorOfWords[ctr][0]); ctr++;
     for(int i = 0; i < numOfShopItems; i++){

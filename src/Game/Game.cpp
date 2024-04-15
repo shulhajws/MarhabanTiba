@@ -50,9 +50,10 @@ void Game::askInput(){
     if (option == "1"){ // file input
         int ctr;
         string state;
+        cout<< "Format: './folder/filename.txt"<<endl;
         cout<<"Enter the name of the state file (without .txt): ";
         cin>>state;
-        ifstream configFileToWords( "./data/" + state + ".txt");
+        ifstream configFileToWords(state);
         bool ada = true;
         if(!configFileToWords){
             ada = false;
@@ -62,7 +63,7 @@ void Game::askInput(){
             cout<<"Enter the name of the state file (without .txt): ";
             cin>>state;
             
-            ifstream configFileToWords( "./data/" + state + ".txt");
+            ifstream configFileToWords(state);
             if(configFileToWords){
                 ada = true;
             }
