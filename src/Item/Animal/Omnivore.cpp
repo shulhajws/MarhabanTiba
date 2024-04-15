@@ -13,7 +13,7 @@ void Omnivore::makan(Product* m){
         cout<<"The " <<this->getName()<<" has been fed and its weight becomes "<<this->animalWeight<<endl;
     }
     else{
-        cout<<"Hewan hanya bisa makan daging dan buah."<<endl;
+        throw NotFoodException();
     }
 }
 

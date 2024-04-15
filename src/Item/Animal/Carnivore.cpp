@@ -13,7 +13,7 @@ void Carnivore::makan(Product* m){
         cout<<"The " <<this->getName()<<" has been fed and its weight becomes "<<this->animalWeight<<endl;
     }
     else{
-        cout<<"\033[1;31mHewan hanya bisa makan daging.\033[0m"<<endl;
+        throw NotFoodException();
     }
 }
 

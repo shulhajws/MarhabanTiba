@@ -3,6 +3,7 @@
 
 #include "Animal.hpp"
 #include "../Product/Product.hpp"
+#include "../../Exception/Exception.hpp"
 
 class Omnivore : public Animal{
     private:

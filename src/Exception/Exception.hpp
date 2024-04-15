@@ -143,6 +143,13 @@ public:
     }
 };
 
+class NotFoodException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mYour animal is refusing to eat that 🐔!\nPlease choose another food option.\n\033[0m";
+    }
+};
+
 // nanti tambah exception disini
 
 #endif

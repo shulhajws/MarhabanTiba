@@ -427,7 +427,7 @@ vector<string> Storage<T>::printHarvestedItem(){
 template<class T>
 int Storage<T>::positionCodetoRow(string position){
     if(position.length()!=3){
-        throw ItemNotFoundException();
+        throw InvalidSlotException();
     }
     int x1 = position[1] - '0';
     int x2 = position[2] - '0';
@@ -437,7 +437,7 @@ int Storage<T>::positionCodetoRow(string position){
 template<class T>
 int Storage<T>::positionCodetoCol(string position){
     if(position.length()!=3){
-        throw ItemNotFoundException();
+        throw InvalidSlotException();
     }
     char row = position[0];
     return row - 'A';
@@ -491,7 +491,6 @@ bool Storage<T>::noAnimalInStorage() const {
         for (int j = 0; j < col; ++j) {
             if (!isSlotEmpty(i, j)) {
                 if (dynamic_cast<Animal*>(storageContent[i][j]) != nullptr) {
-                    cout << "false, Ada hewan di penyimpanan" << endl;
                     return false; // Ada hewan di penyimpanan
                 }
             }
@@ -532,9 +531,43 @@ bool Storage<T>::noFoodInStorage() const {
 }
 
 template<class T>
-void Storage<T>::printmap(string position){
-    cout << store[position] << endl;
+bool Storage<T>::onlyFruitProd() const {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (!isSlotEmpty(i, j)) {
+                if(storageContent[i][j]->getType() == "PRODUCT_FRUIT_PLANT"){
+                    return false;
+                    break; 
+                } else{
+        
+                }
+            }
+        }
+    }
+    return true; 
 }
+
+template<class T>
+bool Storage<T>::onlyAnimalProd() const {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (!isSlotEmpty(i, j)) {
+                if(storageContent[i][j]->getType() == "PRODUCT_ANIMAL"){
+                    return false;
+                    break; 
+                } else{
+        
+                }
+            }
+        }
+    }
+    return true; 
+}
+
+// template<class T>
+// void Storage<T>::printmap(string position){
+//     cout << store[position] << endl;
+// }
 
 // int main() {
 //     Animal cow("COW", "Cow", "Animal", 50,  100); 

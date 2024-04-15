@@ -138,6 +138,9 @@ void AnimalFarmer::feedAnimal() {
         if (Barn.isEmpty()) {
             throw BarnEmptyException();
         }
+        if (inventory.noFoodInStorage()){
+            throw NoFoodInStorageException();
+        }
         while (true) {
             cout<< "\nSelect a plot of land to live\n\n";
             Barn.printStorage("Barn",1); 
@@ -194,12 +197,19 @@ void AnimalFarmer::feedAnimal() {
 
             Item* food = inventory.getItemInfo(slot);
             if(food->getType()=="PRODUCT_ANIMAL"||food->getType()=="PRODUCT_FRUIT_PLANT"){
-                food = inventory.getItem(row,col);
+                food = inventory.getItemInfoInt(row,col);
+                if(it->getType()=="CARNIVORE"&&!inventory.onlyAnimalProd()){
+                    throw NotFoodException();
+                }
+                if(it->getType()=="HERBIVORE"&&!inventory.onlyFruitProd()){
+                    throw NotFoodException();
+                }
                 Product* prod = dynamic_cast<Product*>(food);
                 it->makan(prod);
+                food = inventory.getItem(row,col);
             }
             else{
-                cout<<"Animal cannot eat this product.\n";
+                throw NotFoodException();
             } 
             break;
         
@@ -211,6 +221,10 @@ void AnimalFarmer::feedAnimal() {
     } catch (InputException e) {
         cout << e.what();
     } catch (InvalidSlotException e) {
+        cout << e.what();
+    } catch (NotFoodException e) {
+        cout << e.what();
+    } catch (NoFoodInStorageException e) {
         cout << e.what();
     }
 
