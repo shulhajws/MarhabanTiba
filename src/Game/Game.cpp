@@ -51,7 +51,7 @@ void Game::askInput(){
         int ctr;
         string state;
         cout<< "Format: './folder/filename.txt"<<endl;
-        cout<<"Enter the name of the state file (without .txt): ";
+        cout<<"Enter the name of the state file following the given format : ";
         cin>>state;
         ifstream configFileToWords(state);
         bool ada = true;
