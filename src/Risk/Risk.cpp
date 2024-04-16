@@ -12,7 +12,6 @@ void Risk::getRandomRisk(Player* p){
     initializeRisks();
     cout<<"You take a risk!"<<endl;
     int randomNumber = rand() % risk.size();
-    cout<<randomNumber<<endl;
     cout<<"You got "<<risk[randomNumber]->getName()<<endl;
     risk[randomNumber]->useRisk(p);
 }
