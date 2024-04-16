@@ -150,6 +150,13 @@ public:
     }
 };
 
+class SellInventoryBuildingForFarmerException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mYour inventory only contains buildings, so you cannot sell buildings. Please purchase or harvest instead.\n\033[0m";
+    }
+};
+
 // nanti tambah exception disini
 
 #endif

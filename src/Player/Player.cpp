@@ -275,61 +275,72 @@ void Player::sellItem(){
 
     cout<<"Here is your storage\n"<<endl;
     inventory.printStorage("Storage",0);
-    if(inventory.isEmpty() ){
-        cout<<"Your storage is empty!"<<endl;
-        return;
-    }else{
-        cout<<"Please choose item you want to sell!"<<endl;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        while(true){
-            try{
-                string slot;
-                cout<<"\nFormat 'loc1,loc2,loc3,..'";
-                cout<<"\nSlot: ";
-                getline(cin >> ws, slot);
-                vector<string> slots;
-
-                slots = splitbyComa(slot);
-                if(hasDuplicates(slots)){
-                    throw InvalidSlotException();
-                }
-                int row,col;
-                for (int i=0;i<slots.size();i++){
-                    row = inventory.positionCodetoRow(slots[i]);
-                    col = inventory.positionCodetoCol(slots[i]);
-                    if(!inventory.isItemValid(row,col)){
-                        throw InvalidSlotException();
-                    }
-                    if(inventory.isSlotEmpty(row,col)){
-                        throw InvalidSlotException();
-                    }if(type!="Walikota" && s.isBuilding(*inventory.getItemInfo(slots[i]))){
-                        cout<< "\nYou cannot sell building as a farmer !"<<endl;
-                        throw SellException();
-                    }
-                }
-                int money = 0;
-                for (int i=0;i<slots.size();i++){
-                    row = inventory.positionCodetoRow(slots[i]);
-                    col = inventory.positionCodetoCol(slots[i]);
-                    tempItemsell = (inventory.getItem(row,col));
-                    addPlayerWealth(tempItemsell->getPrice());
-                    money += tempItemsell->getPrice();
-                    s = s + tempItemsell;
-                }
-
-                cout<<"Your items have been sold successfully! You earned "<<money<<" guilders!"<<endl;
-                break;               
-            } catch (InputException e){
-                cout << e.what();
-            } catch(InvalidSlotException e){
-                cout << e.what();
-            } catch(ItemNotFoundException e){
-                cout << e.what();
-            } catch(SellException e){
-                cout << e.what();
-            }
-        
+    try{
+        if(inventory.isEmpty()){
+            throw NoItemInStorageException();
         }
+        if(inventory.isOnlyBuildingItem() && type!="Walikota"){
+            throw SellInventoryBuildingForFarmerException();
+        }
+        else{
+            cout<<"Please choose item you want to sell!"<<endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            while(true){
+                try{
+                    string slot;
+                    cout<<"\nFormat 'loc1,loc2,loc3,..'";
+                    cout<<"\nSlot: ";
+                    getline(cin >> ws, slot);
+                    vector<string> slots;
+
+                    slots = splitbyComa(slot);
+                    if(hasDuplicates(slots)){
+                        throw InvalidSlotException();
+                    }
+                    int row,col;
+                    for (int i=0;i<slots.size();i++){
+                        row = inventory.positionCodetoRow(slots[i]);
+                        col = inventory.positionCodetoCol(slots[i]);
+                        if(!inventory.isItemValid(row,col)){
+                            throw InvalidSlotException();
+                        }
+                        if(inventory.isSlotEmpty(row,col)){
+                            throw InvalidSlotException();
+                        }if(type!="Walikota" && s.isBuilding(*inventory.getItemInfo(slots[i]))){
+                            cout<< "\nYou cannot sell building as a farmer !"<<endl;
+                            throw SellException();
+                        }
+                    }
+                    int money = 0;
+                    for (int i=0;i<slots.size();i++){
+                        row = inventory.positionCodetoRow(slots[i]);
+                        col = inventory.positionCodetoCol(slots[i]);
+                        tempItemsell = (inventory.getItem(row,col));
+                        addPlayerWealth(tempItemsell->getPrice());
+                        money += tempItemsell->getPrice();
+                        s = s + tempItemsell;
+                    }
+
+                    cout<<"Your items have been sold successfully! You earned "<<money<<" guilders!"<<endl;
+                    break;               
+                } catch (InputException e){
+                    cout << e.what();
+                } catch(InvalidSlotException e){
+                    cout << e.what();
+                } catch(ItemNotFoundException e){
+                    cout << e.what();
+                } catch(SellException e){
+                    cout << e.what();
+                }
+            
+            }
+        }
+    } catch(NoItemInStorageException e){
+        cout << e.what();
+        return;
+    } catch(SellInventoryBuildingForFarmerException e){
+        cout << e.what();
+        return;
     }
 }
 

@@ -663,6 +663,27 @@ void Storage<T>::updateValue(string position, T content){
     storageContent[row][col] = store[position];
 }
 
+template<class T>
+bool Storage<T>::isOnlyBuildingItem() const {
+    bool foundElement = false;
+
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if (storageContent[i][j] != nullptr) {
+                if (foundElement || storageContent[i][j]->getType() != "BUILDING") {
+                    return false;
+                }
+                foundElement = true;
+            }
+        }
+    }
+    return foundElement;
+}
+
+
+
+
+
 // template<class T>
 // void Storage<T>::printmap(string position){
 //     cout << store[position] << endl;
