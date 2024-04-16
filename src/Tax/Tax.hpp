@@ -7,7 +7,7 @@ class Tax{
     protected:
         int ktkp;
         int uang;
-        int harta; // menunggu storage
+        int harta;
     public:
         Tax (int ktkp,int uang, int harta);
         int totalWealth();

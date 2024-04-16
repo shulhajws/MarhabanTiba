@@ -157,6 +157,13 @@ public:
     }
 };
 
+class CannotBuyItemException : public Exception {
+public:
+    string what() override {
+        return "\033[1;31mYour wallet feels lighter than air. 💸 \nIt seems we're a bit short on gulden for this transaction. \nFor the time being, you cannot make any purchases. Please earn more gulden or check back later.\n\033[0m";
+    }
+};
+
 // nanti tambah exception disini
 
 #endif

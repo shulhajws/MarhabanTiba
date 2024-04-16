@@ -2,9 +2,9 @@
 #define _STORAGE_HPP_
 
 #include <iostream>
-#include <vector> //dynamic array
+#include <vector> 
 #include <string>
-#include <map> //dictionary pairs
+#include <map>
 #include "../Item/Animal/Animal.hpp"
 #include "../Item/Plant/Plant.hpp"
 #include "../Item/Item.hpp"
@@ -20,9 +20,12 @@ class Storage {
         vector<vector<T> > storageContent;
         map<string, T> store;
     public :
+        // CONSTRUCTOR DAN DESTRUCTOR
         Storage();
         Storage(int row, int col);
         ~Storage();
+
+        // GETTER & SETTER
         void setItem(int row, int col, T content);
         void setItemString(string position, T content);
         void setItemRandom(T content);
@@ -30,11 +33,13 @@ class Storage {
         void setRowCols(int row, int cols);
         int getRow() const;
         int getCol() const;
-        bool isKeyExist(string position);
         T getItemInfo(string position);
         T getItemInfoInt(int row, int col);
         T getItem(int row, int col);
         T getItemString(string position);
+
+        // CLASS METHOD
+        bool isKeyExist(string position);
         bool isItemValid(int row, int col);
         bool isSlotEmpty(int row, int col) const;
         void printStorage(string name, int color);
