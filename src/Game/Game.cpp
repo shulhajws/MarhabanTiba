@@ -129,7 +129,7 @@ string Game::inputName(){
 }
 
 bool Game::isCurrentPlayerMayor() {
-    if (players[currPlayer]->getType()=="Mayor") {
+    if (players[currPlayer]->getType()=="Walikota") {
         return true;
     } else {
         return false;

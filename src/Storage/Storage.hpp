@@ -30,6 +30,7 @@ class Storage {
         void setRowCols(int row, int cols);
         int getRow() const;
         int getCol() const;
+        bool isKeyExist(string position);
         T getItemInfo(string position);
         T getItemInfoInt(int row, int col);
         T getItem(int row, int col);

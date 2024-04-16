@@ -112,13 +112,38 @@ int Storage<T>::getCol() const {
 }
 
 template<class T>
+bool Storage<T>::isKeyExist(string position){
+    if (store.find(position) == store.end()) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+template<class T>
 T Storage<T>::getItemInfo(string position){
-    return store[position];
+    if(isKeyExist(position)){
+        if(store[position]!=NULL){
+            return store[position];
+        }
+    }
+    else{
+        throw ItemNotFoundException();
+    }
+    return nullptr;
 }
 
 template<class T>
 T Storage<T>::getItemInfoInt(int row, int col){
-    return storageContent[row][col];
+    if(isItemValid(row,col)){
+        if(storageContent[row][col]!=NULL){
+            return storageContent[row][col];
+        }
+    }
+    else{
+        throw ItemNotFoundException();
+    }
+    return nullptr;
 }
 
 template<class T>
