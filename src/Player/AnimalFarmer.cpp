@@ -41,7 +41,10 @@ void AnimalFarmer::setBarn(Storage<Animal*> barn){
 
 int AnimalFarmer::calculateTax(){
     Tax t(getKTKP(), wealth,getPlayerAssets());
-    return t.getTax();
+    if(t.getTax()<=wealth){
+        return t.getTax();
+    }
+    return wealth;
 }
 
 void AnimalFarmer::displayInfo() const {

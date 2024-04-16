@@ -14,7 +14,7 @@ void PungutPajak::useCommand(){
             i++;
             Tax t(p->getKTKP(),p->getPlayerWealth(),p->getPlayerAssets()); 
             playerTaxes.emplace_back(p, p->calculateTax());
-            total+= t.getTax();
+            total+= p->calculateTax();
             t.payTax(*p,*players[currPlayer]);
         }
     }
