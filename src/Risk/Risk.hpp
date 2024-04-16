@@ -66,6 +66,18 @@ class BedahRumahShow : public Risk {
         string getName() override;
 };
 
+class GainWeightInEid : public Risk {
+    public:
+        void useRisk(Player*) override;
+        string getName() override;
+};
+
+class RamadanDiet : public Risk {
+    public:
+        void useRisk(Player*) override;
+        string getName() override;
+};
+
 
 
 #endif

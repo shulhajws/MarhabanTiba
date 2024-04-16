@@ -9,6 +9,8 @@ void Risk::initializeRisks(){
     risk.push_back(new NotScamMLM());
     risk.push_back(new IftarTime());
     risk.push_back(new BedahRumahShow());
+    risk.push_back(new GainWeightInEid());
+    risk.push_back(new RamadanDiet());
 }
 
 void Risk::getRandomRisk(Player* p){
@@ -122,9 +124,9 @@ void NotScamMLM :: useRisk(Player* player) {
     cout << "\033[1;96mYou invested some money to join a multi-level marketing. Dreaming your farm to be as great as those in Nuu Zee Land." << endl;
     cout << "You join an MLM and suddenly your wealth is double dripper.\033[0m" << endl;
     int wealth = player->getPlayerWealth();
-    cout << "Your before now is " << wealth << " gulden." << endl;
+    cout << "Your wealth before was " << wealth << " gulden." << endl;
     player->addPlayerWealth(wealth);
-    cout << "Your wealth now is " << player->getPlayerWealth() << " gulden. Thanks the Mayor!\033[0m" << endl;
+    cout << "Your wealth now is " << player->getPlayerWealth() << " gulden. Thank God\033[0m" << endl;
 }
 
 string NotScamMLM :: getName() {
@@ -152,4 +154,28 @@ void BedahRumahShow :: useRisk(Player* player) {
 
 string BedahRumahShow :: getName() {
     return "Bedah Rumah Show";
+}
+
+void GainWeightInEid :: useRisk(Player* player) {
+    cout << "\033[1;96mIt's Eid Mubarak. You can't handle your appetite. You accidentally gain weight.\033[0m" << endl;
+    int weigth = player->getPlayerWeight();
+    cout << "Your weight before was " << weigth << " kg. You gain " << int(0.05*weigth) << " kg weight." << endl;
+    player->addPlayerWeight(int(0.05*weigth));
+    cout << "Your weight now is " << player->getPlayerWeight() << " kg. Sure you want to diet but you need to win this game!\033[0m" << endl;
+}
+
+string GainWeightInEid :: getName() {
+    return "Gain Weight in Eid";
+}
+
+void RamadanDiet :: useRisk(Player* player) {
+    cout << "\033[1;96mIt's Ramadan. You can't help but loss some of your weight due to fasting.\033[0m" << endl;
+    int weigth = player->getPlayerWeight();
+    cout << "Your weight before was " << weigth << " kg. You loss " << int(0.075*weigth) << " kg weight." << endl;
+    player->minPlayerWeight(int(0.075*weigth));
+    cout << "Your weight now is " << player->getPlayerWeight() << " kg. No worries, you may gain weight after eid!\033[0m" << endl;
+}
+
+string RamadanDiet :: getName() {
+    return "Ramadan Diet";
 }

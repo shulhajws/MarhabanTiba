@@ -79,6 +79,14 @@ void Player::addPlayerWealth(int money){
     this->wealth += money;
 }
 
+void Player::addPlayerWeight(int weight){
+    this->weight += weight;
+}
+
+void Player::minPlayerWeight(int weight){
+    this->weight -= weight;
+}
+
 void Player::minPlayerWealth(int money){
     this->wealth -= money;
 }

@@ -72,6 +72,8 @@ class Player{
 
         //RISK
         void upgradeBuildingRisk();
+        void addPlayerWeight(int);
+        void minPlayerWeight(int);
         
 };
 
