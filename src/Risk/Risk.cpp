@@ -6,6 +6,9 @@ void Risk::initializeRisks(){
     risk.push_back(new GoodFarmerBlessing());
     risk.push_back(new EquipmentBreakdown());
     risk.push_back(new WildAnimalAttacks());
+    risk.push_back(new NotScamMLM());
+    risk.push_back(new IftarTime());
+    risk.push_back(new BedahRumahShow());
 }
 
 void Risk::getRandomRisk(Player* p){
@@ -113,4 +116,40 @@ void DiseaseOutbreak :: useRisk(Player* player) {
 
 string DiseaseOutbreak :: getName() {
     return "Disease Outbreak";
+}
+
+void NotScamMLM :: useRisk(Player* player) {
+    cout << "\033[1;96mYou invested some money to join a multi-level marketing. Dreaming your farm to be as great as those in Nuu Zee Land." << endl;
+    cout << "You join an MLM and suddenly your wealth is double dripper.\033[0m" << endl;
+    int wealth = player->getPlayerWealth();
+    cout << "Your before now is " << wealth << " gulden." << endl;
+    player->addPlayerWealth(wealth);
+    cout << "Your wealth now is " << player->getPlayerWealth() << " gulden. Thanks the Mayor!\033[0m" << endl;
+}
+
+string NotScamMLM :: getName() {
+    return "MLM Anti Scam";
+}
+
+void IftarTime :: useRisk(Player* player) {
+    cout << "\033[1;96mIt's iftar time in MarhabanTiba kingdom. The kingdom is giving you 3 chicken eggs and 3 duck eggs for your iftar.\033[0m" << endl;
+    for (int i = 0; i < 3; i++) {
+        player->setIteminInventory(new ChickenEgg());
+        player->setIteminInventory(new DuckEgg());
+    }
+    player->displayStorage();
+}
+
+string IftarTime :: getName() {
+    return "Iftar Time";
+}
+
+void BedahRumahShow :: useRisk(Player* player) {
+    cout << "\033[1;96mCongrats! You got some surprise from MarhabanTiba Ent. They are renovating your houses to hotels.\033[0m" << endl;
+    player->upgradeBuildingRisk();
+    player->displayStorage();
+}
+
+string BedahRumahShow :: getName() {
+    return "Bedah Rumah Show";
 }

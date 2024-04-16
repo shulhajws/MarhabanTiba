@@ -379,3 +379,21 @@ void Player::displayInfo() const {
 vector<Item*> Player::getListOfItems() const{
     return this->inventory.getListOfContents();
 }
+
+void Player::setIteminInventory(Item* it){
+    this->inventory + it;
+}
+
+void Player::upgradeBuildingRisk(){
+    for (int i = 0; i < inventory.getRow(); i++){
+        for(int j = 0; j < inventory.getCol(); j++){
+            if (inventory.getItemInfoInt(i, j) != nullptr 
+            && (inventory.getItemInfoInt(i, j)->getCode() == "SMH" 
+            || inventory.getItemInfoInt(i, j)->getCode() == "MDH" 
+            || inventory.getItemInfoInt(i, j)->getCode() == "LRH")){
+                inventory.getItem(i, j);
+                inventory.setItem(i, j, new Hotel());
+            }
+        }
+    }
+}
