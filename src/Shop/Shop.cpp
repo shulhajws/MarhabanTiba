@@ -246,3 +246,39 @@ Shop& Shop::operator+(Item* item) {
     }
     return *this;
 }
+
+int Shop:: cheapestItemPrice() {
+    int cheapestPrice = std::numeric_limits<int>::max();
+
+    for (const auto& item : itemsBuilding) {
+        Building building = *get<0>(item);
+        int price = building.getPrice();
+        if (price < cheapestPrice) {
+            cheapestPrice = price;
+        }
+    }
+
+    for (const auto& item : product) {
+        Product prod = *get<0>(item);
+        int price = prod.getPrice();
+        if (price < cheapestPrice) {
+            cheapestPrice = price;
+        }
+    }
+
+    for (const auto& item : itemsAnimals) {
+        int price = item->getPrice();
+        if (price < cheapestPrice) {
+            cheapestPrice = price;
+        }
+    }
+
+    for (const auto& item : itemsPlants) {
+        int price = item->getPrice();
+        if (price < cheapestPrice) {
+            cheapestPrice = price;
+        }
+    }
+
+    return cheapestPrice;
+}

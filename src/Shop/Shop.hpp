@@ -25,6 +25,7 @@ class Shop {
         vector<tuple<Building*, int>> getItemsBuilding() const;
         vector<tuple<Product*, int>> getItemsProduct() const;
         int totalItem();
+        int cheapestItemPrice();
         void addBuilding(Building* b);
         void minBuilding(Building b, int num);
         void addProduct(Product* p);

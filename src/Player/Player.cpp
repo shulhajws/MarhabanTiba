@@ -161,116 +161,124 @@ void Player::buyItem(){
     int buy, quantity;
     Item* tempItembuy = nullptr;
 
-    while (true){
-        try{
-            cout<<"\nItem to be purchased: ";
-            if (!(cin >> buy)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                throw InputNotIntegerException();
-            }
-
-            cout<<"Quantity: ";
-            if (!(cin >> quantity)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                throw InputNotIntegerException();
-            }
-            if(quantity<1){
-                throw InputException();
-            }
-            if((int)buy>(int)s.totalItem()||(int)buy<1){
-                throw ItemNotFoundException();
-            }
-            if (quantity>inventory.getAvailableSlots()){
-                throw NotEnoughInventorySpaceException();
-            }
-            if(s.getItem(buy)->getPrice()*quantity>wealth){
-                throw NotEnoughMoneyException();
-            }
-            if(quantity>(s.getCapacity(*(s.getItem(buy))))){
-                throw NotEnoughItemStockException();
-            }
-            if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
-                throw MayorBuyException();
-            }
-
-            inventory.printStorage("Storage",0);
-
-            string slot; 
-            int success = 0;
-            int row,col;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            while(true){
+    try{
+        if(inventory.isFull()){
+            throw NotEnoughInventorySpaceException();
+        }else if(this->wealth < s.cheapestItemPrice()){
+            throw CannotBuyItemException();
+        }else {
+            while (true){
                 try{
-                    cout<<"\nFormat 'loc1,loc2,loc3,..'";
-                    cout<<"\nSlot: ";
-                    string slot;
-                    getline(cin, slot);
-                    slot.erase(remove_if(slot.begin(), slot.end(), ::isspace), slot.end());
-                    vector<string> slots;
-                    if(quantity>1){
-                        slots = splitbyComa(slot);
-                        if(hasDuplicates(slots)){
-                            throw InputException();
-                        }
+                    cout<<"\nItem to be purchased: ";
+                    if (!(cin >> buy)) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        throw InputNotIntegerException();
                     }
-                    else{
-                        slots.push_back(slot);
+
+                    cout<<"Quantity: ";
+                    if (!(cin >> quantity)) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        throw InputNotIntegerException();
                     }
-                    if (quantity!= slots.size()){
+                    if(quantity<1){
                         throw InputException();
                     }
-                    for (int i=0;i<slots.size();i++){
-                        row = inventory.positionCodetoRow(slots[i]);
-                        col = inventory.positionCodetoCol(slots[i]);
-                        if(!inventory.isItemValid(row,col)){
-                            throw InvalidSlotException();
-                        }
-                        if (!inventory.isSlotEmpty(row,col)){
-                            throw InvalidSlotException();
-                        }
-                     }
-                    for (int i=0;i<slots.size();i++){
-                        row = inventory.positionCodetoRow(slots[i]);
-                        col = inventory.positionCodetoCol(slots[i]);
-                        inventory.setItem(row,col,s.getNewItem(buy));
-                        minPlayerWealth(s.getItem(buy)->getPrice());
-                        success +=1;
+                    if((int)buy>(int)s.totalItem()||(int)buy<1){
+                        throw ItemNotFoundException();
                     }
-                    if(success==quantity){
-                        tempItembuy = s.getItem(buy);
-                        s.minItems(*s.getItem(buy),quantity);
+                    if(s.getItem(buy)->getPrice()*quantity>wealth){
+                        throw NotEnoughMoneyException();
+                    }
+                    if(quantity>(s.getCapacity(*(s.getItem(buy))))){
+                        throw NotEnoughItemStockException();
+                    }
+                    if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
+                        throw MayorBuyException();
+                    }
+
+                    inventory.printStorage("Storage",0);
+
+                    string slot; 
+                    int success = 0;
+                    int row,col;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    while(true){
+                        try{
+                            cout<<"\nFormat 'loc1,loc2,loc3,..'";
+                            cout<<"\nSlot: ";
+                            string slot;
+                            getline(cin, slot);
+                            slot.erase(remove_if(slot.begin(), slot.end(), ::isspace), slot.end());
+                            vector<string> slots;
+                            if(quantity>1){
+                                slots = splitbyComa(slot);
+                                if(hasDuplicates(slots)){
+                                    throw InputException();
+                                }
+                            }
+                            else{
+                                slots.push_back(slot);
+                            }
+                            if (quantity!= slots.size()){
+                                throw InputException();
+                            }
+                            for (int i=0;i<slots.size();i++){
+                                row = inventory.positionCodetoRow(slots[i]);
+                                col = inventory.positionCodetoCol(slots[i]);
+                                if(!inventory.isItemValid(row,col)){
+                                    throw InvalidSlotException();
+                                }
+                                if (!inventory.isSlotEmpty(row,col)){
+                                    throw InvalidSlotException();
+                                }
+                            }
+                            for (int i=0;i<slots.size();i++){
+                                row = inventory.positionCodetoRow(slots[i]);
+                                col = inventory.positionCodetoCol(slots[i]);
+                                inventory.setItem(row,col,s.getNewItem(buy));
+                                minPlayerWealth(s.getItem(buy)->getPrice());
+                                success +=1;
+                            }
+                            if(success==quantity){
+                                tempItembuy = s.getItem(buy);
+                                s.minItems(*s.getItem(buy),quantity);
+                            }
+                            break;
+                        } catch(InputException e){
+                            cout<<e.what();
+                        } catch(InvalidSlotException e){
+                            cout<<e.what();
+                        }
+                    }
+                    if(success == quantity){
+                        inventory.printStorage("Storage",0);
+                        cout<<"Congratulations! You have successfully purchased "<<quantity<<" "<<tempItembuy->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
                     }
                     break;
-                } catch(InputException e){
-                    cout<<e.what();
-                } catch(InvalidSlotException e){
-                    cout<<e.what();
+                } catch (ItemNotFoundException e){
+                    cout << e.what();
+                } catch (InputException e){
+                    cout << e.what();
+                } catch (InputNotIntegerException e){
+                    cout << e.what();
+                } catch (NotEnoughMoneyException e){
+                    cout << e.what();
+                } catch (NotEnoughItemStockException e){
+                    cout << e.what();
+                } catch (MayorBuyException e){
+                    cout << e.what();
                 }
-            }
-            if(success == quantity){
-                inventory.printStorage("Storage",0);
-                cout<<"Congratulations! You have successfully purchased "<<quantity<<" "<<tempItembuy->getName()<<". You have "<<wealth<<" gulden remaining."<<endl;
-            }
-            break;
-        } catch (ItemNotFoundException e){
-            cout << e.what();
-        } catch (InputException e){
-            cout << e.what();
-        } catch (InputNotIntegerException e){
-            cout << e.what();
-        } catch (NotEnoughInventorySpaceException e){
-            cout << e.what();
-        } catch (NotEnoughMoneyException e){
-            cout << e.what();
-        } catch (NotEnoughItemStockException e){
-            cout << e.what();
-        } catch (MayorBuyException e){
-            cout << e.what();
-        }
+            } 
+        }    
+    } catch(NotEnoughInventorySpaceException e){
+        cout << e.what();
+        return;
+    } catch(CannotBuyItemException e){
+        cout << e.what();
+        return;
     } 
-    
 }
 
 void Player::sellItem(){
