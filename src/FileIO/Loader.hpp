@@ -32,15 +32,15 @@ public:
     // read each words from file
     vector<vector<string>> getWordsFromFile(string);
     // vector of animal
-    vector<Animal> configOfAnimal();
+    void configOfAnimal();
     // vector of plant
-    vector<Plant> configOfPlant();
+    void configOfPlant();
     // vector of products
-    vector<Product> configOfProduct();
+    void configOfProduct();
     // vector of recipe (building)
-    vector<Building> configOfBuildingRecipes();
+    void configOfBuildingRecipes();
     // get misc
-    Misc configOfMisc();
+    void configOfMisc();
     // item constructor
     Item* itemConstructor(string);
     // building constructor

@@ -79,10 +79,9 @@ vector<vector<string>> Loader::getWordsFromFile(string filepath)
     return vectorOfWords;
 }
 
-vector<Animal> Loader::configOfAnimal()
+void Loader::configOfAnimal()
 {
     vector<vector<string>> vectorOfWords;
-    vector<Animal> animals;
 
     try
     {
@@ -96,50 +95,48 @@ vector<Animal> Loader::configOfAnimal()
 
             if (ID == 1)
             {
-                animals.push_back(Cow(harvestWeight, price));
+                Cow(harvestWeight, price);
             }
             else if (ID == 2)
             {
-                animals.push_back(Sheep(harvestWeight, price));
+                Sheep(harvestWeight, price);
             }
             else if (ID == 3)
             {
-                animals.push_back(Horse(harvestWeight, price));
+                Horse(harvestWeight, price);
             }
             else if (ID == 4)
             {
-                animals.push_back(Rabbit(harvestWeight, price));
+                Rabbit(harvestWeight, price);
             }
             else if (ID == 5)
             {
-                animals.push_back(Snake(harvestWeight, price));
+                Snake(harvestWeight, price);
             }
             else if (ID == 6)
             {
-                animals.push_back(Chicken(harvestWeight, price));
+                Chicken(harvestWeight, price);
             }
             else if (ID == 7)
             {
-                animals.push_back(Duck(harvestWeight, price));
+                Duck(harvestWeight, price);
             }
             else
             {
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
-        return animals;
     }
     catch (FileException &FE)
     {
         cout << FE.what();
+        cout << "Pastikan folder konfigurasi anda memiliki file 'animal.txt'" << endl;
     }
-    return animals;
 }
 
-vector<Plant> Loader::configOfPlant()
+void Loader::configOfPlant()
 {
     vector<vector<string>> vectorOfWords;
-    vector<Plant> plants;
 
     try
     {
@@ -153,54 +150,52 @@ vector<Plant> Loader::configOfPlant()
 
             if (ID == 1)
             {
-                plants.push_back(TeakTree(harvestDuration, price));
+                TeakTree(harvestDuration, price);
             }
             else if (ID == 2)
             {
-                plants.push_back(SandalwoodTree(harvestDuration, price));
+                SandalwoodTree(harvestDuration, price);
             }
             else if (ID == 3)
             {
-                plants.push_back(AloeTree(harvestDuration, price));
+                AloeTree(harvestDuration, price);
             }
             else if (ID == 4)
             {
-                plants.push_back(IronwoodTree(harvestDuration, price));
+                IronwoodTree(harvestDuration, price);
             }
             else if (ID == 5)
             {
-                plants.push_back(AppleTree(harvestDuration, price));
+                AppleTree(harvestDuration, price);
             }
             else if (ID == 6)
             {
-                plants.push_back(OrangeTree(harvestDuration, price));
+                OrangeTree(harvestDuration, price);
             }
             else if (ID == 7)
             {
-                plants.push_back(BananaTree(harvestDuration, price));
+                BananaTree(harvestDuration, price);
             }
             else if (ID == 8)
             {
-                plants.push_back(GuavaTree(harvestDuration, price));
+                GuavaTree(harvestDuration, price);
             }
             else
             {
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
-        return plants;
     }
     catch (FileException &FE)
     {
         cout << FE.what();
+        cout << "Pastikan folder konfigurasi anda memiliki file 'plant.txt'" << endl;
     }
-    return plants;
 }
 
-vector<Product> Loader::configOfProduct()
+void Loader::configOfProduct()
 {
     vector<vector<string>> vectorOfWords;
-    vector<Product> products;
 
     try
     {
@@ -214,90 +209,87 @@ vector<Product> Loader::configOfProduct()
 
             if (ID == 1)
             {
-                products.push_back(TeakWood(addedWeight, price));
+                TeakWood(addedWeight, price);
             }
             else if (ID == 2)
             {
-                products.push_back(SandalwoodWood(addedWeight, price));
+                SandalwoodWood(addedWeight, price);
             }
             else if (ID == 3)
             {
-                products.push_back(AloeWood(addedWeight, price));
+                AloeWood(addedWeight, price);
             }
             else if (ID == 4)
             {
-                products.push_back(IronwoodWood(addedWeight, price));
+                IronwoodWood(addedWeight, price);
             }
             else if (ID == 5)
             {
-                products.push_back(Apple(addedWeight, price));
+                Apple(addedWeight, price);
             }
             else if (ID == 6)
             {
-                products.push_back(Orange(addedWeight, price));
+                Orange(addedWeight, price);
             }
             else if (ID == 7)
             {
-                products.push_back(Banana(addedWeight, price));
+                Banana(addedWeight, price);
             }
             else if (ID == 8)
             {
-                products.push_back(Guava(addedWeight, price));
+                Guava(addedWeight, price);
             }
             else if (ID == 9)
             {
-                products.push_back(CowMeat(addedWeight, price));
+                CowMeat(addedWeight, price);
             }
             else if (ID == 10)
             {
-                products.push_back(SheepMeat(addedWeight, price));
+                SheepMeat(addedWeight, price);
             }
             else if (ID == 11)
             {
-                products.push_back(HorseMeat(addedWeight, price));
+                HorseMeat(addedWeight, price);
             }
             else if (ID == 12)
             {
-                products.push_back(RabbitMeat(addedWeight, price));
+                RabbitMeat(addedWeight, price);
             }
             else if (ID == 13)
             {
-                products.push_back(SnakeMeat(addedWeight, price));
+                SnakeMeat(addedWeight, price);
             }
             else if (ID == 14)
             {
-                products.push_back(ChickenMeat(addedWeight, price));
+                ChickenMeat(addedWeight, price);
             }
             else if (ID == 15)
             {
-                products.push_back(DuckMeat(addedWeight, price));
+                DuckMeat(addedWeight, price);
             }
              else if (ID == 16)
             {
-                products.push_back(ChickenEgg(addedWeight, price));
+                ChickenEgg(addedWeight, price);
             }
             else if (ID == 17)
             {
-                products.push_back(DuckEgg(addedWeight, price));
+                DuckEgg(addedWeight, price);
             }
             else
             {
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
-        return products;
     }
     catch (FileException &FE)
     {
         cout << FE.what();
     }
-    return products;
 }
 
-vector<Building> Loader::configOfBuildingRecipes()
+void Loader::configOfBuildingRecipes()
 {
     vector<vector<string>> vectorOfWords;
-    vector<Building> buildings;
 
     try
     {
@@ -317,7 +309,6 @@ vector<Building> Loader::configOfBuildingRecipes()
                     int materialQty = stoi(vectorOfWords[i][j + 1]);
                     smallHouse.addRecipeMaterial(materialName, materialQty);
                 }
-                buildings.push_back(smallHouse);
             }
             else if (ID == 2)
             {
@@ -328,7 +319,6 @@ vector<Building> Loader::configOfBuildingRecipes()
                     int materialQty = stoi(vectorOfWords[i][j + 1]);
                     mediumHouse.addRecipeMaterial(materialName, materialQty);
                 }
-                buildings.push_back(mediumHouse);
             }
             else if (ID == 3)
             {
@@ -339,7 +329,6 @@ vector<Building> Loader::configOfBuildingRecipes()
                     int materialQty = stoi(vectorOfWords[i][j + 1]);
                     largeHouse.addRecipeMaterial(materialName, materialQty);
                 }
-                buildings.push_back(largeHouse);
             }
             else if (ID == 4)
             {
@@ -350,23 +339,21 @@ vector<Building> Loader::configOfBuildingRecipes()
                     int materialQty = stoi(vectorOfWords[i][j + 1]);
                     hotel.addRecipeMaterial(materialName, materialQty);
                 }
-                buildings.push_back(hotel);
             }
             else
             {
                 cout << "ID tidak terdefinisi. Perbaiki file konfigurasi Anda." << endl;
             }
         }
-        return buildings;
     }
     catch (FileException &FE)
     {
         cout << FE.what();
+        cout << "Pastikan folder konfigurasi anda memiliki file 'product.txt'" << endl;
     }
-    return buildings;
 }
 
-Misc Loader::configOfMisc()
+void Loader::configOfMisc()
 {
     vector<vector<string>> vectorOfWords;
     try
@@ -380,13 +367,13 @@ Misc Loader::configOfMisc()
         int fieldCols = stoi(vectorOfWords[3][1]);
         int barnRow = stoi(vectorOfWords[4][0]);
         int barnCols = stoi(vectorOfWords[4][1]);
-        return Misc(minMoney, minWeight, storageRow, storageCols, fieldRow, fieldCols, barnRow, barnCols);
+        Misc(minMoney, minWeight, storageRow, storageCols, fieldRow, fieldCols, barnRow, barnCols);
     }
     catch (FileException &FE)
     {
         cout << FE.what();
+        cout << "Pastikan folder konfigurasi anda memiliki file 'misc.txt'" << endl;
     }
-    return Misc();
 }
 
 Building* Loader::buildingConstructor(string itemName){
