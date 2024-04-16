@@ -88,7 +88,6 @@ void PlantFarmer::plantCrop() {
                     throw InputException();
                 }
                 it = inventory.getItemInfoInt(row, col);
-                cout << it->getType() << endl; 
                 if(it->getType()!="MATERIAL_PLANT" && it->getType()!="FRUIT_PLANT"){
                     throw InputException();
                 }else{
