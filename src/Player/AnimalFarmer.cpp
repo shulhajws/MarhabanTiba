@@ -73,12 +73,13 @@ void AnimalFarmer::placeAnimal() {
 
         int row,col;
         Item* it ;
+        string slot;
 
         while(true){
             try{
                 cout<< "Slot: ";
-                string slot;
                 cin >> slot;
+                cout << "You want to place your animal in slot " << slot << " in your barn." << endl; 
 
                 row = inventory.positionCodetoRow(slot);
                 col = inventory.positionCodetoCol(slot);
