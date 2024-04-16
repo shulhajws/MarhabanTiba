@@ -3,6 +3,9 @@
 #include "../Command/PeternakCommand/Ternak.hpp"
 #include "../Command/PeternakCommand/CetakPeternakan.hpp"
 #include "../Command/AllCommand/Panen.hpp"
+#include "../Item/Animal/Animal.hpp"
+#include "../Item/Animal/Herbivore.hpp"
+#include "../Command/AllCommand/TakeRisk.hpp"
 #include "../Tax/Tax.hpp"
 
 #include <iostream>
@@ -13,6 +16,7 @@ AnimalFarmer::AnimalFarmer() : Player(){
     this->commandList.push_back(new Ternak());
     this->commandList.push_back(new CetakPeternakan());
     this->commandList.push_back(new Panen());
+    this->commandList.push_back(new TakeRisk());
     Misc m;
     this->Barn.setRowCols(m.getBarnRow(),m.getBarnCols());
 }
@@ -22,6 +26,7 @@ AnimalFarmer::AnimalFarmer(string username, int wealth, int weight) : Player(use
     this->commandList.push_back(new Ternak());
     this->commandList.push_back(new CetakPeternakan());
     this->commandList.push_back(new Panen());
+    this->commandList.push_back(new TakeRisk());
     Misc m;
     this->Barn.setRowCols(m.getBarnRow(),m.getBarnCols());
 }
@@ -135,6 +140,18 @@ void AnimalFarmer::placeAnimal() {
         cout<< e.what()<<endl;
     } catch (NoAnimalInStorageException& e) {
         cout<< e.what()<<endl;
+    }
+}
+
+void AnimalFarmer::placeAnimalRisk() {
+    if (!Barn.isFull()) {
+        Animal* sapi = new Cow();
+        Barn = Barn + sapi;
+        addPlayerWealth(15);
+    } else{
+        cout<<"Your barn is full, so the committee decided to compensate you with money."<<endl;
+        cout<<"You received 20 gulden as compensation."<<endl;
+        addPlayerWealth(20);
     }
 }
 
@@ -334,6 +351,23 @@ void AnimalFarmer::harvestAnimal() {
     } catch (HarvestException e) {
         cout << e.what();
     } 
+}
+
+void AnimalFarmer::minAnimalWeight(){
+    for (int i = 0; i < Barn.getRow(); i++) {
+        for (int j = 0; j < Barn.getCol(); j++) {
+            if (Barn.getItemInfoInt(i,j) != nullptr) {
+                Animal *x = Barn.getItemInfoInt(i,j);
+                x->minWeight();
+                Barn.getItem(i,j);
+                Barn.setItem(i,j,x);
+            }
+        }
+    }
+}
+
+void AnimalFarmer::delItemRisk(){
+    Barn.deleteItem();
 }
 
 void AnimalFarmer::printBarn() {

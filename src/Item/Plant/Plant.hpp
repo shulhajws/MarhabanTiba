@@ -17,6 +17,7 @@ class Plant : public Item{
         ~Plant();
         int getPrice();
         void addAge();
+        void minAge();
         void setPlantAge(int plantAge);
         bool isReadyToHarvest();
 };

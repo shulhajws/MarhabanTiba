@@ -23,15 +23,20 @@ class PlantFarmer : public Player{
         // CLASS METHOD
         // add  all plant year in Garden
         void addPlantYear();
+        void minPlantYear();
 
         // display player info
         void displayInfo() const;
 
         // "TANAM" method
         void plantCrop();
+        void plantCropRisk();
 
         // "PANEN" method
         void harvestCrop();
+
+        // Deleting Plant Risk
+        void delItemRisk();
 
         // print player garden
         void printGarden();

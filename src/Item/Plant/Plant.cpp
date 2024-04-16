@@ -18,6 +18,12 @@ void Plant::addAge(){
     this->plantAge++;
 }
 
+void Plant::minAge(){
+    if(plantAge>=1){
+        this->plantAge--;
+    }
+}
+
 void Plant::setPlantAge(int plantAge){
     this->plantAge = plantAge;    
 }

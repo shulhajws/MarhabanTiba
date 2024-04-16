@@ -14,7 +14,7 @@ class AnimalFarmer : public Player{
         AnimalFarmer(string username, int wealth, int weight);
         
         // GETTER
-        int getKTKP() override;
+        int getKTKP();
         void setBarn(Storage<Animal*>);
         int getPlayerAssets();
         vector<Animal*> getListOfAnimals() const;
@@ -26,11 +26,20 @@ class AnimalFarmer : public Player{
         // Place Animal in Barn Method
         void placeAnimal();
 
+        // Place Animal for risk in Barn Method
+        void placeAnimalRisk();
+
         // Feed Animal method
         void feedAnimal();
 
+        // min Animal Weight
+        void minAnimalWeight();
+
         // Harvesting Animal Method
         void harvestAnimal();
+
+        // Deleting Animal Risk
+        void delItemRisk();
 
         // Print Player Barn
         void printBarn();

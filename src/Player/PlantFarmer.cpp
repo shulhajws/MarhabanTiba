@@ -2,6 +2,8 @@
 #include "../Command/PetaniCommand/Tanam.hpp"
 #include "../Command/PetaniCommand/CetakLadang.hpp"
 #include "../Command/AllCommand/Panen.hpp"
+#include "../Command/AllCommand/TakeRisk.hpp"
+#include "../Item/Plant/FruitPlant.hpp"
 #include "../Tax/Tax.hpp"
 
 #include <iostream>
@@ -11,6 +13,7 @@ PlantFarmer::PlantFarmer() : Player(){
     this->commandList.push_back(new Tanam());
     this->commandList.push_back(new CetakLadang());
     this->commandList.push_back(new Panen());
+    this->commandList.push_back(new TakeRisk());
     Misc m;
     this->Garden.setRowCols(m.getFieldRow(),m.getFieldeCols());
 }
@@ -19,6 +22,7 @@ PlantFarmer::PlantFarmer(string username, int wealth, int weight) : Player(usern
     this->commandList.push_back(new Tanam());
     this->commandList.push_back(new CetakLadang());
     this->commandList.push_back(new Panen());
+    this->commandList.push_back(new TakeRisk());
     Misc m;
     this->Garden.setRowCols(m.getFieldRow(),m.getFieldeCols());
 }
@@ -139,6 +143,17 @@ void PlantFarmer::plantCrop() {
     }
 }
 
+void PlantFarmer::plantCropRisk() {
+    if (!Garden.isFull()) {
+        Plant* apel = new AppleTree();
+        Garden = Garden + apel;
+        addPlayerWealth(15);
+    } else{
+        cout<<"Your Garden is full, so the committee decided to compensate you with money."<<endl;
+        cout<<"You received 20 gulden as compensation."<<endl;
+        addPlayerWealth(20);
+    }
+}
 
 void PlantFarmer::addPlantYear(){
     for (int i = 0; i < Garden.getRow(); i++) {
@@ -146,6 +161,19 @@ void PlantFarmer::addPlantYear(){
             if (Garden.getItemInfoInt(i,j) != nullptr) {
                 Plant *x = Garden.getItemInfoInt(i,j);
                 x->addAge();
+                Garden.getItem(i,j);
+                Garden.setItem(i,j,x);
+            }
+        }
+    }
+}
+
+void PlantFarmer::minPlantYear(){
+    for (int i = 0; i < Garden.getRow(); i++) {
+        for (int j = 0; j < Garden.getCol(); j++) {
+            if (Garden.getItemInfoInt(i,j) != nullptr) {
+                Plant *x = Garden.getItemInfoInt(i,j);
+                x->minAge();
                 Garden.getItem(i,j);
                 Garden.setItem(i,j,x);
             }
@@ -247,6 +275,10 @@ void PlantFarmer::harvestCrop() {
     } catch (HarvestException e) {
         cout << e.what();
     }
+}
+
+void PlantFarmer::delItemRisk(){
+    Garden.deleteItem();
 }
 
 void PlantFarmer::printGarden() {

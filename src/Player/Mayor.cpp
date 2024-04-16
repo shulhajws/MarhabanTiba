@@ -42,17 +42,11 @@ void Mayor::buildBuilding(){
             }
 
             map<string, int> material = b.getmaterial(build);
-            if(checkMaterialCapacity(material)&&wealth>=b.getMoney(build)){
-                minPlayerWealth(b.getMoney(build));
-                Item* building = b.getBuilding(build);
-                inventory = inventory + building;
+            if(checkMaterialCapacity(material)){
                 cout<<build<<" successfully built and now belongs to the mayor!"<<endl;
             }
             else{
                 cout<<"You do not have enough resources! still need ";
-                if(wealth<b.getMoney(build)){
-                    cout<<b.getMoney(build)-wealth<<" gulden, ";
-                }
             }
 
             int index = 0;
@@ -72,6 +66,9 @@ void Mayor::buildBuilding(){
                 }
                 ++index;
             }
+
+            Item* building = b.getBuilding(build);
+            inventory = inventory + building;
             break;
         } catch (InputException e){
             cout << e.what();

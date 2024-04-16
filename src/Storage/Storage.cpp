@@ -343,13 +343,33 @@ void Storage<T>::deleteItemCount(string item,int count){
         for (int j = 0; j < col; j++) {
             if(storageContent[i][j]!=nullptr){
                 if (storageContent[i][j]->getName() == item) {
-                    storageContent[row][col] = nullptr;
+                    storageContent[i][j] = nullptr;
                     num+=1; 
                 }
             }
             if(count==num){
                 break;
             }
+        }
+        if(count==num){
+            break;
+        }
+    }
+}
+
+template<class T>
+void Storage<T>::deleteItem(){
+    bool done = false;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < col; j++) {
+            if(storageContent[i][j]!=nullptr){
+                storageContent[i][j] = nullptr;
+                done = true;
+                break;
+            }
+        }
+        if(done){
+            break;
         }
     }
 }

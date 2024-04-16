@@ -3,41 +3,47 @@
 #include <iostream>
 using namespace std;
 
-#include "../Game/Game.hpp"
+#include "../Player/Player.hpp"
+#include "../Player/AnimalFarmer.hpp"
+#include "../Player/PlantFarmer.hpp"
 
-class Risk : Game {
+class Risk{
+    private:
+        vector<Risk*> risk;
     public:
-        virtual void useRisk() = 0;
-        virtual string getName() = 0;
+        void initializeRisks();
+        void getRandomRisk(Player*);
+        virtual void useRisk(Player*);
+        virtual string getName();
 };
 
 class HarvestFestivalBonus : public Risk {
     public:
-        void useRisk() override;
+        void useRisk(Player*) override;
         string getName() override;
 };
 
 class GoodFarmerBlessing : public Risk {
     public:
-            void useRisk() override;
+            void useRisk(Player*) override;
             string getName() override;
 };
 
 class EquipmentBreakdown : public Risk {
     public:
-        void useRisk() override;
+        void useRisk(Player*) override;
         string getName() override;
 };
 
 class WildAnimalAttacks : public Risk {
     public:
-        void useRisk() override;
+        void useRisk(Player*) override;
         string getName() override;
 };
 
 class DiseaseOutbreak : public Risk {
     public:
-        void useRisk() override;
+        void useRisk(Player*) override;
         string getName() override;
 };
 

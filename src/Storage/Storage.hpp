@@ -48,6 +48,7 @@ class Storage {
         int getTotalAssets();
         bool isReadytoHarvest();
         void deleteItemCount (string item,int count);
+        void deleteItem ();
         vector<string> printHarvestedItem();
         bool isEmpty() const;
         bool isFull() const;

@@ -18,6 +18,7 @@ class Animal : public Item{
         ~Animal();
         virtual void makan(Product* p);
         void setAnimalWeight(int weight);
+        void minWeight();
         int getPrice();
         bool isReadyToHarvest();
 };

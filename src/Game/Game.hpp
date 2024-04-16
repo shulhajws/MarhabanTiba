@@ -19,6 +19,7 @@ class Game{
         static int currPlayer;
         static int tambahPemain;
         static vector<Player*> players;
+        static bool risk;
     public:
         void startGame();
         void askInput();

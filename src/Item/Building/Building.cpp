@@ -59,7 +59,7 @@ map<string, int> SmallHouse::getmaterial(string b){
     return SmallHouse::materials;
 }
 void SmallHouse::printMaterial(){
-    cout<<"1. "<<this->getName()<<" ("<<this->getPrice()<<" gulden, ";
+    cout<<"1. "<<this->getName()<<" (";
     int index = 0;
     for (auto it = materials.begin(); it != materials.end(); ++it) {
         if (index == materials.size()-1) { 
@@ -86,7 +86,7 @@ map<string, int> MediumHouse::getmaterial(string b){
     return MediumHouse::materials;
 }
 void MediumHouse::printMaterial(){
-    cout<<"2. "<<this->getName()<<" ("<<this->getPrice()<<" gulden, ";
+    cout<<"2. "<<this->getName()<<" (";
     int index = 0;
     for (auto it = materials.begin(); it != materials.end(); ++it) {
         if (index == materials.size()-1) { 
@@ -113,7 +113,7 @@ map<string, int> LargeHouse::getmaterial(string b){
     return LargeHouse::materials;
 }
 void LargeHouse::printMaterial(){
-    cout<<"3. "<<this->getName()<<" ("<<this->getPrice()<<" gulden, ";
+    cout<<"3. "<<this->getName()<<" (";
     int index = 0;
     for (auto it = materials.begin(); it != materials.end(); ++it) {
         if (index == materials.size()-1) { 
@@ -138,7 +138,7 @@ void Hotel::addRecipeMaterial(string materialName, int materialQty) {
 }
 
 void Hotel::printMaterial(){
-    cout<<"4. "<<this->getName()<<" ("<<this->getPrice()<<" gulden, ";
+    cout<<"4. "<<this->getName()<<" (";
     int index = 0;
     for (auto it = materials.begin(); it != materials.end(); ++it) {
         if (index == materials.size()-1) { 

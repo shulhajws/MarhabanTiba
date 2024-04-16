@@ -41,6 +41,7 @@ class Player{
         int getPlayerWealth() const;
         int getPlayerWeight() const;
         string getType() const;
+        void getRandomRisk() const;
         vector<Item*> getListOfItems() const;
         void setInventory(Storage<Item*>);
 

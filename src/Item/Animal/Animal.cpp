@@ -22,6 +22,15 @@ void Animal::setAnimalWeight(int weight){
     this->animalWeight = weight; 
 }
 
+void Animal::minWeight(){
+    if(animalWeight>=2){
+        this->animalWeight-=2;
+    }
+    else if(animalWeight==1){
+        this->animalWeight-=1;
+    }
+}
+
 bool Animal::isReadyToHarvest(){
     if(animalWeight>=harvestWeight){
         return true;

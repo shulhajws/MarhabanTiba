@@ -7,6 +7,7 @@ using namespace std;
 
 int Game::currPlayer;
 int Game::tambahPemain = 0;
+bool Game::risk = false;
 vector<Player*> Game::players;
 
 void Game::startGame(){
@@ -60,7 +61,7 @@ void Game::askInput(){
         }
         while(!ada){
             cout<<"File not found"<<endl;
-            cout<<"Enter the name of the state file (without .txt): ";
+            cout<<"Enter the name of the state file following the given format : ";
             cin>>state;
             
             ifstream configFileToWords(state);
@@ -128,8 +129,7 @@ string Game::inputName(){
 }
 
 bool Game::isCurrentPlayerMayor() {
-    Mayor* mayorPlayer = dynamic_cast<Mayor*>(players[currPlayer]);
-    if (mayorPlayer) {
+    if (players[currPlayer]->getType()=="Mayor") {
         return true;
     } else {
         return false;
@@ -137,8 +137,7 @@ bool Game::isCurrentPlayerMayor() {
 }
 
 bool Game::isCurrentPlayerPlantFarmer() {
-    PlantFarmer* plantFarmerPlayer = dynamic_cast<PlantFarmer*>(players[currPlayer]);
-    if (plantFarmerPlayer) {
+    if (players[currPlayer]->getType()=="Petani") {
         return true;
     } else {
         return false;
@@ -146,8 +145,7 @@ bool Game::isCurrentPlayerPlantFarmer() {
 }
 
 bool Game::isCurrentPlayerAnimalFarmer() {
-    AnimalFarmer* animalFarmerPlayer = dynamic_cast<AnimalFarmer*>(players[currPlayer]);
-    if (animalFarmerPlayer) {
+    if (players[currPlayer]->getType()=="Peternak") {
         return true;
     } else {
         return false;
@@ -179,7 +177,8 @@ bool Game::inputCommand(){
             cout << "7. MAKAN" << endl;
             cout << "8. BELI" << endl;
             cout << "9. JUAL" << endl;
-            cout << "10. SIMPAN" << endl;
+            cout << "10. RISK" << endl;
+            cout << "11. SIMPAN" << endl;
         } else if (isCurrentPlayerPlantFarmer()) {
             cout << "\nHoy, Plant Farmer! Here are your available commands : " << endl;
             cout << "1. NEXT" << endl;
@@ -190,9 +189,9 @@ bool Game::inputCommand(){
             cout << "6. MAKAN" << endl;
             cout << "7. BELI" << endl;
             cout << "8. JUAL" << endl;
-            cout << "9. SIMPAN" << endl;
+            cout << "9. RISK" << endl;
+            cout << "10. SIMPAN" << endl;
         }
-        
         cout << "\nEnter command > ";
         cout << "\033[1;92m";
         cin >> command;
@@ -216,6 +215,7 @@ bool Game::inputCommand(){
                     Game::tambahPemain = 0;
                 }
                 addAllPlantYear();
+                Game::risk = false;
                 break;
             }
         }
