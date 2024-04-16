@@ -266,7 +266,7 @@ void AnimalFarmer::harvestAnimal() {
         }
         printBarn();
         cout<<"\nChoose the ready-to-harvest animal you have:"<<endl;
-        vector<string> garden = Barn.printHarvestedItem();
+        vector<string> barn = Barn.printHarvestedItem();
 
         int num, capacity;
         while(true){
@@ -285,7 +285,7 @@ void AnimalFarmer::harvestAnimal() {
                     throw InputNotIntegerException();
                 }
 
-                if (num<1 || num> garden.size() || capacity<1 || Barn.countItemsHarvested(garden[num-1])<capacity){
+                if (num<1 || num> barn.size() || capacity<1 || Barn.countItemsHarvested(barn[num-1])<capacity){
                     throw InputException();
                 }
 
@@ -317,7 +317,8 @@ void AnimalFarmer::harvestAnimal() {
                     if(Barn.isSlotEmpty(rowField,colField)){
                         throw InputException();
                     }
-                    if(!Barn.getItemInfo(landSlot)->isReadyToHarvest() || Barn.isSlotEmpty(rowField,colField) || !Barn.isItemValid(rowField,colField)){
+                    if(!Barn.getItemInfo(landSlot)->isReadyToHarvest() || Barn.isSlotEmpty(rowField,colField) || 
+                    !Barn.isItemValid(rowField,colField) || Barn.getItemInfo(landSlot)->getName()!=barn[num-1]){
                         throw InvalidSlotException();
                     }
 
@@ -335,7 +336,7 @@ void AnimalFarmer::harvestAnimal() {
         }
 
         Product p;
-        vector<Product*> Prod = p.getProduct(garden[num-1]);
+        vector<Product*> Prod = p.getProduct(barn[num-1]);
         for (int i=0; i<capacity;i++){
             for (auto pro : Prod){
                 Item* produk = pro;
@@ -344,7 +345,7 @@ void AnimalFarmer::harvestAnimal() {
         }
         
         cout<<"\n";
-        cout<<capacity<<" plots of "<< garden[num-1] << " animals in plots ";
+        cout<<capacity<<" plots of "<< barn[num-1] << " animals in plots ";
         for(int i=0;i<selectedPlots.size()-1;i++){
             cout<<selectedPlots[i]<<", ";
         }

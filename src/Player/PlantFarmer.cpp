@@ -239,7 +239,8 @@ void PlantFarmer::harvestCrop() {
                     if(Garden.isSlotEmpty(rowField,colField)){
                         throw InputException();
                     }
-                    if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField) || !Garden.isItemValid(rowField,colField)){
+                    if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField) || 
+                    !Garden.isItemValid(rowField,colField) || Garden.getItemInfo(landSlot)->getName()!=garden[num-1]){
                         throw InvalidSlotException();
                     }
 
