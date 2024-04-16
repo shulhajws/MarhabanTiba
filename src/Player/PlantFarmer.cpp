@@ -37,7 +37,10 @@ void PlantFarmer::setGarden(Storage<Plant*> garden){
 
 int PlantFarmer::calculateTax(){
     Tax t(getKTKP(), wealth,getPlayerAssets());
-    return t.getTax();
+    if(t.getTax()<=wealth){
+        return t.getTax();
+    }
+    return wealth;
 }
 
 void PlantFarmer::displayInfo() const {
@@ -239,7 +242,8 @@ void PlantFarmer::harvestCrop() {
                     if(Garden.isSlotEmpty(rowField,colField)){
                         throw InputException();
                     }
-                    if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField) || !Garden.isItemValid(rowField,colField)){
+                    if(!Garden.getItemInfo(landSlot)->isReadyToHarvest() || Garden.isSlotEmpty(rowField,colField) || 
+                    !Garden.isItemValid(rowField,colField) || Garden.getItemInfo(landSlot)->getName()!=garden[num-1]){
                         throw InvalidSlotException();
                     }
 

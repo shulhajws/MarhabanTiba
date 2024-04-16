@@ -166,6 +166,8 @@ bool Game::inputCommand(){
             cout << "7. BELI" << endl;
             cout << "8. JUAL" << endl;
             cout << "9. SIMPAN" << endl;
+            cout << "10. KELUAR_TANPA_SIMPAN" << endl;
+            cout << "11. KELUAR_DAN_SIMPAN" << endl;
         } else if (isCurrentPlayerAnimalFarmer()) {
             cout << "\nHoy, Animal Farmer! Here are your available commands : " << endl;
             cout << "1. NEXT" << endl;
@@ -179,6 +181,8 @@ bool Game::inputCommand(){
             cout << "9. JUAL" << endl;
             cout << "10. RISK" << endl;
             cout << "11. SIMPAN" << endl;
+            cout << "11. KELUAR_TANPA_SIMPAN" << endl;
+            cout << "12. KELUAR_DAN_SIMPAN" << endl;
         } else if (isCurrentPlayerPlantFarmer()) {
             cout << "\nHoy, Plant Farmer! Here are your available commands : " << endl;
             cout << "1. NEXT" << endl;
@@ -191,6 +195,8 @@ bool Game::inputCommand(){
             cout << "8. JUAL" << endl;
             cout << "9. RISK" << endl;
             cout << "10. SIMPAN" << endl;
+            cout << "11. KELUAR_TANPA_SIMPAN" << endl;
+            cout << "12. KELUAR_DAN_SIMPAN" << endl;
         }
         cout << "\nEnter command > ";
         cout << "\033[1;92m";

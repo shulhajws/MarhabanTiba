@@ -53,6 +53,7 @@ class Storage {
         vector<string> printHarvestedItem();
         bool isEmpty() const;
         bool isFull() const;
+        bool isOnlyBuildingItem() const;
         bool hasItem(const T& type) const;
         int countFilledCells() const;
         vector<T> getListOfContents() const;
