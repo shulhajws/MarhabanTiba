@@ -42,6 +42,7 @@ class Player{
         int getPlayerWeight() const;
         string getType() const;
         void getRandomRisk() const;
+        void setIteminInventory(Item*);
         vector<Item*> getListOfItems() const;
         void setInventory(Storage<Item*>);
 
@@ -68,6 +69,9 @@ class Player{
 
         // OPERATOR OVERLOADING
         bool operator==(string command) const;
+
+        //RISK
+        void upgradeBuildingRisk();
         
 };
 

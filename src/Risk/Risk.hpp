@@ -6,6 +6,7 @@ using namespace std;
 #include "../Player/Player.hpp"
 #include "../Player/AnimalFarmer.hpp"
 #include "../Player/PlantFarmer.hpp"
+#include "../Item/Product/ProductAnimal.hpp"
 
 class Risk{
     private:
@@ -46,6 +47,25 @@ class DiseaseOutbreak : public Risk {
         void useRisk(Player*) override;
         string getName() override;
 };
+
+class NotScamMLM : public Risk {
+    public:
+        void useRisk(Player*) override;
+        string getName() override;
+};
+
+class IftarTime : public Risk {
+    public:
+        void useRisk(Player*) override;
+        string getName() override;
+};
+
+class BedahRumahShow : public Risk {
+    public:
+        void useRisk(Player*) override;
+        string getName() override;
+};
+
 
 
 #endif
