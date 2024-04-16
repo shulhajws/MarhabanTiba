@@ -4,7 +4,11 @@
     "iosfwd": "cpp",
     "ostream": "cpp",
     "tuple": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "thread": "cpp",
+    "chrono": "cpp",
+    "deque": "cpp",
+    "vector": "cpp"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "clang",

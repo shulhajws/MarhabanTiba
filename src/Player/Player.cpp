@@ -6,6 +6,9 @@
 #include "../Command/AllCommand/Beli.hpp"
 #include "../Command/AllCommand/Jual.hpp"
 #include "../Command/AllCommand/Simpan.hpp"
+#include "../Command/AllCommand/KeluarSimpan.hpp"
+#include "../Command/AllCommand/KeluarTanpaSimpan.hpp"
+
 #include <iostream>
 using namespace std;
 
@@ -16,10 +19,11 @@ Player::Player(){
     this->commandList.push_back(new Jual());
     this->commandList.push_back(new Beli());
     this->commandList.push_back(new Simpan());
+    this->commandList.push_back(new KeluarSimpan());
+    this->commandList.push_back(new KeluarTanpaSimpan());
     Misc m;
     this->inventory.setRowCols(m.getStorageRow(),m.getStorageCols());
 }
-
 Player::Player(string username, int wealth, int weight, string type) : Player(){
     this->username = username;
     this->wealth = wealth;
