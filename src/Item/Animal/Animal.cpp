@@ -22,6 +22,10 @@ void Animal::setAnimalWeight(int weight){
     this->animalWeight = weight; 
 }
 
+int Animal::getAnimalWeight(){
+    return this->animalWeight;
+}
+
 void Animal::minWeight(){
     if(animalWeight>=2){
         this->animalWeight-=2;

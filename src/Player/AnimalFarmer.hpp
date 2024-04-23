@@ -18,6 +18,7 @@ class AnimalFarmer : public Player{
         void setBarn(Storage<Animal*>);
         int getPlayerAssets();
         vector<Animal*> getListOfAnimals() const;
+        Storage<Animal*> getBarn();
 
         /// CLASS METHOD
         // Display player info

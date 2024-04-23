@@ -19,6 +19,7 @@ class PlantFarmer : public Player{
         int getKTKP();
         vector<Plant*> getListOfPlants() const;
         void setGarden(Storage<Plant*>);
+        Storage<Plant*> getGarden();
 
         // CLASS METHOD
         // add  all plant year in Garden

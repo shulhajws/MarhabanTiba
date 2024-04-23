@@ -47,33 +47,52 @@ void Saver::saveGameState(string filepath, const vector<Player*>& players, const
                 if (player->getType() == "Petani")
                 {   
                     PlantFarmer* petani = dynamic_cast<PlantFarmer*>(player);
-                    vector<Plant*> plants = petani->getListOfPlants();
-                    if (plants.empty())
+                    // vector<Plant*> plants = petani->getListOfPlants();
+                    Storage<Plant*> garden = petani->getGarden();
+                    if (garden.isEmpty())
                     {
                         oState << 0 << endl;
                     }
                     else 
                     {
-                        for (const auto& plant : plants)
-                        {
-                            oState << plant->getName() << endl;
+                        oState << garden.countFilledCells() << endl;
+                        for(int i = 0; i < garden.getRow(); i++){
+                            for(int j = 0; j < garden.getCol(); j++){
+                                if (!garden.isSlotEmpty(i, j)) {
+                                    oState << garden.coltoPositionCode(j) << garden.rowtoPositionCode(i) << " " << garden.getItemInfoInt(i, j)->getName() << garden.rowtoPositionCode(i) << " " << garden.getItemInfoInt(i, j)->getPlantAge() << endl;
+                                }
+                            }
                         }
+                        // for (const auto& plant : plants)
+                        // {
+
+                        //     oState << plant->getName() << endl;
+                        // }
                     }
                 }
                 else if (player->getType() == "Peternak")
                 {
                     AnimalFarmer* peternak = dynamic_cast<AnimalFarmer*>(player);
-                    vector<Animal*> animals = peternak->getListOfAnimals();
-                    if (animals.empty())
+                    // vector<Animal*> animals = peternak->getListOfAnimals();
+                    Storage<Animal*> barn = peternak->getBarn();
+                    if (barn.isEmpty())
                     {
                         oState << 0 << endl;
                     }
                     else 
                     {
-                        for (const auto& animal : animals)
-                        {
-                            oState << animal->getName() << endl;
+                        oState << barn.countFilledCells() << endl;
+                        for(int i = 0; i < barn.getRow(); i++){
+                            for(int j = 0; j < barn.getCol(); j++){
+                                if (!barn.isSlotEmpty(i, j)) {
+                                    oState << barn.coltoPositionCode(j) << barn.rowtoPositionCode(i) << " " << barn.getItemInfoInt(i, j)->getName() << " " << barn.getItemInfoInt(i, j)->getAnimalWeight() << endl;
+                                }
+                            }
                         }
+                        // for (const auto& animal : animals)
+                        // {
+                        //     oState << animal->getName() << endl;
+                        // }
                     }
                 }
             }

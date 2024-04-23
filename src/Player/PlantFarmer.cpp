@@ -35,6 +35,10 @@ void PlantFarmer::setGarden(Storage<Plant*> garden){
     this->Garden = garden;
 }
 
+Storage<Plant*> PlantFarmer::getGarden(){
+    return this->Garden;
+};
+
 int PlantFarmer::calculateTax(){
     Tax t(getKTKP(), wealth,getPlayerAssets());
     if(t.getTax()<=wealth){

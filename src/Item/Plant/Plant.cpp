@@ -28,6 +28,10 @@ void Plant::setPlantAge(int plantAge){
     this->plantAge = plantAge;    
 }
 
+int Plant::getPlantAge(){
+    return this->plantAge;
+}
+
 bool Plant::isReadyToHarvest(){
     return this->plantAge >= this->harvestDuration;
 }

@@ -38,6 +38,9 @@ int AnimalFarmer::getKTKP(){
 void AnimalFarmer::setBarn(Storage<Animal*> barn){
     this->Barn = barn;
 }
+Storage<Animal*> AnimalFarmer::getBarn(){{
+    return this->Barn;
+}};
 
 int AnimalFarmer::calculateTax(){
     Tax t(getKTKP(), wealth,getPlayerAssets());
