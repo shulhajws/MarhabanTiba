@@ -163,6 +163,9 @@ void Player::eat() {
 void Player::buyItem(){
     Shop s;
     s.printShop();
+    if (inventory.isFull()){
+        throw NotEnoughInventorySpaceException();
+    }
     cout<<"\nYour money: "<<wealth<<endl;
     cout<<"Available storage slots: "<<inventory.getAvailableSlots()<<endl;
     
@@ -204,6 +207,9 @@ void Player::buyItem(){
                     }
                     if(type=="Walikota" && s.isBuilding(*(s.getItem(buy)))){
                         throw MayorBuyException();
+                    }
+                    if (inventory.getAvailableSlots() < quantity){
+                        throw NotEnoughInventorySpaceException();
                     }
 
                     inventory.printStorage("Storage",0);
@@ -277,6 +283,9 @@ void Player::buyItem(){
                     cout << e.what();
                 } catch (MayorBuyException e){
                     cout << e.what();
+                } catch (NotEnoughInventorySpaceException e){
+                    cout << e.what();
+                    return;
                 }
             } 
         }    
@@ -286,7 +295,10 @@ void Player::buyItem(){
     } catch(CannotBuyItemException e){
         cout << e.what();
         return;
-    } 
+    } catch (NotEnoughInventorySpaceException e){
+        cout << e.what();
+        return;
+    }
 }
 
 void Player::sellItem(){
@@ -361,7 +373,7 @@ void Player::sellItem(){
     } catch(SellInventoryBuildingForFarmerException e){
         cout << e.what();
         return;
-    }
+    } 
 }
 
 bool Player::hasDuplicates(const vector<string>& slots) {

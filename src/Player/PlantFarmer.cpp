@@ -192,6 +192,9 @@ void PlantFarmer::harvestCrop() {
         if (!Garden.isReadytoHarvest()){
             throw HarvestException();
         }
+        if (inventory.isFull()){
+            throw NotEnoughInventorySpaceException();
+        }
         printGarden();
         cout<<"\nChoose the ready-to-harvest crops you have:"<<endl;
         vector<string> garden = Garden.printHarvestedItem();
@@ -280,6 +283,8 @@ void PlantFarmer::harvestCrop() {
         cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested"<<endl;
          
     } catch (HarvestException e) {
+        cout << e.what();
+    } catch (NotEnoughInventorySpaceException e){
         cout << e.what();
     }
 }

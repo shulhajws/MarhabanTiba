@@ -270,6 +270,9 @@ void AnimalFarmer::harvestAnimal() {
         if (!Barn.isReadytoHarvest()){
             throw HarvestException();
         }
+        if (inventory.isFull()) {
+            throw NotEnoughInventorySpaceException();
+        }
         printBarn();
         cout<<"\nChoose the ready-to-harvest animal you have:"<<endl;
         vector<string> barn = Barn.printHarvestedItem();
@@ -358,7 +361,9 @@ void AnimalFarmer::harvestAnimal() {
         cout<<selectedPlots[selectedPlots.size()-1]<<" have been harvested"<<endl;
     } catch (HarvestException e) {
         cout << e.what();
-    } 
+    } catch (NotEnoughInventorySpaceException e){
+        cout << e.what();
+    }
 }
 
 void AnimalFarmer::minAnimalWeight(){
