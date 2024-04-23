@@ -163,9 +163,6 @@ void Player::eat() {
 void Player::buyItem(){
     Shop s;
     s.printShop();
-    if (inventory.isFull()){
-        throw NotEnoughInventorySpaceException();
-    }
     cout<<"\nYour money: "<<wealth<<endl;
     cout<<"Available storage slots: "<<inventory.getAvailableSlots()<<endl;
     
@@ -293,9 +290,6 @@ void Player::buyItem(){
         cout << e.what();
         return;
     } catch(CannotBuyItemException e){
-        cout << e.what();
-        return;
-    } catch (NotEnoughInventorySpaceException e){
         cout << e.what();
         return;
     }
