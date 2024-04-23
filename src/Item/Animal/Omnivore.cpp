@@ -9,7 +9,7 @@ Omnivore::Omnivore(string kode, string nama,int harvestWeight, int price): Anima
 
 void Omnivore::makan(Product* m){
     if (m->getType()=="PRODUCT_ANIMAL" || m->getType()=="PRODUCT_FRUIT_PLANT"){
-        this->berat_hewan += m->getAddedWeight(); 
+        this->animalWeight += m->getAddedWeight(); 
         cout<<"The " <<this->getName()<<" has been fed and its weight becomes "<<this->animalWeight<<endl;
     }
     else{

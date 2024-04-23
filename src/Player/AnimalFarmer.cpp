@@ -230,15 +230,9 @@ void AnimalFarmer::feedAnimal() {
                 throw InputException();
             }
 
-            Item* food = inventory.getItemInfo(slot);
+            Item* food = inventory.getItemInfo(slot);   
             if(food->getType()=="PRODUCT_ANIMAL"||food->getType()=="PRODUCT_FRUIT_PLANT"){
                 food = inventory.getItemInfoInt(row,col);
-                if(it->getType()=="CARNIVORE"&&!inventory.onlyAnimalProd()){
-                    throw NotFoodException();
-                }
-                if(it->getType()=="HERBIVORE"&&!inventory.onlyFruitProd()){
-                    throw NotFoodException();
-                }
                 Product* prod = dynamic_cast<Product*>(food);
                 it->makan(prod);
                 food = inventory.getItem(row,col);
